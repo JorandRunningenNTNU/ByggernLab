@@ -515,13 +515,25 @@
         "uuid": "26e08e78-9dbc-4948-a13f-fc9d093951ff"
       }
     ],
-    "used_designators": "R1-2,J1-4,IC1-4,#PWR1-22,C1-7,U1-2,SW1,Y1",
+    "used_designators": "J2,IC1-3,IC5,#PWR10-13,#PWR16-18,#PWR20-21,C5",
     "variants": []
   },
   "sheets": [
     [
       "26e08e78-9dbc-4948-a13f-fc9d093951ff",
       "Rot"
+    ],
+    [
+      "b761269b-b32f-4033-849a-ae982b9a29ca",
+      "AVR ATmega162"
+    ],
+    [
+      "ec5cc565-6ceb-4887-a28f-4e21142ebd62",
+      "Ekstern minne"
+    ],
+    [
+      "87d22ef8-9c9b-4de0-9f82-7ce26e0f6075",
+      "Digital Interface"
     ]
   ],
   "text_variables": {},
