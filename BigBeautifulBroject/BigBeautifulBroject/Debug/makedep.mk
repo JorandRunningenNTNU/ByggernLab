@@ -6,3 +6,5 @@ main.c
 
 source\drivere\uart.c
 
+source\sram.c
+

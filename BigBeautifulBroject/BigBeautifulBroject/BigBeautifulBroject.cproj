@@ -123,10 +123,16 @@
     <Compile Include="include\drivere\uart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\sram.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\sram.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

@@ -42,7 +42,8 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../main.c \
-../source/drivere/uart.c
+../source/drivere/uart.c \
+../source/sram.c
 
 
 PREPROCESSING_SRCS += 
@@ -53,19 +54,23 @@ ASM_SRCS +=
 
 OBJS +=  \
 main.o \
-source/drivere/uart.o
+source/drivere/uart.o \
+source/sram.o
 
 OBJS_AS_ARGS +=  \
 main.o \
-source/drivere/uart.o
+source/drivere/uart.o \
+source/sram.o
 
 C_DEPS +=  \
 main.d \
-source/drivere/uart.d
+source/drivere/uart.d \
+source/sram.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
-source/drivere/uart.d
+source/drivere/uart.d \
+source/sram.d
 
 OUTPUT_FILE_PATH +=BigBeautifulBroject.elf
 
@@ -89,6 +94,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 source/drivere/uart.o: ../source/drivere/uart.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+source/sram.o: ../source/sram.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
