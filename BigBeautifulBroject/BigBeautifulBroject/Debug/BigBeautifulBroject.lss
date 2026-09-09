@@ -3,31 +3,31 @@ BigBeautifulBroject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000010  00800100  00000a28  00000abc  2**0
+  0 .data         000000f6  00800100  00000a28  00000abc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00000a28  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000a  00800110  00800110  00000acc  2**0
+  2 .bss          0000000a  008001f6  008001f6  00000bb2  2**0
                   ALLOC
-  3 .comment      0000005c  00000000  00000000  00000acc  2**0
+  3 .comment      0000005c  00000000  00000000  00000bb2  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000b28  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000c10  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000060  00000000  00000000  00000b64  2**0
+  5 .debug_aranges 00000070  00000000  00000000  00000c4c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000971  00000000  00000000  00000bc4  2**0
+  6 .debug_info   00000a79  00000000  00000000  00000cbc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007cf  00000000  00000000  00001535  2**0
+  7 .debug_abbrev 00000883  00000000  00000000  00001735  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000003a1  00000000  00000000  00001d04  2**0
+  8 .debug_line   00000482  00000000  00000000  00001fb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000a0  00000000  00000000  000020a8  2**2
+  9 .debug_frame  0000012c  00000000  00000000  0000243c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003d1  00000000  00000000  00002148  2**0
+ 10 .debug_str    0000043e  00000000  00000000  00002568  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000141  00000000  00000000  00002519  2**0
+ 11 .debug_loc    000002ea  00000000  00000000  000029a6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000040  00000000  00000000  0000265a  2**0
+ 12 .debug_ranges 00000080  00000000  00000000  00002c90  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -79,13 +79,13 @@ Disassembly of section .text:
   86:	02 c0       	rjmp	.+4      	; 0x8c <__do_copy_data+0x10>
   88:	05 90       	lpm	r0, Z+
   8a:	0d 92       	st	X+, r0
-  8c:	a0 31       	cpi	r26, 0x10	; 16
+  8c:	a6 3f       	cpi	r26, 0xF6	; 246
   8e:	b1 07       	cpc	r27, r17
   90:	d9 f7       	brne	.-10     	; 0x88 <__do_copy_data+0xc>
 
 00000092 <__do_clear_bss>:
-  92:	21 e0       	ldi	r18, 0x01	; 1
-  94:	a0 e1       	ldi	r26, 0x10	; 16
+  92:	22 e0       	ldi	r18, 0x02	; 2
+  94:	a6 ef       	ldi	r26, 0xF6	; 246
   96:	b1 e0       	ldi	r27, 0x01	; 1
   98:	01 c0       	rjmp	.+2      	; 0x9c <.do_clear_bss_start>
 
@@ -93,169 +93,176 @@ Disassembly of section .text:
   9a:	1d 92       	st	X+, r1
 
 0000009c <.do_clear_bss_start>:
-  9c:	aa 31       	cpi	r26, 0x1A	; 26
+  9c:	a0 30       	cpi	r26, 0x00	; 0
   9e:	b2 07       	cpc	r27, r18
   a0:	e1 f7       	brne	.-8      	; 0x9a <.do_clear_bss_loop>
-  a2:	0e 94 69 00 	call	0xd2	; 0xd2 <main>
+  a2:	0e 94 57 00 	call	0xae	; 0xae <main>
   a6:	0c 94 12 05 	jmp	0xa24	; 0xa24 <_exit>
 
 000000aa <__bad_interrupt>:
   aa:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000ae <uart_getchar>:
-	sendByte((unsigned char) c);
-	return 0;
-}
-
-static int uart_getchar(FILE *stream){
-	return readByte();
-  ae:	0e 94 95 00 	call	0x12a	; 0x12a <readByte>
-}
-  b2:	90 e0       	ldi	r25, 0x00	; 0
-  b4:	08 95       	ret
-
-000000b6 <uart_putchar>:
-#include <avr/io.h>
-#include "stdio.h"
-#include "include/drivere/uart.h"
-
-
-static int uart_putchar(char c, FILE *stream){
-  b6:	cf 93       	push	r28
-  b8:	c8 2f       	mov	r28, r24
-	if (c == '\n') {
-  ba:	8a 30       	cpi	r24, 0x0A	; 10
-  bc:	19 f4       	brne	.+6      	; 0xc4 <uart_putchar+0xe>
-		sendByte('\r');
-  be:	8d e0       	ldi	r24, 0x0D	; 13
-  c0:	0e 94 91 00 	call	0x122	; 0x122 <sendByte>
-	}
-
-	sendByte((unsigned char) c);
-  c4:	8c 2f       	mov	r24, r28
-  c6:	0e 94 91 00 	call	0x122	; 0x122 <sendByte>
-	return 0;
-}
-  ca:	80 e0       	ldi	r24, 0x00	; 0
-  cc:	90 e0       	ldi	r25, 0x00	; 0
-  ce:	cf 91       	pop	r28
-  d0:	08 95       	ret
-
-000000d2 <main>:
-	return readByte();
+000000ae <main>:
+	write_errors, retrieval_errors);
 }
 
 
 int main(void){
-     FILE *uart = fdevopen(uart_putchar, uart_getchar);
-  d2:	67 e5       	ldi	r22, 0x57	; 87
-  d4:	70 e0       	ldi	r23, 0x00	; 0
-  d6:	8b e5       	ldi	r24, 0x5B	; 91
-  d8:	90 e0       	ldi	r25, 0x00	; 0
-  da:	0e 94 a5 00 	call	0x14a	; 0x14a <fdevopen>
-     stdout = uart;
-  de:	e0 e1       	ldi	r30, 0x10	; 16
-  e0:	f1 e0       	ldi	r31, 0x01	; 1
-  e2:	93 83       	std	Z+3, r25	; 0x03
-  e4:	82 83       	std	Z+2, r24	; 0x02
-     stdin = uart;
-  e6:	91 83       	std	Z+1, r25	; 0x01
-  e8:	80 83       	st	Z, r24
+    setupPrintf();	
+  ae:	0e 94 96 00 	call	0x12c	; 0x12c <setupPrintf>
 	
-	initilize();
-  ea:	0e 94 8b 00 	call	0x116	; 0x116 <initilize>
 	while (1){
 	    unsigned char data = readByte();
-  ee:	0e 94 95 00 	call	0x12a	; 0x12a <readByte>
+  b2:	0e 94 82 00 	call	0x104	; 0x104 <readByte>
 	    if (data != 254){
-  f2:	8e 3f       	cpi	r24, 0xFE	; 254
-  f4:	e1 f3       	breq	.-8      	; 0xee <main+0x1c>
-		    sendByte(data);
-  f6:	0e 94 91 00 	call	0x122	; 0x122 <sendByte>
-			printf("hei %d \n", 72);
-  fa:	1f 92       	push	r1
-  fc:	88 e4       	ldi	r24, 0x48	; 72
-  fe:	8f 93       	push	r24
- 100:	86 e0       	ldi	r24, 0x06	; 6
- 102:	91 e0       	ldi	r25, 0x01	; 1
- 104:	9f 93       	push	r25
- 106:	8f 93       	push	r24
- 108:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <printf>
- 10c:	0f 90       	pop	r0
- 10e:	0f 90       	pop	r0
- 110:	0f 90       	pop	r0
- 112:	0f 90       	pop	r0
- 114:	ec cf       	rjmp	.-40     	; 0xee <main+0x1c>
+  b6:	8e 3f       	cpi	r24, 0xFE	; 254
+  b8:	e1 f3       	breq	.-8      	; 0xb2 <main+0x4>
+			printf("hei %d \n", data);
+  ba:	1f 92       	push	r1
+  bc:	8f 93       	push	r24
+  be:	8c ee       	ldi	r24, 0xEC	; 236
+  c0:	91 e0       	ldi	r25, 0x01	; 1
+  c2:	9f 93       	push	r25
+  c4:	8f 93       	push	r24
+  c6:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <printf>
+  ca:	0f 90       	pop	r0
+  cc:	0f 90       	pop	r0
+  ce:	0f 90       	pop	r0
+  d0:	0f 90       	pop	r0
+  d2:	ef cf       	rjmp	.-34     	; 0xb2 <main+0x4>
 
-00000116 <initilize>:
+000000d4 <initilize>:
 #include "../../include/drivere/uart.h"
 
 void initilize(){
 	// baud-rate 9600
 	UBRR0H = 0;
- 116:	10 bc       	out	0x20, r1	; 32
+  d4:	10 bc       	out	0x20, r1	; 32
 	UBRR0L = 31;
- 118:	8f e1       	ldi	r24, 0x1F	; 31
- 11a:	89 b9       	out	0x09, r24	; 9
+  d6:	8f e1       	ldi	r24, 0x1F	; 31
+  d8:	89 b9       	out	0x09, r24	; 9
 	
 	// enable reciver og transmitter
 	UCSR0B = (1<<3)|(1<<4);
- 11c:	88 e1       	ldi	r24, 0x18	; 24
- 11e:	8a b9       	out	0x0a, r24	; 10
- 120:	08 95       	ret
+  da:	88 e1       	ldi	r24, 0x18	; 24
+  dc:	8a b9       	out	0x0a, r24	; 10
+  de:	08 95       	ret
 
-00000122 <sendByte>:
+000000e0 <sendByte>:
 
 }
 
 void sendByte(unsigned char data){
 	// vente på at bufferen er klar til å skrives til
 	while(!(UCSR0A & (1<<5))){}
- 122:	5d 9b       	sbis	0x0b, 5	; 11
- 124:	fe cf       	rjmp	.-4      	; 0x122 <sendByte>
+  e0:	5d 9b       	sbis	0x0b, 5	; 11
+  e2:	fe cf       	rjmp	.-4      	; 0xe0 <sendByte>
 	
 	UDR0 =  data;
- 126:	8c b9       	out	0x0c, r24	; 12
- 128:	08 95       	ret
+  e4:	8c b9       	out	0x0c, r24	; 12
+  e6:	08 95       	ret
 
-0000012a <readByte>:
+000000e8 <uart_putchar>:
+}
+
+
+
+//''''''''''''' sette opp printf '''''''''''''''''''''''
+static int uart_putchar(char c, FILE *stream){
+  e8:	cf 93       	push	r28
+  ea:	c8 2f       	mov	r28, r24
+	if (c == '\n') {
+  ec:	8a 30       	cpi	r24, 0x0A	; 10
+  ee:	19 f4       	brne	.+6      	; 0xf6 <uart_putchar+0xe>
+		sendByte('\r');
+  f0:	8d e0       	ldi	r24, 0x0D	; 13
+  f2:	0e 94 70 00 	call	0xe0	; 0xe0 <sendByte>
+	}
+
+	sendByte((unsigned char) c);
+  f6:	8c 2f       	mov	r24, r28
+  f8:	0e 94 70 00 	call	0xe0	; 0xe0 <sendByte>
+	return 0;
+}
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+  fe:	90 e0       	ldi	r25, 0x00	; 0
+ 100:	cf 91       	pop	r28
+ 102:	08 95       	ret
+
+00000104 <readByte>:
+	
+	UDR0 =  data;
 }
 
 unsigned char readByte(){
 	int n = 10000;
- 12a:	20 e1       	ldi	r18, 0x10	; 16
- 12c:	37 e2       	ldi	r19, 0x27	; 39
- 12e:	c9 01       	movw	r24, r18
+ 104:	20 e1       	ldi	r18, 0x10	; 16
+ 106:	37 e2       	ldi	r19, 0x27	; 39
+ 108:	c9 01       	movw	r24, r18
 	while(!(UCSR0A & (1<<7)) || (n--));
- 130:	5f 9b       	sbis	0x0b, 7	; 11
- 132:	fe cf       	rjmp	.-4      	; 0x130 <readByte+0x6>
- 134:	9c 01       	movw	r18, r24
- 136:	21 50       	subi	r18, 0x01	; 1
- 138:	31 09       	sbc	r19, r1
- 13a:	89 2b       	or	r24, r25
- 13c:	c1 f7       	brne	.-16     	; 0x12e <readByte+0x4>
+ 10a:	5f 9b       	sbis	0x0b, 7	; 11
+ 10c:	fe cf       	rjmp	.-4      	; 0x10a <readByte+0x6>
+ 10e:	9c 01       	movw	r18, r24
+ 110:	21 50       	subi	r18, 0x01	; 1
+ 112:	31 09       	sbc	r19, r1
+ 114:	89 2b       	or	r24, r25
+ 116:	c1 f7       	brne	.-16     	; 0x108 <readByte+0x4>
 	
 	// returnerer 254 om ingen ting leses
 	if (n == 0){
- 13e:	23 2b       	or	r18, r19
- 140:	11 f0       	breq	.+4      	; 0x146 <readByte+0x1c>
+ 118:	23 2b       	or	r18, r19
+ 11a:	11 f0       	breq	.+4      	; 0x120 <readByte+0x1c>
 		return 254;
 	}
 	
 	return UDR0;
- 142:	8c b1       	in	r24, 0x0c	; 12
- 144:	08 95       	ret
+ 11c:	8c b1       	in	r24, 0x0c	; 12
+ 11e:	08 95       	ret
 	int n = 10000;
 	while(!(UCSR0A & (1<<7)) || (n--));
 	
 	// returnerer 254 om ingen ting leses
 	if (n == 0){
 		return 254;
- 146:	8e ef       	ldi	r24, 0xFE	; 254
+ 120:	8e ef       	ldi	r24, 0xFE	; 254
 	}
 	
 	return UDR0;
 }
+ 122:	08 95       	ret
+
+00000124 <uart_getchar>:
+	return 0;
+}
+
+
+static int uart_getchar(FILE *stream){
+	return readByte();
+ 124:	0e 94 82 00 	call	0x104	; 0x104 <readByte>
+}
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	08 95       	ret
+
+0000012c <setupPrintf>:
+
+
+void setupPrintf(){
+	initilize();
+ 12c:	0e 94 6a 00 	call	0xd4	; 0xd4 <initilize>
+	FILE *uart = fdevopen(uart_putchar, uart_getchar);
+ 130:	62 e9       	ldi	r22, 0x92	; 146
+ 132:	70 e0       	ldi	r23, 0x00	; 0
+ 134:	84 e7       	ldi	r24, 0x74	; 116
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	0e 94 a5 00 	call	0x14a	; 0x14a <fdevopen>
+	stdout = uart;
+ 13c:	e6 ef       	ldi	r30, 0xF6	; 246
+ 13e:	f1 e0       	ldi	r31, 0x01	; 1
+ 140:	93 83       	std	Z+3, r25	; 0x03
+ 142:	82 83       	std	Z+2, r24	; 0x02
+	stdin = uart;
+ 144:	91 83       	std	Z+1, r25	; 0x01
+ 146:	80 83       	st	Z, r24
  148:	08 95       	ret
 
 0000014a <fdevopen>:
@@ -290,12 +297,12 @@ unsigned char readByte(){
  184:	02 87       	std	Z+10, r16	; 0x0a
  186:	81 e8       	ldi	r24, 0x81	; 129
  188:	83 83       	std	Z+3, r24	; 0x03
- 18a:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
- 18e:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <__data_end+0x1>
+ 18a:	80 91 f6 01 	lds	r24, 0x01F6	; 0x8001f6 <__data_end>
+ 18e:	90 91 f7 01 	lds	r25, 0x01F7	; 0x8001f7 <__data_end+0x1>
  192:	89 2b       	or	r24, r25
  194:	21 f4       	brne	.+8      	; 0x19e <fdevopen+0x54>
- 196:	f0 93 11 01 	sts	0x0111, r31	; 0x800111 <__data_end+0x1>
- 19a:	e0 93 10 01 	sts	0x0110, r30	; 0x800110 <__data_end>
+ 196:	f0 93 f7 01 	sts	0x01F7, r31	; 0x8001f7 <__data_end+0x1>
+ 19a:	e0 93 f6 01 	sts	0x01F6, r30	; 0x8001f6 <__data_end>
  19e:	20 97       	sbiw	r28, 0x00	; 0
  1a0:	c9 f0       	breq	.+50     	; 0x1d4 <fdevopen+0x8a>
  1a2:	d1 87       	std	Z+9, r29	; 0x09
@@ -303,18 +310,18 @@ unsigned char readByte(){
  1a6:	83 81       	ldd	r24, Z+3	; 0x03
  1a8:	82 60       	ori	r24, 0x02	; 2
  1aa:	83 83       	std	Z+3, r24	; 0x03
- 1ac:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end+0x2>
- 1b0:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <__data_end+0x3>
+ 1ac:	80 91 f8 01 	lds	r24, 0x01F8	; 0x8001f8 <__data_end+0x2>
+ 1b0:	90 91 f9 01 	lds	r25, 0x01F9	; 0x8001f9 <__data_end+0x3>
  1b4:	89 2b       	or	r24, r25
  1b6:	71 f4       	brne	.+28     	; 0x1d4 <fdevopen+0x8a>
- 1b8:	f0 93 13 01 	sts	0x0113, r31	; 0x800113 <__data_end+0x3>
- 1bc:	e0 93 12 01 	sts	0x0112, r30	; 0x800112 <__data_end+0x2>
- 1c0:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <__data_end+0x4>
- 1c4:	90 91 15 01 	lds	r25, 0x0115	; 0x800115 <__data_end+0x5>
+ 1b8:	f0 93 f9 01 	sts	0x01F9, r31	; 0x8001f9 <__data_end+0x3>
+ 1bc:	e0 93 f8 01 	sts	0x01F8, r30	; 0x8001f8 <__data_end+0x2>
+ 1c0:	80 91 fa 01 	lds	r24, 0x01FA	; 0x8001fa <__data_end+0x4>
+ 1c4:	90 91 fb 01 	lds	r25, 0x01FB	; 0x8001fb <__data_end+0x5>
  1c8:	89 2b       	or	r24, r25
  1ca:	21 f4       	brne	.+8      	; 0x1d4 <fdevopen+0x8a>
- 1cc:	f0 93 15 01 	sts	0x0115, r31	; 0x800115 <__data_end+0x5>
- 1d0:	e0 93 14 01 	sts	0x0114, r30	; 0x800114 <__data_end+0x4>
+ 1cc:	f0 93 fb 01 	sts	0x01FB, r31	; 0x8001fb <__data_end+0x5>
+ 1d0:	e0 93 fa 01 	sts	0x01FA, r30	; 0x8001fa <__data_end+0x4>
  1d4:	cf 01       	movw	r24, r30
  1d6:	df 91       	pop	r29
  1d8:	cf 91       	pop	r28
@@ -335,8 +342,8 @@ unsigned char readByte(){
  1f4:	61 91       	ld	r22, Z+
  1f6:	71 91       	ld	r23, Z+
  1f8:	af 01       	movw	r20, r30
- 1fa:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end+0x2>
- 1fe:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <__data_end+0x3>
+ 1fa:	80 91 f8 01 	lds	r24, 0x01F8	; 0x8001f8 <__data_end+0x2>
+ 1fe:	90 91 f9 01 	lds	r25, 0x01F9	; 0x8001f9 <__data_end+0x3>
  202:	0e 94 06 01 	call	0x20c	; 0x20c <vfprintf>
  206:	e2 e0       	ldi	r30, 0x02	; 2
  208:	0c 94 07 05 	jmp	0xa0e	; 0xa0e <__epilogue_restores__+0x20>
@@ -847,8 +854,8 @@ unsigned char readByte(){
  612:	10 f4       	brcc	.+4      	; 0x618 <malloc+0x12>
  614:	82 e0       	ldi	r24, 0x02	; 2
  616:	90 e0       	ldi	r25, 0x00	; 0
- 618:	e0 91 18 01 	lds	r30, 0x0118	; 0x800118 <__flp>
- 61c:	f0 91 19 01 	lds	r31, 0x0119	; 0x800119 <__flp+0x1>
+ 618:	e0 91 fe 01 	lds	r30, 0x01FE	; 0x8001fe <__flp>
+ 61c:	f0 91 ff 01 	lds	r31, 0x01FF	; 0x8001ff <__flp+0x1>
  620:	20 e0       	ldi	r18, 0x00	; 0
  622:	30 e0       	ldi	r19, 0x00	; 0
  624:	a0 e0       	ldi	r26, 0x00	; 0
@@ -873,8 +880,8 @@ unsigned char readByte(){
  64a:	13 96       	adiw	r26, 0x03	; 3
  64c:	1c 93       	st	X, r17
  64e:	27 c0       	rjmp	.+78     	; 0x69e <malloc+0x98>
- 650:	00 93 18 01 	sts	0x0118, r16	; 0x800118 <__flp>
- 654:	10 93 19 01 	sts	0x0119, r17	; 0x800119 <__flp+0x1>
+ 650:	00 93 fe 01 	sts	0x01FE, r16	; 0x8001fe <__flp>
+ 654:	10 93 ff 01 	sts	0x01FF, r17	; 0x8001ff <__flp+0x1>
  658:	22 c0       	rjmp	.+68     	; 0x69e <malloc+0x98>
  65a:	21 15       	cp	r18, r1
  65c:	31 05       	cpc	r19, r1
@@ -905,8 +912,8 @@ unsigned char readByte(){
  68e:	93 83       	std	Z+3, r25	; 0x03
  690:	82 83       	std	Z+2, r24	; 0x02
  692:	04 c0       	rjmp	.+8      	; 0x69c <malloc+0x96>
- 694:	90 93 19 01 	sts	0x0119, r25	; 0x800119 <__flp+0x1>
- 698:	80 93 18 01 	sts	0x0118, r24	; 0x800118 <__flp>
+ 694:	90 93 ff 01 	sts	0x01FF, r25	; 0x8001ff <__flp+0x1>
+ 698:	80 93 fe 01 	sts	0x01FE, r24	; 0x8001fe <__flp>
  69c:	fe 01       	movw	r30, r28
  69e:	32 96       	adiw	r30, 0x02	; 2
  6a0:	44 c0       	rjmp	.+136    	; 0x72a <malloc+0x124>
@@ -920,14 +927,14 @@ unsigned char readByte(){
  6b0:	39 83       	std	Y+1, r19	; 0x01
  6b2:	28 83       	st	Y, r18
  6b4:	3a c0       	rjmp	.+116    	; 0x72a <malloc+0x124>
- 6b6:	20 91 16 01 	lds	r18, 0x0116	; 0x800116 <__brkval>
- 6ba:	30 91 17 01 	lds	r19, 0x0117	; 0x800117 <__brkval+0x1>
+ 6b6:	20 91 fc 01 	lds	r18, 0x01FC	; 0x8001fc <__brkval>
+ 6ba:	30 91 fd 01 	lds	r19, 0x01FD	; 0x8001fd <__brkval+0x1>
  6be:	23 2b       	or	r18, r19
  6c0:	41 f4       	brne	.+16     	; 0x6d2 <malloc+0xcc>
  6c2:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <__malloc_heap_start>
  6c6:	30 91 03 01 	lds	r19, 0x0103	; 0x800103 <__malloc_heap_start+0x1>
- 6ca:	30 93 17 01 	sts	0x0117, r19	; 0x800117 <__brkval+0x1>
- 6ce:	20 93 16 01 	sts	0x0116, r18	; 0x800116 <__brkval>
+ 6ca:	30 93 fd 01 	sts	0x01FD, r19	; 0x8001fd <__brkval+0x1>
+ 6ce:	20 93 fc 01 	sts	0x01FC, r18	; 0x8001fc <__brkval>
  6d2:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
  6d6:	30 91 01 01 	lds	r19, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  6da:	21 15       	cp	r18, r1
@@ -939,8 +946,8 @@ unsigned char readByte(){
  6e8:	50 91 05 01 	lds	r21, 0x0105	; 0x800105 <__malloc_margin+0x1>
  6ec:	24 1b       	sub	r18, r20
  6ee:	35 0b       	sbc	r19, r21
- 6f0:	e0 91 16 01 	lds	r30, 0x0116	; 0x800116 <__brkval>
- 6f4:	f0 91 17 01 	lds	r31, 0x0117	; 0x800117 <__brkval+0x1>
+ 6f0:	e0 91 fc 01 	lds	r30, 0x01FC	; 0x8001fc <__brkval>
+ 6f4:	f0 91 fd 01 	lds	r31, 0x01FD	; 0x8001fd <__brkval+0x1>
  6f8:	e2 17       	cp	r30, r18
  6fa:	f3 07       	cpc	r31, r19
  6fc:	a0 f4       	brcc	.+40     	; 0x726 <malloc+0x120>
@@ -957,8 +964,8 @@ unsigned char readByte(){
  712:	48 f0       	brcs	.+18     	; 0x726 <malloc+0x120>
  714:	4e 0f       	add	r20, r30
  716:	5f 1f       	adc	r21, r31
- 718:	50 93 17 01 	sts	0x0117, r21	; 0x800117 <__brkval+0x1>
- 71c:	40 93 16 01 	sts	0x0116, r20	; 0x800116 <__brkval>
+ 718:	50 93 fd 01 	sts	0x01FD, r21	; 0x8001fd <__brkval+0x1>
+ 71c:	40 93 fc 01 	sts	0x01FC, r20	; 0x8001fc <__brkval>
  720:	81 93       	st	Z+, r24
  722:	91 93       	st	Z+, r25
  724:	02 c0       	rjmp	.+4      	; 0x72a <malloc+0x124>
@@ -981,21 +988,21 @@ unsigned char readByte(){
  742:	32 97       	sbiw	r30, 0x02	; 2
  744:	13 82       	std	Z+3, r1	; 0x03
  746:	12 82       	std	Z+2, r1	; 0x02
- 748:	a0 91 18 01 	lds	r26, 0x0118	; 0x800118 <__flp>
- 74c:	b0 91 19 01 	lds	r27, 0x0119	; 0x800119 <__flp+0x1>
+ 748:	a0 91 fe 01 	lds	r26, 0x01FE	; 0x8001fe <__flp>
+ 74c:	b0 91 ff 01 	lds	r27, 0x01FF	; 0x8001ff <__flp+0x1>
  750:	10 97       	sbiw	r26, 0x00	; 0
  752:	81 f4       	brne	.+32     	; 0x774 <free+0x3e>
  754:	20 81       	ld	r18, Z
  756:	31 81       	ldd	r19, Z+1	; 0x01
  758:	82 0f       	add	r24, r18
  75a:	93 1f       	adc	r25, r19
- 75c:	20 91 16 01 	lds	r18, 0x0116	; 0x800116 <__brkval>
- 760:	30 91 17 01 	lds	r19, 0x0117	; 0x800117 <__brkval+0x1>
+ 75c:	20 91 fc 01 	lds	r18, 0x01FC	; 0x8001fc <__brkval>
+ 760:	30 91 fd 01 	lds	r19, 0x01FD	; 0x8001fd <__brkval+0x1>
  764:	28 17       	cp	r18, r24
  766:	39 07       	cpc	r19, r25
  768:	51 f5       	brne	.+84     	; 0x7be <free+0x88>
- 76a:	f0 93 17 01 	sts	0x0117, r31	; 0x800117 <__brkval+0x1>
- 76e:	e0 93 16 01 	sts	0x0116, r30	; 0x800116 <__brkval>
+ 76a:	f0 93 fd 01 	sts	0x01FD, r31	; 0x8001fd <__brkval+0x1>
+ 76e:	e0 93 fc 01 	sts	0x01FC, r30	; 0x8001fc <__brkval>
  772:	67 c0       	rjmp	.+206    	; 0x842 <free+0x10c>
  774:	ed 01       	movw	r28, r26
  776:	20 e0       	ldi	r18, 0x00	; 0
@@ -1034,8 +1041,8 @@ unsigned char readByte(){
  7b8:	21 15       	cp	r18, r1
  7ba:	31 05       	cpc	r19, r1
  7bc:	29 f4       	brne	.+10     	; 0x7c8 <free+0x92>
- 7be:	f0 93 19 01 	sts	0x0119, r31	; 0x800119 <__flp+0x1>
- 7c2:	e0 93 18 01 	sts	0x0118, r30	; 0x800118 <__flp>
+ 7be:	f0 93 ff 01 	sts	0x01FF, r31	; 0x8001ff <__flp+0x1>
+ 7c2:	e0 93 fe 01 	sts	0x01FE, r30	; 0x8001fe <__flp>
  7c6:	3d c0       	rjmp	.+122    	; 0x842 <free+0x10c>
  7c8:	e9 01       	movw	r28, r18
  7ca:	fb 83       	std	Y+3, r31	; 0x03
@@ -1078,20 +1085,20 @@ unsigned char readByte(){
  814:	3f 4f       	sbci	r19, 0xFF	; 255
  816:	82 0f       	add	r24, r18
  818:	93 1f       	adc	r25, r19
- 81a:	20 91 16 01 	lds	r18, 0x0116	; 0x800116 <__brkval>
- 81e:	30 91 17 01 	lds	r19, 0x0117	; 0x800117 <__brkval+0x1>
+ 81a:	20 91 fc 01 	lds	r18, 0x01FC	; 0x8001fc <__brkval>
+ 81e:	30 91 fd 01 	lds	r19, 0x01FD	; 0x8001fd <__brkval+0x1>
  822:	28 17       	cp	r18, r24
  824:	39 07       	cpc	r19, r25
  826:	69 f4       	brne	.+26     	; 0x842 <free+0x10c>
  828:	30 97       	sbiw	r30, 0x00	; 0
  82a:	29 f4       	brne	.+10     	; 0x836 <free+0x100>
- 82c:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <__flp+0x1>
- 830:	10 92 18 01 	sts	0x0118, r1	; 0x800118 <__flp>
+ 82c:	10 92 ff 01 	sts	0x01FF, r1	; 0x8001ff <__flp+0x1>
+ 830:	10 92 fe 01 	sts	0x01FE, r1	; 0x8001fe <__flp>
  834:	02 c0       	rjmp	.+4      	; 0x83a <free+0x104>
  836:	13 82       	std	Z+3, r1	; 0x03
  838:	12 82       	std	Z+2, r1	; 0x02
- 83a:	b0 93 17 01 	sts	0x0117, r27	; 0x800117 <__brkval+0x1>
- 83e:	a0 93 16 01 	sts	0x0116, r26	; 0x800116 <__brkval>
+ 83a:	b0 93 fd 01 	sts	0x01FD, r27	; 0x8001fd <__brkval+0x1>
+ 83e:	a0 93 fc 01 	sts	0x01FC, r26	; 0x8001fc <__brkval>
  842:	df 91       	pop	r29
  844:	cf 91       	pop	r28
  846:	08 95       	ret

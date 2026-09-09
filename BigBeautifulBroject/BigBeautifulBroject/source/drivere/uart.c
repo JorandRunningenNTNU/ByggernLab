@@ -28,3 +28,29 @@ unsigned char readByte(){
 	
 	return UDR0;
 }
+
+
+
+//''''''''''''' sette opp printf '''''''''''''''''''''''
+static int uart_putchar(char c, FILE *stream){
+	if (c == '\n') {
+		sendByte('\r');
+	}
+
+	sendByte((unsigned char) c);
+	return 0;
+}
+
+
+static int uart_getchar(FILE *stream){
+	return readByte();
+}
+
+
+void setupPrintf(){
+	initilize();
+	FILE *uart = fdevopen(uart_putchar, uart_getchar);
+	stdout = uart;
+	stdin = uart;
+}
+

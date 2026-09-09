@@ -1,6 +1,7 @@
 #pragma once
-#include "avr/io.h"
+#include <avr/io.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-void initilize();
-void sendByte(unsigned char data);
 unsigned char readByte();
+void setupPrintf();
