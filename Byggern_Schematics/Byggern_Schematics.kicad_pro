@@ -421,15 +421,15 @@
       },
       {
         "netclass": "Kontrol_Signaler",
-        "pattern": "/~{WR}"
+        "pattern": "*/~{WR}"
       },
       {
         "netclass": "Kontrol_Signaler",
-        "pattern": "/~{RD}"
+        "pattern": "*/~{RD}"
       },
       {
         "netclass": "Kontrol_Signaler",
-        "pattern": "/ALE"
+        "pattern": "*/ALE"
       },
       {
         "netclass": "Kontrol_Signaler",
@@ -453,11 +453,39 @@
       },
       {
         "netclass": "Kontrol_Signaler",
-        "pattern": "/CLK"
+        "pattern": "*/CLK"
       },
       {
         "netclass": "Analog",
         "pattern": "/*_Y"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "/~{BUSY}"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "*/PD*"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "*/~{WE}"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "*CTRL"
+      },
+      {
+        "netclass": "Annet_Power",
+        "pattern": "*REF"
+      },
+      {
+        "netclass": "Div_Seriel",
+        "pattern": "slash"
+      },
+      {
+        "netclass": "Div_Seriel",
+        "pattern": "/DISPLAY_~{CS}|/IO_~{CS}|/MISO|/MOSI|/SCK"
       }
     ]
   },
@@ -589,7 +617,7 @@
         "uuid": "26e08e78-9dbc-4948-a13f-fc9d093951ff"
       }
     ],
-    "used_designators": "",
+    "used_designators": "U3-4,#PWR5,#PWR7,#PWR23,#PWR35-36,#PWR40-46,C8-9,C12,C17-20,J6,R3-5,Y2-3",
     "variants": []
   },
   "sheets": [
