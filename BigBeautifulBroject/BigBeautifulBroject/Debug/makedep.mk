@@ -4,7 +4,13 @@
 
 main.c
 
+source\drivere\adc.c
+
 source\drivere\uart.c
+
+source\joystick.c
+
+source\sleep.c
 
 source\sram.c
 

@@ -120,7 +120,19 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="include\drivere\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\drivere\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\joystick.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\sleep.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\sram.h">
@@ -129,7 +141,19 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\drivere\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\drivere\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\joystick.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\sleep.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\sram.c">
