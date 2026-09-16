@@ -285,8 +285,48 @@
         "line_style": 0,
         "name": "5V",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 5,
+        "priority": 8,
         "schematic_color": "rgb(255, 0, 0)",
+        "tuning_profile": "",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "Analog",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgb(72, 72, 0)",
+        "tuning_profile": "",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "Annet_Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 3,
+        "schematic_color": "rgb(255, 87, 0)",
+        "tuning_profile": "",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "BUS_Signaler",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2,
+        "schematic_color": "rgb(0, 0, 255)",
+        "tuning_profile": "",
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "Div_Seriel",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 6,
+        "schematic_color": "rgb(0, 178, 0)",
         "tuning_profile": "",
         "wire_width": 6
       },
@@ -295,7 +335,7 @@
         "line_style": 0,
         "name": "GND",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 4,
+        "priority": 7,
         "schematic_color": "rgb(0, 0, 0)",
         "tuning_profile": "",
         "wire_width": 6
@@ -303,10 +343,10 @@
       {
         "bus_width": 12,
         "line_style": 0,
-        "name": "JTAG",
+        "name": "Kontrol_Signaler",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 3,
-        "schematic_color": "rgb(0, 178, 0)",
+        "priority": 1,
+        "schematic_color": "rgb(154, 154, 154)",
         "tuning_profile": "",
         "wire_width": 6
       },
@@ -315,7 +355,7 @@
         "line_style": 0,
         "name": "RX",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "priority": 5,
         "schematic_color": "rgb(255, 229, 191)",
         "tuning_profile": "",
         "wire_width": 6
@@ -325,7 +365,7 @@
         "line_style": 0,
         "name": "Reset",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 6,
+        "priority": 9,
         "schematic_color": "rgb(195, 195, 0)",
         "tuning_profile": "",
         "wire_width": 6
@@ -335,18 +375,8 @@
         "line_style": 0,
         "name": "TX",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
+        "priority": 4,
         "schematic_color": "rgb(0, 0, 194)",
-        "tuning_profile": "",
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "line_style": 0,
-        "name": "VIN",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
-        "schematic_color": "rgb(255, 87, 0)",
         "tuning_profile": "",
         "wire_width": 6
       }
@@ -370,20 +400,64 @@
         "pattern": "GND"
       },
       {
-        "netclass": "JTAG",
+        "netclass": "Div_Seriel",
         "pattern": "/JTAG_*"
       },
       {
         "netclass": "RX",
-        "pattern": "/RX*"
+        "pattern": "*/RX*"
       },
       {
         "netclass": "TX",
-        "pattern": "/TX*"
+        "pattern": "*/TX*"
       },
       {
-        "netclass": "VIN",
-        "pattern": "/V_*"
+        "netclass": "Annet_Power",
+        "pattern": "*/V*"
+      },
+      {
+        "netclass": "Annet_Power",
+        "pattern": "/Digital Interface/C2*"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "/~{WR}"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "/~{RD}"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "/ALE"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "*/PE*"
+      },
+      {
+        "netclass": "BUS_Signaler",
+        "pattern": "*Ekstern minne/A*"
+      },
+      {
+        "netclass": "BUS_Signaler",
+        "pattern": "*/PA*"
+      },
+      {
+        "netclass": "BUS_Signaler",
+        "pattern": "*/PC*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "/*_X"
+      },
+      {
+        "netclass": "Kontrol_Signaler",
+        "pattern": "/CLK"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "/*_Y"
       }
     ]
   },
@@ -515,17 +589,13 @@
         "uuid": "26e08e78-9dbc-4948-a13f-fc9d093951ff"
       }
     ],
-    "used_designators": "J2,IC1-3,IC5,#PWR10-13,#PWR16-18,#PWR20-21,C5",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "26e08e78-9dbc-4948-a13f-fc9d093951ff",
       "Rot"
-    ],
-    [
-      "b761269b-b32f-4033-849a-ae982b9a29ca",
-      "AVR ATmega162"
     ],
     [
       "ec5cc565-6ceb-4887-a28f-4e21142ebd62",
