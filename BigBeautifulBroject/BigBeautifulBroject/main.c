@@ -8,17 +8,23 @@
 #include "include/sleep.h" 
 #include "include/drivere/spi.h"
 #include "include/drivere/ioBoard.h"
+#include "include/drivere/display.h"
+#include "include/fonts.h"
 
 int main(void){
 	setupPrintf();	
 	setupSRAM();
 	setupADC();
 	setupSPI();
+	setupDisplay();
 	//joystickCalibrate();
 	
 	while(1){
-		updateIoData();
-		printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
+		printf("hei \n");
+		uint8_t* noe = (uint8_t*) font8[1];
+		sendData(noe, 8);
+		//updateIoData();
+		//printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
 		sleep(100);
 	}
 	

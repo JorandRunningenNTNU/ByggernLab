@@ -6,6 +6,8 @@ main.c
 
 source\drivere\adc.c
 
+source\drivere\display.c
+
 source\drivere\ioBoard.c
 
 source\drivere\spi.c
