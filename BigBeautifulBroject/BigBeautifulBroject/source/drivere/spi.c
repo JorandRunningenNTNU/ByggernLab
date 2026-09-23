@@ -16,13 +16,20 @@ void setupSPI(){
 	// Sampler på leading edge
 	// SCK frekvens er f_osc/4, antar f_osc er den interne frekvensen
 	SPCR |= (1 << 4); // setter atmega til master
+	SPCR |= (1 << 6); // enable SPI
 	
 }
 
-void slectSlaveSPI(SPIselect slave){
+void selectSlaveSPI(SPIselect slave){
 	PORTB |= (1 << 4) | (1 << 3) | (1 << 1);
 	
 	if (slave = CAN){PORTB &= 0xfd;}
 	if (slave = Display){PORTB &= 0xf7;}
 	if (slave = IO){PORTB &= 0xef;}
+}
+
+void writeByteSPI(char data, SPIselect slave){
+	selectSlaveSPI(slave);
+	SPDR = data;
+	while(!(SPSR & (1 << 7))){}
 }

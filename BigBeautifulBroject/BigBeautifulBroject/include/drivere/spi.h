@@ -3,7 +3,7 @@
 typedef enum {IO, Display, CAN} SPIselect;
 
 void setupSPI();
-void slectSlaveSPI(SPIselect slave);
-void writeByteSPI(char data);
-void writeSPI(char* data, uint16_t n);
+void selectSlaveSPI(SPIselect slave);
+void writeByteSPI(char data, SPIselect slave);
+void writeSPI(char* data, uint16_t n, SPIselect slave);
 char readSPI(SPIselect slave);
