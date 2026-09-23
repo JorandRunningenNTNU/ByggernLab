@@ -6,6 +6,10 @@ main.c
 
 source\drivere\adc.c
 
+source\drivere\ioBoard.c
+
+source\drivere\spi.c
+
 source\drivere\uart.c
 
 source\joystick.c

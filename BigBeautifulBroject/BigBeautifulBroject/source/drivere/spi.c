@@ -1,13 +1,14 @@
 #include <avr/io.h>
 #include <stdlib.h>
-#include "..\include\drivere\spi.h"
+#include "..\..\include\drivere\spi.h"
+#include "..\..\include\sleep.h"
 
 // PB1 Can
 // PB3 Display
 // PB4 IO 
 
-void unSelectAllSlavesSPI();
-void selectSlaveSPI();
+static void unSelectAllSlavesSPI();
+static void selectSlaveSPI(SPIselect slave);
 
 void setupSPI(){
 	DDRB |= (1 << 7) | (1 << 5) | (1 << 4) | (1 << 3) | (1 << 1); // PBn som output
@@ -30,9 +31,9 @@ void unSelectAllSlavesSPI(){
 void selectSlaveSPI(SPIselect slave){
 	unSelectAllSlavesSPI();
 	
-	if (slave == CAN){PORTB &= 0xfd;}
-	if (slave == Display){PORTB &= 0xf7;}
-	if (slave == IO){PORTB &= 0xef;}
+	if (slave == CAN){PORTB &= ~(1 << 1);}
+	if (slave == Display){PORTB &= ~(1 << 3);}
+	if (slave == IO){PORTB &= ~(1 << 4);}
 }
 
 void writeByteSPI(uint8_t data, SPIselect slave){

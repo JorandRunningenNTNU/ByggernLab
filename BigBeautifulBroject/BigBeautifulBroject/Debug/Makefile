@@ -43,6 +43,8 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../main.c \
 ../source/drivere/adc.c \
+../source/drivere/ioBoard.c \
+../source/drivere/spi.c \
 ../source/drivere/uart.c \
 ../source/joystick.c \
 ../source/sleep.c \
@@ -58,6 +60,8 @@ ASM_SRCS +=
 OBJS +=  \
 main.o \
 source/drivere/adc.o \
+source/drivere/ioBoard.o \
+source/drivere/spi.o \
 source/drivere/uart.o \
 source/joystick.o \
 source/sleep.o \
@@ -66,6 +70,8 @@ source/sram.o
 OBJS_AS_ARGS +=  \
 main.o \
 source/drivere/adc.o \
+source/drivere/ioBoard.o \
+source/drivere/spi.o \
 source/drivere/uart.o \
 source/joystick.o \
 source/sleep.o \
@@ -74,6 +80,8 @@ source/sram.o
 C_DEPS +=  \
 main.d \
 source/drivere/adc.d \
+source/drivere/ioBoard.d \
+source/drivere/spi.d \
 source/drivere/uart.d \
 source/joystick.d \
 source/sleep.d \
@@ -82,6 +90,8 @@ source/sram.d
 C_DEPS_AS_ARGS +=  \
 main.d \
 source/drivere/adc.d \
+source/drivere/ioBoard.d \
+source/drivere/spi.d \
 source/drivere/uart.d \
 source/joystick.d \
 source/sleep.d \
@@ -109,6 +119,20 @@ LINKER_SCRIPT_DEP+=
 	
 
 source/drivere/adc.o: ../source/drivere/adc.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+source/drivere/ioBoard.o: ../source/drivere/ioBoard.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+source/drivere/spi.o: ../source/drivere/spi.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

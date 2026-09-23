@@ -6,14 +6,24 @@
 #include "include/drivere/adc.h"
 #include "include/joystick.h"
 #include "include/sleep.h" 
+#include "include/drivere/spi.h"
+#include "include/drivere/ioBoard.h"
 
 int main(void){
 	setupPrintf();	
 	setupSRAM();
 	setupADC();
-	joystickCalibrate();
+	setupSPI();
+	//joystickCalibrate();
 	
-	JoysticAnalog JSA;
+	while(1){
+		updateIoData();
+		printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
+		sleep(100);
+	}
+	
+	
+	/*JoysticAnalog JSA;
 	JoystickDiscrete JSD;
 	
 	while(1){
@@ -27,7 +37,7 @@ int main(void){
 		if (JSD == Neutral){printf("X: %d	Y: %d  midt\n", JSA.X, JSA.Y);}
 		
 		sleep(100);
-	}
+	}*/
 
 	
 	
