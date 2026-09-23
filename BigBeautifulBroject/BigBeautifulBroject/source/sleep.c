@@ -9,8 +9,8 @@ void sleep(uint32_t ms){
 	}
 }
 
-void sleep10Ns(uint32_t Dns){
-	uint32_t n = 5*Dns;
+void sleepUs(uint32_t us){
+	uint32_t n = us;
 	while(n>1){
 		n--;
 	}

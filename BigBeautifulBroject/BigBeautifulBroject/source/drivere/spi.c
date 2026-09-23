@@ -23,13 +23,36 @@ void setupSPI(){
 void selectSlaveSPI(SPIselect slave){
 	PORTB |= (1 << 4) | (1 << 3) | (1 << 1);
 	
-	if (slave = CAN){PORTB &= 0xfd;}
-	if (slave = Display){PORTB &= 0xf7;}
-	if (slave = IO){PORTB &= 0xef;}
+	if (slave == CAN){PORTB &= 0xfd;}
+	if (slave == Display){PORTB &= 0xf7;}
+	if (slave == IO){PORTB &= 0xef;}
 }
 
 void writeByteSPI(char data, SPIselect slave){
 	selectSlaveSPI(slave);
 	SPDR = data;
 	while(!(SPSR & (1 << 7))){}
+}
+
+void writeSPI(char* data, uint16_t n, SPIselect slave){
+	// Bruker ikke writeByteSPI, siden den da kaller slaveSelect for hver byte
+	selectSlaveSPI(slave);
+	for(uint16_t i = 0, i<n, i++){
+		SPDR = data[i];
+		while(!(SPSR & (1 << 7))){}
+	}
+}
+
+char readByteSPI(SPIselect slave){
+	writeByteSPI(0, slave);
+	return SPDR;
+}
+
+void readSPI(char* data, uint16_t n, SPIselect slave){
+	selectSlaveSPI(slave)
+	for(uint16_t i = 0, i<n, i++){
+		SPDR = 0;
+		while(!(SPSR & (1 << 7))){}
+		data[i] = SPDR;
+	}
 }
