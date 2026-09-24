@@ -18,19 +18,11 @@ int main(void){
 	setupSPI();
 	setupDisplay();
 	//joystickCalibrate();
-	
-	uint8_t n = 0;
+
 	while(1){
-		uint8_t test[8];
-		for(uint8_t i = 0; i<8; i++){
-			test[i] = pgm_read_byte(&font8[34][i]);
-		}
-		sendData(test, 8);
-		//updateIoData();
-		//printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
+		updateIoData();
+		printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
 		sleep(100);
-		n++;
-		if(n == 100){n = 0;}
 	}
 	
 	

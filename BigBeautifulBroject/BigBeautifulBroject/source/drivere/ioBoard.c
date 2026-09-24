@@ -7,11 +7,13 @@
 IoData ioData;
 
 void updateIoData(){
-	writeByteSPI(0x04, IO);
+	selectSlaveSPI(IO);
+	writeByteSPI(0x03);
 	sleepUs(40);
 	uint8_t data[3];
-	readSPI(data, 3, IO);
+	readSPI(data, 3);
 	ioData.joystickX = data[0];
 	ioData.joystickY = data[1];
 	ioData.joystickButton = data[2];
+	unSelectAllSlavesSPI();
 }

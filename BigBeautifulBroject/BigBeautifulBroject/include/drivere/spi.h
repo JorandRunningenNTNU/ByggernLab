@@ -4,7 +4,7 @@ typedef enum {IO, Display, CAN} SPIselect;
 
 void setupSPI();
 void unSelectAllSlavesSPI();
-void selectSlaveSPI();
+void selectSlaveSPI(SPIselect slave);
 void writeByteSPI(uint8_t data);
 void writeSPI(uint8_t* data, uint16_t n);
 uint8_t readByteSPI();
