@@ -6,13 +6,13 @@
 void setupDisplay(){
 	DDRB |= (1 << 2);
 	
-	uint8_t command[2];
+	uint8_t command[3];
 	
 	command[0] = 0xAE;
 	sendCommand(command, 1); // Turns display off (resets) for configuration
 	
 	command[0] = 0xD5; // Set display clock divide ratio/oscillator frequency
-	command[1] = 0xF0; // 31 oscillator value 1 divide ratio.
+	command[1] = 0xF0; // 15 oscillator value 1 divide ratio.
 	sendCommand(command, 2);
 	
 	command[0] = 0xA8; // Set command
@@ -23,17 +23,22 @@ void setupDisplay(){
 	command[1] = 0x00; // Offset 0
 	sendCommand(command, 2);
 	
-	command[0] = 0x40;
+	command[0] = 0x48;
 	sendCommand(command, 1); // Start line 0
 	
-	command[0] = 0xA0;
+	command[0] = 0x21;
+	command[1] = 0x00;
+	command[2] = 0x7F;
+	sendCommand(command, 3);
+	
+	command[0] = 0xA1;
 	sendCommand(command, 1); // Segment remap
 	
 	command[0] = 0xC0;
 	sendCommand(command, 1); // COM scan direction
 	
 	command[0] = 0xDA; // Set COM pins hardware configuration
-	command[1] = 0x2;
+	command[1] = 0x12;
 	sendCommand(command, 2);
 	
 	command[0] = 0x81; // Set contrast

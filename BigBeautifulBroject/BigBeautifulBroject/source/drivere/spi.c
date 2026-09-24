@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "..\..\include\drivere\spi.h"
 #include "..\..\include\sleep.h"
+#include "..\..\include\drivere\uart.h"
 
 // PB1 Can
 // PB3 Display
