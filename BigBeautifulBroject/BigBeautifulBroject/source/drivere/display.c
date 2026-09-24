@@ -55,10 +55,14 @@ void setupDisplay(){
 
 void sendCommand(uint8_t* command, uint8_t n) {
 	PORTB &= ~(1 << 2); // Sets Data/Command to low
-	writeSPI(command, n, Display); //Writes command
+	selectSlaveSPI(Display);
+	writeSPI(command, n); //Writes command
+	unSelectAllSlavesSPI();
 }
 
 void sendData(uint8_t* data, uint8_t n) {
 	PORTB |= (1 << 2); // Sets Data/command to high
-	writeSPI(data, n, Display);
+	selectSlaveSPI(Display);
+	writeSPI(data, n);
+	unSelectAllSlavesSPI();
 }
