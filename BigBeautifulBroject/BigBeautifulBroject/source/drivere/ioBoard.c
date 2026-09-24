@@ -8,7 +8,7 @@ IoData ioData;
 
 void updateIoData(){
 	selectSlaveSPI(IO);
-	writeByteSPI(0x04);
+	writeByteSPI(0x03);
 	sleepUs(40);
 	uint8_t data[3];
 	readSPI(data, 3);
