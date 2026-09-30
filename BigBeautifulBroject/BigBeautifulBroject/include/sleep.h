@@ -1,4 +1,4 @@
 #pragma once
 
-void sleep(uint32_t ms);
-void sleepUs(uint32_t us);
+void sleep_ms(uint32_t ms);
+void sleep_us(uint32_t us);

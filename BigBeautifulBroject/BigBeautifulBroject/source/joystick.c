@@ -59,7 +59,7 @@ void joystickCalibrate(){
 	printf("Hold joysticken i midten\n");
 	
 	// delay
-	sleep(5000);
+	sleep_ms(5000);
 
 	adc_read_all(p_data);
 	Xneu = p_data[0];
@@ -77,7 +77,7 @@ void joystickCalibrate(){
 		if (Y > Ymax){Ymax = Y;}
 		if (Y < Ymin){Ymin = Y;}
 		n--;
-		sleep(1);
+		sleep_ms(1);
 	}
 	printf("Ferdig kalibrert\n");
 }
