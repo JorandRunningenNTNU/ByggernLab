@@ -12,4 +12,8 @@
 .history/
 *.zip
 
-*.cmake
+BigBeautifulBroject/BigBeautifulBroject/BigBeautifulBroject.componentinfo.xml
+BigBeautifulBroject/BigBeautifulBroject/BigBeautifulBroject.cproj
+BigBeautifulBroject/.vs/*
+BigBeautifulBroject/BigBeautifulBroject.atsln
+BigBeautifulBroject/BigBeautifulBroject/Debug/*
