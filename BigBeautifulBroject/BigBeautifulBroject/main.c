@@ -1,3 +1,5 @@
+#define F_CPU 4915200
+
 #include <stdlib.h>
 #include <avr/io.h>
 #include <stdio.h>
@@ -9,8 +11,8 @@
 #include "include/joystick.h"
 #include "include/sleep.h" 
 #include "include/drivere/spi.h"
-#include "include/drivere/ioBoard.h"
-#include "include/drivere/display.h"
+#include "include/drivere/ioboard.h"
+#include "include/drivere/oled.h"
 #include "include/test.h"
 
 int main(void){

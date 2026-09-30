@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <stdlib.h>
-#include "..\..\include\drivere\ioBoard.h"
+#include "..\..\include\drivere\ioboard.h"
 #include "..\..\include\drivere\spi.h"
 #include "..\..\include\sleep.h"
 
@@ -40,7 +40,7 @@ void ioboard_update_data(){
 void readData(uint8_t adress, uint8_t* data, uint8_t nBytes){
 	spi_select_slave(IO);
 	spi_write_byte(adress);
-	sleepUs(40);
+	sleep_us(40);
 	spi_read(data, nBytes);
 	spi_unselect_all_slaves();
 }
@@ -49,7 +49,7 @@ void ioboard_write_led(uint8_t led, uint8_t on){
 	led -=1;
 	spi_select_slave(IO);
 	spi_write_byte(0x05);
-	sleepUs(40);
+	sleep_us(40);
 	spi_write_byte(led);
 	spi_write_byte(on);
 	spi_unselect_all_slaves();
@@ -59,7 +59,7 @@ void ioboard_write_led_pwm(uint8_t led, uint8_t brightness){
 	led -=1;
 	spi_select_slave(IO);
 	spi_write_byte(0x06);
-	sleepUs(40);
+	sleep_us(40);
 	spi_write_byte(led);
 	spi_write_byte(brightness);
 	spi_unselect_all_slaves();

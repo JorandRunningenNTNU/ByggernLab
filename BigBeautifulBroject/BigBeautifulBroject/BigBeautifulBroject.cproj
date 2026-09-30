@@ -123,10 +123,10 @@
     <Compile Include="include\drivere\adc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\drivere\display.h">
+    <Compile Include="include\drivere\oled.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\drivere\ioBoard.h">
+    <Compile Include="include\drivere\ioboard.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\drivere\spi.h">
@@ -156,10 +156,10 @@
     <Compile Include="source\drivere\adc.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="source\drivere\display.c">
+    <Compile Include="source\drivere\oled.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="source\drivere\ioBoard.c">
+    <Compile Include="source\drivere\ioboard.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\spi.c">

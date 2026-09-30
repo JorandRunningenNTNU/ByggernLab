@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <stdlib.h>
-#include "..\..\include\drivere\display.h"
+#include "..\..\include\drivere\oled.h"
 #include "..\..\include\drivere\spi.h"
 #include "..\..\include/fonts.h"
 
