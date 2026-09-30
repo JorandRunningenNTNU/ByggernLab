@@ -9,7 +9,6 @@
 #include "include/drivere/spi.h"
 #include "include/drivere/ioBoard.h"
 #include "include/drivere/display.h"
-#include "include/fonts.h"
 
 int main(void){
 	setupPrintf();	
