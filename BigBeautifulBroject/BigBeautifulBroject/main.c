@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 #include "include/drivere/uart.h"
 #include "include/sram.h"
 #include "include/drivere/adc.h"

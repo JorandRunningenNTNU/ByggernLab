@@ -12,10 +12,7 @@
 .history/
 *.zip
 
-BigBeautifulBroject/BigBeautifulBroject/BigBeautifulBroject.componentinfo.xml
-BigBeautifulBroject/BigBeautifulBroject/BigBeautifulBroject.cproj
 BigBeautifulBroject/.vs/*
-BigBeautifulBroject/BigBeautifulBroject.atsln
 BigBeautifulBroject/BigBeautifulBroject/Debug/*
 
 BigBeautifulBroject/BigBeautifulBroject/source/test.c
