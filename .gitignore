@@ -11,3 +11,5 @@
 *-backups/
 .history/
 *.zip
+
+*.cmake
