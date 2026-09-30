@@ -26,7 +26,7 @@ uint8_t reverseBitOrder(uint8_t data){
 }
 
 
-void readADC(uint8_t *p_data){
+void adc_read_all(uint8_t *p_data){
 	ADC = 0; // trigger måling
 	while(PIND & (1 << 3)){} // venter på at ADC-en blir busy
 	while(!(PIND & (1 << 3))){} // vente til måling er ferdig 

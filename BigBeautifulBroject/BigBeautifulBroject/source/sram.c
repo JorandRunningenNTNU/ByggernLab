@@ -10,7 +10,7 @@ void setupSRAM(){
 
 void SRAM_test(void)
 {
-	setupPrintf();
+	setupPrintfUART();
 	
 	volatile char *ext_ram = (char *) 0x1800;  // Start address for the SRAM
 	uint16_t ext_ram_size = 0x800;

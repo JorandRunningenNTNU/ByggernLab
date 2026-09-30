@@ -54,7 +54,7 @@ JoystickDiscrete readJoystickDiscrete(){
 }
 
 void joystickCalibrate(){
-	setupPrintf();
+	setupPrintfUART();
 	uint8_t p_data[4];
 	printf("Hold joysticken i midten\n");
 	

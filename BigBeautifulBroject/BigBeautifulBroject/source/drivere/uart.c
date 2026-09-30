@@ -17,7 +17,7 @@ void sendByte(unsigned char data){
 	UDR0 =  data;
 }
 
-unsigned char readByte(){
+unsigned char uart_read_byte(){
 	int n = 10000;
 	while(!(UCSR0A & (1<<7)) || (n--));
 	
@@ -43,11 +43,11 @@ static int uart_putchar(char c, FILE *stream){
 
 
 static int uart_getchar(FILE *stream){
-	return readByte();
+	return uart_read_byte();
 }
 
 
-void setupPrintf(){
+void setupPrintfUART(){
 	initilize();
 	FILE *uart = fdevopen(uart_putchar, uart_getchar);
 	stdout = uart;

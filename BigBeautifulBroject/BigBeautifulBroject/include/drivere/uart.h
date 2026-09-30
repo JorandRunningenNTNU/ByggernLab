@@ -3,5 +3,5 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned char readByte();
-void setupPrintf();
+unsigned char uart_read_byte();
+void setupPrintfUART();
