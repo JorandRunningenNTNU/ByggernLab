@@ -8,7 +8,7 @@ void setupSRAM(){
 	MCUCR |= (1 <<7); // aktivere eksternt minne
 }
 
-void SRAM_test(void)
+void sram_test(void)
 {
 	setupPrintfUART();
 	
