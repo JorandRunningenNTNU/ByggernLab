@@ -58,16 +58,16 @@ void setupDisplay(){
 
 void oled_send_command(uint8_t* command, uint8_t n) {
 	PORTB &= ~(1 << 2); // Sets Data/Command to low
-	selectSlaveSPI(Display);
-	writeSPI(command, n); //Writes command
-	unSelectAllSlavesSPI();
+	spi_select_slave(Display);
+	spi_write(command, n); //Writes command
+	spi_unselect_all_slaves();
 }
 
 void oled_send_data(uint8_t* data, uint8_t n) {
 	PORTB |= (1 << 2); // Sets Data/command to high
-	selectSlaveSPI(Display);
-	writeSPI(data, n);
-	unSelectAllSlavesSPI();
+	spi_select_slave(Display);
+	spi_write(data, n);
+	spi_unselect_all_slaves();
 }
 
 void oled_clear()

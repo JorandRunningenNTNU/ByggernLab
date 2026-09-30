@@ -147,6 +147,9 @@
     <Compile Include="include\sram.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\test.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -172,6 +175,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\sram.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\test.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

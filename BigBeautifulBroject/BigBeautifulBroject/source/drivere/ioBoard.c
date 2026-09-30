@@ -38,31 +38,31 @@ void updateIoData(){
 }
 
 void readData(uint8_t adress, uint8_t* data, uint8_t nBytes){
-	selectSlaveSPI(IO);
-	writeByteSPI(adress);
+	spi_select_slave(IO);
+	spi_write_byte(adress);
 	sleepUs(40);
-	readSPI(data, nBytes);
-	unSelectAllSlavesSPI();
+	spi_read(data, nBytes);
+	spi_unselect_all_slaves();
 }
 
 void turnOnLeds(uint8_t led, uint8_t on){
 	led -=1;
-	selectSlaveSPI(IO);
-	writeByteSPI(0x05);
+	spi_select_slave(IO);
+	spi_write_byte(0x05);
 	sleepUs(40);
-	writeByteSPI(led);
-	writeByteSPI(on);
-	unSelectAllSlavesSPI();
+	spi_write_byte(led);
+	spi_write_byte(on);
+	spi_unselect_all_slaves();
 }
 
 void turnOnLedsPWM(uint8_t led, uint8_t brightness){
 	led -=1;
-	selectSlaveSPI(IO);
-	writeByteSPI(0x06);
+	spi_select_slave(IO);
+	spi_write_byte(0x06);
 	sleepUs(40);
-	writeByteSPI(led);
-	writeByteSPI(brightness);
-	unSelectAllSlavesSPI();
+	spi_write_byte(led);
+	spi_write_byte(brightness);
+	spi_unselect_all_slaves();
 }
 
 

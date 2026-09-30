@@ -10,7 +10,7 @@
 
 void setupSPI(){
 	DDRB |= (1 << 7) | (1 << 5) | (1 << 4) | (1 << 3) | (1 << 1); // PBn som output
-	unSelectAllSlavesSPI();
+	spi_unselect_all_slaves();
 	
 	// valgte innstillinger
 	// MSB sendes først
@@ -22,36 +22,36 @@ void setupSPI(){
 	
 }
 
-void unSelectAllSlavesSPI(){
+void spi_unselect_all_slaves(){
 	PORTB |= (1 << 4) | (1 << 3) | (1 << 1);
 }
 
-void selectSlaveSPI(SPIselect slave){
-	unSelectAllSlavesSPI();
+void spi_select_slave(SPIselect slave){
+	spi_unselect_all_slaves();
 	
 	if (slave == CAN){PORTB &= ~(1 << 1);}
 	if (slave == Display){PORTB &= ~(1 << 3);}
 	if (slave == IO){PORTB &= ~(1 << 4);}
 }
 
-void writeByteSPI(uint8_t data){
+void spi_write_byte(uint8_t data){
 	SPDR = data;
 	while(!(SPSR & (1 << 7))){}
 }
 
-void writeSPI(uint8_t* data, uint16_t n){
+void spi_write(uint8_t* data, uint16_t n){
 	for(uint16_t i = 0; i<n; i++){
-		writeByteSPI(data[i]);
+		spi_write_byte(data[i]);
 	}
 }
 
-uint8_t readByteSPI(){
-	writeByteSPI(0);
+uint8_t spi_read_byte(){
+	spi_write_byte(0);
 	return SPDR;
 }
 
-void readSPI(uint8_t* data, uint16_t n){
+void spi_read(uint8_t* data, uint16_t n){
 	for(uint16_t i = 0; i<n; i++){
-		data[i] = readByteSPI();
+		data[i] = spi_read_byte();
 	}
 }
