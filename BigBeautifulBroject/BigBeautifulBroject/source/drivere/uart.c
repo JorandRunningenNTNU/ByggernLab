@@ -1,5 +1,6 @@
 #include "../../include/drivere/uart.h"
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 
 #define UART_TX_BUFFER_SIZE 128
 
@@ -24,7 +25,7 @@ void initilize(){
 
 void sendByte(unsigned char data){
 	// vente på at bufferen er klar til å skrives til
-	while(!(UCSR0A & (1<<5))){}
+	while(!(UCSR0A & (1<<5)));
 	
 	UDR0 =  data;
 }
@@ -50,13 +51,12 @@ void sendByteINT(unsigned char c){
 	// Wait if buffer is full
 	while (next == tx_tail);
 	
-	cli();
 	tx_buffer[tx_head] = c;
-	tx_head = next;
-
-	// Enable Data Register Empty interrupt
-	UCSR0B |= (1 << UDRIE0);
-	sei();
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		tx_head = next;
+		UCSR0B |= (1 << UDRIE0);
+	}
 }
 
 unsigned char uart_read_byte(){

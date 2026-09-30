@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../include/sram.h"
 #include "../include/drivere/uart.h"
 
@@ -6,6 +7,13 @@ void setupSRAM(){
 	EMCUCR |= (0 << 1); // gir SRAM 2 sykler på å lese adresse før atmega skriver/leser
 	MCUCR |= (0 << 6); // gir SRAM 2 sykler på å lese adresse før atmega skriver/leser
 	MCUCR |= (1 <<7); // aktivere eksternt minne
+	
+	extern uint8_t __noinit_end;   // provided by the AVR linker script
+	// e.g. in main():
+	if ((uint16_t)&__noinit_end > 0x2000) {
+		printf("Du bruker for mye minne din tulling\n");
+		while(1);
+	}
 }
 
 void sram_test(void)
