@@ -14,12 +14,12 @@
 #include "include/test.h"
 
 int main(void){
-	setupPrintf();	
+	setupPrintfUART();	
 	setupSRAM();
 	setupADC();
 	setupSPI();
 	setupDisplay();
-	//joystickCalibrate();
+	//setupJoystick();
 
 	setupTest();
 	while(1){

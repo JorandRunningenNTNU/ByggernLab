@@ -1,12 +1,12 @@
 #pragma once
 #include <avr/io.h>
 
-typedef enum {Neutral, Up, Down, Left, Right} JoystickDiscrete;
+typedef enum {Neutral, Up, Down, Left, Right} joystick_discrete_t;
 typedef struct {
 	int8_t X;
 	int8_t Y;
-} JoysticAnalog;
+} joystick_data_t;
 
-void joystickCalibrate();
-JoysticAnalog readJoystickAnalog();
-JoystickDiscrete readJoystickDiscrete();
+void setupJoystick();
+joystick_data_t joystick_read_data();
+joystick_discrete_t joystick_read_discrete();

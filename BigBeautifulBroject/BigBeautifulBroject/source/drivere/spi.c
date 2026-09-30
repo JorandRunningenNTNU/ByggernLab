@@ -26,7 +26,7 @@ void spi_unselect_all_slaves(){
 	PORTB |= (1 << 4) | (1 << 3) | (1 << 1);
 }
 
-void spi_select_slave(SPIselect slave){
+void spi_select_slave(spi_select_t slave){
 	spi_unselect_all_slaves();
 	
 	if (slave == CAN){PORTB &= ~(1 << 1);}

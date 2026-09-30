@@ -20,7 +20,7 @@ uint8_t Yneu = 0;
 
 
 
-JoysticAnalog readJoystickAnalog(){
+joystick_data_t joystick_read_data(){
 	uint8_t p_data[4];
 	adc_read_all(p_data);
 	uint8_t X = p_data[0];
@@ -37,10 +37,10 @@ JoysticAnalog readJoystickAnalog(){
 	if ((Xa > -10) && (Xa < 10)){Xa = 0;}
 	if ((Ya > -10) && (Ya < 10)){Ya = 0;}
 	
-	return (JoysticAnalog) {Xa, Ya};
+	return (joystick_data_t) {Xa, Ya};
 }
 
-JoystickDiscrete readJoystickDiscrete(){
+joystick_discrete_t joystick_read_discrete(){
 	uint8_t p_data[4];
 	adc_read_all(p_data);
 	uint8_t X = p_data[0];
@@ -53,7 +53,7 @@ JoystickDiscrete readJoystickDiscrete(){
 	return Neutral;
 }
 
-void joystickCalibrate(){
+void setupJoystick(){
 	setupPrintfUART();
 	uint8_t p_data[4];
 	printf("Hold joysticken i midten\n");
