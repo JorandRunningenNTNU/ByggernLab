@@ -19,10 +19,23 @@ int main(void){
 	setupDisplay();
 	//joystickCalibrate();
 
+	uint8_t n = 0;
 	while(1){
-		updateIoData();
-		printf("X: %d, Y %d, Btn %d \n", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
-		sleep(100);
+		/*updateIoData();
+		printf("TouPad X: %d \t Y %d \t size %d \t", ioData.touchpadX, ioData.touchpadY, ioData.touchpadSize);
+		printf("slider X: %d \t size %d \t", ioData.touchSliderX, ioData.touchSliderSize);
+		printf("Joy X: %d \t Y %d \t Btn %d \t", ioData.joystickX, ioData.joystickY, ioData.joystickButton);
+		printf("Buttons, R: %d \t L: %d \t Nav: %d \n", ioData.rightButtons, ioData.leftButtons, ioData.navButton);*/
+		
+		if(n == 254){
+			n = 0;
+		}
+		
+		turnOnLeds(6, 1);
+		turnOnLedsPWM(2, n);
+		
+		sleep(10);
+		n++;
 	}
 	
 	
