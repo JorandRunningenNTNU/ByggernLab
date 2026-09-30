@@ -13,6 +13,7 @@
 #include "include/drivere/spi.h"
 #include "include/drivere/ioboard.h"
 #include "include/drivere/oled.h"
+#include "include/menu.h"
 #include "include/test.h"
 
 int main(void){
@@ -21,6 +22,7 @@ int main(void){
 	setupADC();
 	setupSPI();
 	setupDisplay();
+	setupMenu();
 	//setupJoystick();
 
 	setupTest();
