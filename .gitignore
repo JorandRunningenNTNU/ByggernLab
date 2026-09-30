@@ -17,3 +17,6 @@ BigBeautifulBroject/BigBeautifulBroject/BigBeautifulBroject.cproj
 BigBeautifulBroject/.vs/*
 BigBeautifulBroject/BigBeautifulBroject.atsln
 BigBeautifulBroject/BigBeautifulBroject/Debug/*
+
+BigBeautifulBroject/BigBeautifulBroject/source/test.c
+BigBeautifulBroject/BigBeautifulBroject/include/test.h

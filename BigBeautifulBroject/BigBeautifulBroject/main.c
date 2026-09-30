@@ -9,6 +9,7 @@
 #include "include/drivere/spi.h"
 #include "include/drivere/ioBoard.h"
 #include "include/drivere/display.h"
+#include "include/test.h"
 
 int main(void){
 	setupPrintf();	
@@ -18,8 +19,11 @@ int main(void){
 	setupDisplay();
 	//joystickCalibrate();
 
-	uint8_t n = 0;
+	setupTest();
 	while(1){
+
+		
+		whileTest();
 		continue;
 	}
 }
