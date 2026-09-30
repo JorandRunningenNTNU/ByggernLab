@@ -14,10 +14,10 @@ typedef struct{
 	uint8_t rightButtons;
 	uint8_t leftButtons;
 	uint8_t navButton;
-} IoData;
+} ioboard_data_t;
 
-extern IoData ioData;
+extern ioboard_data_t ioboard_data;
 
-void updateIoData();
-void turnOnLeds(uint8_t led, uint8_t on);
-void turnOnLedsPWM(uint8_t led, uint8_t brightness);
+void ioboard_update_data();
+void ioboard_write_led(uint8_t led, uint8_t on);
+void ioboard_write_led_pwm(uint8_t led, uint8_t brightness);
