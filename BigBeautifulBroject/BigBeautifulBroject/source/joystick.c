@@ -22,7 +22,7 @@ uint8_t Yneu = 0;
 
 JoysticAnalog readJoystickAnalog(){
 	uint8_t p_data[4];
-	readADC(p_data);
+	adc_read_all(p_data);
 	uint8_t X = p_data[0];
 	uint8_t Y = p_data[1];
 	
@@ -42,7 +42,7 @@ JoysticAnalog readJoystickAnalog(){
 
 JoystickDiscrete readJoystickDiscrete(){
 	uint8_t p_data[4];
-	readADC(p_data);
+	adc_read_all(p_data);
 	uint8_t X = p_data[0];
 	uint8_t Y = p_data[1];
 	
@@ -61,14 +61,14 @@ void joystickCalibrate(){
 	// delay
 	sleep(5000);
 
-	readADC(p_data);
+	adc_read_all(p_data);
 	Xneu = p_data[0];
 	Yneu = p_data[1];
 	
 	printf("Beveg joysticken rundt i sirkler\n");
 	uint32_t n = 5000; // 5 sekunder
 	while(n > 1){
-		readADC(p_data);
+		adc_read_all(p_data);
 		uint8_t X = p_data[0];
 		uint8_t Y = p_data[1];
 		
