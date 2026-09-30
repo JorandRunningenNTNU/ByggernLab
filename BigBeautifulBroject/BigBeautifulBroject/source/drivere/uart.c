@@ -1,12 +1,24 @@
 #include "../../include/drivere/uart.h"
+#include <avr/interrupt.h>
+
+#define UART_TX_BUFFER_SIZE 128
+
+volatile uint8_t tx_buffer[UART_TX_BUFFER_SIZE];
+volatile uint8_t tx_head = 0;
+volatile uint8_t tx_tail = 0;
+
 
 void initilize(){
+	cli();
+	
 	// baud-rate 9600
 	UBRR0H = 0;
 	UBRR0L = 31;
 	
 	// enable reciver og transmitter
-	UCSR0B = (1<<3)|(1<<4);
+	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
+	
+	sei();
 
 }
 
@@ -15,6 +27,36 @@ void sendByte(unsigned char data){
 	while(!(UCSR0A & (1<<5))){}
 	
 	UDR0 =  data;
+}
+
+ISR(USART0_UDRE_vect)
+{
+	if (tx_head == tx_tail) {
+		// Nothing left to send
+		UCSR0B &= ~(1 << UDRIE0);
+	}
+	else {
+		UDR0 = tx_buffer[tx_tail];
+		tx_tail = (tx_tail + 1) % UART_TX_BUFFER_SIZE;
+	}
+}
+
+void sendByteINT(unsigned char c){
+	// vente på at bufferen er klar til å skrives til
+	uint8_t next;
+
+	next = (tx_head + 1) % UART_TX_BUFFER_SIZE;
+
+	// Wait if buffer is full
+	while (next == tx_tail);
+	
+	cli();
+	tx_buffer[tx_head] = c;
+	tx_head = next;
+
+	// Enable Data Register Empty interrupt
+	UCSR0B |= (1 << UDRIE0);
+	sei();
 }
 
 unsigned char uart_read_byte(){
