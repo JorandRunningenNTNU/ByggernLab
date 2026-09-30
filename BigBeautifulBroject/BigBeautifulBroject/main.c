@@ -27,7 +27,7 @@ int main(void){
 	while(1){
 
 		
-		whileTest();
+		while_test();
 		continue;
 	}
 }
