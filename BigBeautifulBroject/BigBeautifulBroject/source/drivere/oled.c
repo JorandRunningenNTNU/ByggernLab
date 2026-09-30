@@ -115,7 +115,7 @@ void oled_pos(uint8_t row,uint8_t column){
 	oled_goto_column(column);
 }
 
-void oled_print(char* data) {
+void oled_print(const char* data) {
 	uint8_t character[8];
 
 	while (*data != '\0') {
