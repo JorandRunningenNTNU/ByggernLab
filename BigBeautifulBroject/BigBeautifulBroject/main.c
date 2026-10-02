@@ -24,12 +24,11 @@ int main(void){
 	setupDisplay();
 	setupMenu();
 	//setupJoystick();
-
-	setupTest();
+	
 	while(1){
-
-		
-		while_test();
+		ioboard_update_data();
+		update_menu();
+		render_menu();
 		continue;
 	}
 }
