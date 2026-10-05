@@ -4685,6 +4685,344 @@
 			"lvieCQAAAABJRU5ErkJggg=="
 		)
 	)
+	(table
+		(column_count 2)
+		(border
+			(external yes)
+			(header yes)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+		)
+		(separators
+			(rows yes)
+			(cols yes)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+		)
+		(column_widths 10.16 22.86)
+		(row_heights 2.54 2.54 2.54 2.54 2.54 2.54 2.54 2.54 2.54)
+		(uuid "6c9b7467-2704-4722-bc9a-31d399bdad9c")
+		(cells
+			(table_cell "Color"
+				(exclude_from_sim no)
+				(at 236.855 20.955 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 0 0 0 0)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+				(uuid "c1264be8-6b4d-40b6-bdab-30e451e5f66d")
+			)
+			(table_cell "Type"
+				(exclude_from_sim no)
+				(at 247.015 20.955 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "92eb0ff5-f0ef-4acd-a792-94f2d8c843d1")
+			)
+			(table_cell "Red"
+				(exclude_from_sim no)
+				(at 236.855 23.495 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 255 0 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 0 0 0 1)
+					)
+				)
+				(uuid "79f6ef54-d77a-454f-80e9-f6576e3f875c")
+			)
+			(table_cell "5V"
+				(exclude_from_sim no)
+				(at 247.015 23.495 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "a3f5ad33-d4b1-4fcc-bf42-f4099011f79d")
+			)
+			(table_cell "Orange"
+				(exclude_from_sim no)
+				(at 236.855 26.035 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 255 153 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 0 0 0 1)
+					)
+				)
+				(uuid "1aafae8d-cb1f-4250-a233-a7d273088000")
+			)
+			(table_cell "Power that isn't GND"
+				(exclude_from_sim no)
+				(at 247.015 26.035 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "9321eebe-4889-44a8-9164-c6fee8e25b71")
+			)
+			(table_cell "Black"
+				(exclude_from_sim no)
+				(at 236.855 28.575 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 0 0 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 255 255 255 1)
+					)
+				)
+				(uuid "aeb4f2f2-4a53-441d-abf3-54592dafffe4")
+			)
+			(table_cell "GND"
+				(exclude_from_sim no)
+				(at 247.015 28.575 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "2e90002d-694d-4bb3-9e1a-f73a3f1c836d")
+			)
+			(table_cell "Brown"
+				(exclude_from_sim no)
+				(at 236.855 31.115 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 72 72 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 255 255 255 1)
+					)
+				)
+				(uuid "2ca70fc0-86e7-4c66-ac5e-ccb4adfec9e5")
+			)
+			(table_cell "Analog signal"
+				(exclude_from_sim no)
+				(at 247.015 31.115 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "40877859-918d-40d2-b6e4-895ecbc38e4d")
+			)
+			(table_cell "Blue"
+				(exclude_from_sim no)
+				(at 236.855 33.655 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 0 0 255 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 255 255 255 1)
+					)
+				)
+				(uuid "5ea1c645-ae2a-4596-8e88-65d949554d14")
+			)
+			(table_cell "Parallel bus signal"
+				(exclude_from_sim no)
+				(at 247.015 33.655 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "eaea46b5-b038-4774-8286-ede253b7face")
+			)
+			(table_cell "Green"
+				(exclude_from_sim no)
+				(at 236.855 36.195 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 0 194 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 0 0 0 1)
+					)
+				)
+				(uuid "68fc9406-4280-4677-a4d9-79e21d3c1824")
+			)
+			(table_cell "Serial signals"
+				(exclude_from_sim no)
+				(at 247.015 36.195 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "4dfb9e00-f5b6-47c5-af50-959d6007fdd9")
+			)
+			(table_cell "Yellow"
+				(exclude_from_sim no)
+				(at 236.855 38.735 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 255 255 0 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 0 0 0 1)
+					)
+				)
+				(uuid "e352695c-52e1-4df2-a175-622705538895")
+			)
+			(table_cell "Digital signal"
+				(exclude_from_sim no)
+				(at 247.015 38.735 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "e6fc65db-1eb7-4edb-b212-8ce1d8649492")
+			)
+			(table_cell "Grey"
+				(exclude_from_sim no)
+				(at 236.855 41.275 0)
+				(size 10.16 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type color)
+					(color 194 194 194 1)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(color 0 0 0 1)
+					)
+				)
+				(uuid "999ac403-b162-4b2f-92ab-d1dce11c8f1f")
+			)
+			(table_cell "Control signal"
+				(exclude_from_sim no)
+				(at 247.015 41.275 0)
+				(size 22.86 2.54)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+				(uuid "eb7fa70c-74a8-4420-aee1-65cf0b1038f7")
+			)
+		)
+	)
 	(label "IO_~{CS}"
 		(at 120.65 93.98 0)
 		(effects
@@ -5259,7 +5597,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "058ef6ab-1f44-4679-bab0-02082ab13c50")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR011"
 			(at 132.08 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -5320,7 +5658,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR010")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -5338,7 +5676,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "07b6f883-cca4-45c5-b3f2-fc9fae7beea0")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR05"
 			(at 95.25 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -5399,7 +5737,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR08")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -5499,7 +5837,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "122024d7-6a01-4c61-8272-784c04ee4e13")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR09"
 			(at 64.77 110.49 0)
 			(hide yes)
 			(show_name no)
@@ -5560,7 +5898,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR05")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -5658,7 +5996,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "20de909c-d08b-4ccd-9460-b2e88b3432fa")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR07"
 			(at 205.74 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -5719,7 +6057,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR012")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -5737,7 +6075,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "300c1b5f-1622-4bb8-bc05-548f93dcd350")
-		(property "Reference" "C3"
+		(property "Reference" "C6"
 			(at 68.58 113.4109 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5801,7 +6139,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C3")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -5819,7 +6157,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38debd62-a40e-479c-98f3-4b637ae2eddd")
-		(property "Reference" "C1"
+		(property "Reference" "C5"
 			(at 43.18 113.0299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5883,7 +6221,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C1")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -5981,7 +6319,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45c6ad3c-d5eb-4a33-b147-042fd6f0bb50")
-		(property "Reference" "C6"
+		(property "Reference" "C2"
 			(at 99.06 45.7199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6045,7 +6383,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C6")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -6063,7 +6401,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4b6b7ec1-16af-4471-9d92-c68aff4876a5")
-		(property "Reference" "U1"
+		(property "Reference" "U2"
 			(at 53.34 104.14 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6129,7 +6467,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "U1")
+					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -6147,7 +6485,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "52e72c0e-5d92-4cce-a350-ab4778816d78")
-		(property "Reference" "U2"
+		(property "Reference" "U1"
 			(at 106.2833 50.8 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6326,7 +6664,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "U2")
+					(reference "U1")
 					(unit 1)
 				)
 			)
@@ -6426,7 +6764,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "613737d7-3560-467c-badf-108b13c38d3d")
-		(property "Reference" "J3"
+		(property "Reference" "J1"
 			(at 213.36 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6524,7 +6862,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "J3")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -6542,7 +6880,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "728bc812-8b0b-40ae-ae45-36e652b3f5ff")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR06"
 			(at 205.74 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -6603,7 +6941,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR011")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -6621,7 +6959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7e95a10f-49c9-4917-bace-77228b9ad394")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR010"
 			(at 53.34 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -6682,7 +7020,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR04")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -6700,7 +7038,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9cc34874-6c63-4252-ad78-d15787a026ba")
-		(property "Reference" "C5"
+		(property "Reference" "C4"
 			(at 73.66 80.0099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6764,7 +7102,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C5")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -6782,7 +7120,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a5a8fe6e-3abe-4c24-b380-8e0d2fbac3fd")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR012"
 			(at 104.14 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -6843,7 +7181,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR09")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -6861,7 +7199,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b517e103-7e17-4ef6-82e9-1e6bdb87219e")
-		(property "Reference" "C4"
+		(property "Reference" "C1"
 			(at 68.58 45.7199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6925,7 +7263,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C4")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6943,7 +7281,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "be2fcd5a-a7dd-4ff4-8d41-55526df14c59")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR08"
 			(at 57.15 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -7004,7 +7342,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR03")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -7022,7 +7360,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c0872521-c221-4008-98b0-051719713e39")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR02"
 			(at 95.25 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -7082,7 +7420,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR07")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -7100,7 +7438,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c5185c07-cc3a-4e69-bcaa-8cff233d34ea")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR03"
 			(at 29.21 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -7161,7 +7499,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR01")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -7259,7 +7597,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c826c8a5-2a6d-4029-84cb-01a0eae08a8e")
-		(property "Reference" "J1"
+		(property "Reference" "J2"
 			(at 32.385 105.41 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7318,7 +7656,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "J1")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -7336,7 +7674,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cc4efad6-1fd4-4ea6-814c-7a4f8684cf64")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR04"
 			(at 64.77 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -7397,7 +7735,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR06")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -7415,7 +7753,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d5ea9195-c7d8-44df-8ed5-b8241eb7510f")
-		(property "Reference" "C2"
+		(property "Reference" "C3"
 			(at 60.96 80.0099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7479,7 +7817,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "C2")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -7497,7 +7835,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d761a2cc-609e-4163-bda8-b4a00712bf04")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR01"
 			(at 43.18 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -7557,7 +7895,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "#PWR02")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -7655,7 +7993,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fdfe3775-eec6-42d8-96df-f9cdc7859fdb")
-		(property "Reference" "J2"
+		(property "Reference" "J3"
 			(at 32.385 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7714,7 +8052,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff"
-					(reference "J2")
+					(reference "J3")
 					(unit 1)
 				)
 			)
