@@ -17,12 +17,7 @@
 #include "include/test.h"
 
 int main(void){
-	setupPrintfUART();	
-	setupSRAM();
-	setupADC();
-	setupSPI();
-	setupDisplay();
-	setupMenu();
+
 	//setupJoystick();
 	
 	while(1){
