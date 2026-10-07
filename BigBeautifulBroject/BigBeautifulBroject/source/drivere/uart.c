@@ -11,12 +11,6 @@ volatile uint8_t tx_tail = 0;
 
 void initilize(){
 	
-	// baud-rate 9600
-	UBRR0H = 0;
-	UBRR0L = 31;
-	
-	// enable reciver og transmitter
-	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
 
 }
 
@@ -86,8 +80,17 @@ static int uart_getchar(FILE *stream){
 }
 
 
-void setupPrintfUART(){
-	initilize();
+void setupUART(){
+	// baud-rate 9600
+	UBRR0H = 0;
+	UBRR0L = 31;
+		
+	// enable reciver og transmitter
+	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
+		
+	sei();
+	
+	//setup printf
 	FILE *uart = fdevopen(uart_putchar, uart_getchar);
 	stdout = uart;
 	stdin = uart;

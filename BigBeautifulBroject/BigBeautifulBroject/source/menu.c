@@ -18,7 +18,7 @@ menu_item_t root = {
 
 static void say_hello(void)
 {
-	setupPrintfUART();
+	setupUART();
 	printf("Hello world!\n");
 }
 
