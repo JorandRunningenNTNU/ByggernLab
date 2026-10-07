@@ -28,13 +28,22 @@ ISR(USART0_UDRE_vect)
 }
 
 void sendByteINT(unsigned char c){
-	// vente på at bufferen er klar til å skrives til
 	uint8_t next;
 
 	next = (tx_head + 1) % UART_TX_BUFFER_SIZE;
 
-	// Wait if buffer is full
-	while (next == tx_tail);
+	// Vent på plass i bufferen
+	while (next == tx_tail) {
+		if (!(SREG & (1 << SREG_I))) {
+			// Interrupts er av, så ISR-en kan ikke tømme bufferen.
+			// Gjør det manuelt.
+			if (UCSR0A & (1 << UDRE0)) {
+				UDR0 = tx_buffer[tx_tail];
+				tx_tail = (tx_tail + 1) % UART_TX_BUFFER_SIZE;
+			}
+		}
+		// Hvis interrupts er på, tømmer ISR-en bufferen av seg selv
+	}
 	
 	tx_buffer[tx_head] = c;
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)

@@ -11,6 +11,7 @@
 #include "oled.h"
 #include "uart.h"
 #include "menu.h"
+#include "menu_builder.h"
 
 void setup(){
 	setupUART();
@@ -20,4 +21,5 @@ void setup(){
 	setupOLED();
 
 	setupMenu();
+	buildMenu();
 }

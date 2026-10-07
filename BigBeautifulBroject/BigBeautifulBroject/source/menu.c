@@ -1,12 +1,10 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "menu.h"
 #include "oled.h"
 #include "ioBoard.h"
-#include "uart.h"
-
-#include "wave.h"
 
 menu_item_t root = {
 	.name = "Root",
@@ -34,7 +32,6 @@ menu_item_t test_scripts = {
 
 static void say_hello(void)
 {
-	setupUART();
 	printf("Hello world!\n");
 }
 
@@ -54,7 +51,6 @@ void setupMenu(){
 	menu_insert(&scripts, &root);
 	
 	menu_insert(&say_hi, &scripts);
-	menu_insert(&wave, &scripts);
 }
 
 void render_menu() {
