@@ -10,7 +10,6 @@ volatile uint8_t tx_tail = 0;
 
 
 void initilize(){
-	cli();
 	
 	// baud-rate 9600
 	UBRR0H = 0;
@@ -18,8 +17,6 @@ void initilize(){
 	
 	// enable reciver og transmitter
 	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
-	
-	sei();
 
 }
 
