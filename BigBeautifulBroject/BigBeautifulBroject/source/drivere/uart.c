@@ -8,12 +8,6 @@ volatile uint8_t tx_buffer[UART_TX_BUFFER_SIZE];
 volatile uint8_t tx_head = 0;
 volatile uint8_t tx_tail = 0;
 
-
-void initilize(){
-	
-
-}
-
 void sendByte(unsigned char data){
 	// vente på at bufferen er klar til å skrives til
 	while(!(UCSR0A & (1<<5)));
