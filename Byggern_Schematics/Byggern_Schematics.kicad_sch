@@ -2911,6 +2911,16 @@
 		)
 		(uuid "ad2709cb-1ba2-463b-91bd-34dee6846ccb")
 	)
+	(text "Note that grey signals on the schematic are white IRL"
+		(exclude_from_sim no)
+		(at 253.238 46.228 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c8cd82d6-886f-40d9-a89c-d8b0ecfec97c")
+	)
 	(text "IO-Board Connector"
 		(exclude_from_sim no)
 		(at 213.614 52.832 0)

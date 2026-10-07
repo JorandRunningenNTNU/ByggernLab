@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 typedef struct menu_item_t {
-	const char *name;
+	char *name;
 	struct menu_item_t *parent;
 	struct menu_item_t **children;
 	uint8_t child_count;
@@ -13,13 +13,17 @@ typedef struct menu_item_t {
 } menu_item_t;
 
 void render_menu();
-uint8_t update_menu();
+void update_menu();
+
+uint8_t menu_insert(menu_item_t *new_item, menu_item_t *parent);
 
 extern menu_item_t root;
 
 extern menu_item_t *menu_current;
 
 extern uint8_t menu_selected;
+
+extern uint8_t menu_shift;
 
 void setupMenu();
 
