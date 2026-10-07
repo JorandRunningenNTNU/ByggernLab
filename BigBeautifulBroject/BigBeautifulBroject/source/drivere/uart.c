@@ -76,10 +76,10 @@ unsigned char uart_read_byte(){
 //''''''''''''' sette opp printf '''''''''''''''''''''''
 static int uart_putchar(char c, FILE *stream){
 	if (c == '\n') {
-		sendByte('\r');
+		sendByteINT('\r');
 	}
 
-	sendByte((unsigned char) c);
+	sendByteINT((unsigned char) c);
 	return 0;
 }
 
