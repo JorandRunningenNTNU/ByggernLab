@@ -6,10 +6,26 @@
 #include "../include/drivere/ioBoard.h"
 #include "../include/drivere/uart.h"
 
-#include "../include/wave.h"
+#include "../include/program/wave.h"
 
 menu_item_t root = {
 	.name = "Root",
+	.parent = NULL,
+	.children = NULL,
+	.child_count = 0,
+	.action = NULL
+};
+
+menu_item_t scripts = {
+	.name = "scripts",
+	.parent = NULL,
+	.children = NULL,
+	.child_count = 0,
+	.action = NULL
+};
+
+menu_item_t test_scripts = {
+	.name = "test_scripts",
 	.parent = NULL,
 	.children = NULL,
 	.child_count = 0,
@@ -30,13 +46,6 @@ static menu_item_t say_hi = {
 	.action = say_hello
 };
 
-menu_item_t scripts = {
-	.name = "scripts",
-	.parent = NULL,
-	.children = NULL,
-	.child_count = 0,
-	.action = NULL
-};
 
 void setupMenu(){
 	menu_current = &root;

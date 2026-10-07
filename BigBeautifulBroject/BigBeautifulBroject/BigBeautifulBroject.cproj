@@ -132,6 +132,9 @@
     <Compile Include="include\drivere\ioBoard.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\mcp2515.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\oled.h">
       <SubType>compile</SubType>
     </Compile>
@@ -162,6 +165,9 @@
     <Compile Include="include\test.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\program\wave.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -169,6 +175,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\ioBoard.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\mcp2515.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\oled.c">
@@ -201,12 +210,17 @@
     <Compile Include="source\test.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\program\wave.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="include\" />
     <Folder Include="include\drivere\" />
-    <Folder Include="source\" />
+    <Folder Include="include\program" />
     <Folder Include="source\drivere\" />
+    <Folder Include="source\program" />
+    <Folder Include="source\" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
