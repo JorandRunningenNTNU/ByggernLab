@@ -1,7 +1,7 @@
-#include "../include/joystick.h"
-#include "../include/drivere/adc.h"
-#include "../include/drivere/uart.h"
-#include "../include/sleep.h"
+#include "joystick.h"
+#include "adc.h"
+#include "uart.h"
+#include "sleep.h"
 // høyre/venstre er analog channel 0
 // opp/ned er analog channel 1
 

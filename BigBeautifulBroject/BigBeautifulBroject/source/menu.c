@@ -1,12 +1,12 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include "../include/menu.h"
-#include "../include/drivere/oled.h"
-#include "../include/drivere/ioBoard.h"
-#include "../include/drivere/uart.h"
+#include "menu.h"
+#include "oled.h"
+#include "ioBoard.h"
+#include "uart.h"
 
-#include "../include/program/wave.h"
+#include "wave.h"
 
 menu_item_t root = {
 	.name = "Root",

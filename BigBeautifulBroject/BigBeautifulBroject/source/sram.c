@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "../include/sram.h"
-#include "../include/drivere/uart.h"
+#include "sram.h"
+#include "uart.h"
 
 void setupSRAM(){
 	SFIOR |= (4 << 3); // ikke bruke JTAG-pins for adresse

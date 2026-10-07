@@ -5,16 +5,16 @@
 #include <stdio.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "include/drivere/uart.h"
-#include "include/sram.h"
-#include "include/drivere/adc.h"
-#include "include/joystick.h"
-#include "include/sleep.h" 
-#include "include/drivere/spi.h"
-#include "include/drivere/ioboard.h"
-#include "include/drivere/oled.h"
-#include "include/menu.h"
-#include "include/test.h"
+#include "uart.h"
+#include "sram.h"
+#include "adc.h"
+#include "joystick.h"
+#include "sleep.h" 
+#include "spi.h"
+#include "ioboard.h"
+#include "oled.h"
+#include "menu.h"
+#include "test.h"
 
 int main(void){
 

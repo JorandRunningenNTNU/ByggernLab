@@ -1,8 +1,9 @@
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdlib.h>
-#include "..\..\include\drivere\spi.h"
-#include "..\..\include\sleep.h"
-#include "..\..\include\drivere\uart.h"
+#include "spi.h"
+#include "sleep.h"
+#include "uart.h"
 
 volatile uint8_t spi_INT_busy = 0;
 volatile uint8_t *spi_tx_data;
