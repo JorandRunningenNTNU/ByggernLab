@@ -3089,6 +3089,18 @@
 		)
 		(uuid "44268a56-e096-4cbe-9bb9-14a04c328418")
 	)
+	(text "Paralell interface peripherals"
+		(exclude_from_sim no)
+		(at 144.78 21.59 0)
+		(effects
+			(font
+				(size 5.08 5.08)
+				(thickness 1.016)
+				(bold yes)
+			)
+		)
+		(uuid "50a228ff-2231-407f-bc0b-ec108de3916b")
+	)
 	(text "Latches the address\nbefore data is sent"
 		(exclude_from_sim no)
 		(at 63.5 52.832 0)
@@ -5813,7 +5825,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09f1b89a-3f1a-401c-9316-35954ce75b61")
-		(property "Reference" "C11"
+		(property "Reference" "C10"
 			(at 217.17 51.1809 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5877,7 +5889,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C11")
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -5895,7 +5907,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "14139e3f-bbcf-4cd5-b022-6d36c17f37e0")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR020"
 			(at 116.84 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -5955,7 +5967,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR019")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -5973,7 +5985,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "25a60b7a-00d0-4ec5-922f-20227b5952a9")
-		(property "Reference" "C10"
+		(property "Reference" "C13"
 			(at 209.55 100.7109 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6037,7 +6049,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C10")
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -6408,7 +6420,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5818c10e-07f2-4d97-a059-33ec33d8ecfd")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR024"
 			(at 93.98 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -6468,7 +6480,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR018")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -6486,7 +6498,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5d5c85c2-fee0-45c4-9612-79082cd6044a")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR029"
 			(at 90.17 184.15 0)
 			(hide yes)
 			(show_name no)
@@ -6547,7 +6559,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR017")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -6565,7 +6577,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e1add82-abc0-417e-a223-1752267ce930")
-		(property "Reference" "IC2"
+		(property "Reference" "IC4"
 			(at 83.82 148.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6718,7 +6730,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "IC2")
+					(reference "IC4")
 					(unit 1)
 				)
 			)
@@ -6736,7 +6748,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "605d6b7f-eb9f-4fcd-8913-c5b5a5d6900a")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR021"
 			(at 50.8 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -6797,7 +6809,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR013")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -6815,7 +6827,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6107d118-1341-42df-b231-8e8ef5a684a2")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR028"
 			(at 90.17 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -6875,7 +6887,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR016")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -6893,7 +6905,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7b6f23eb-db06-4a0d-862e-e14f54537e9d")
-		(property "Reference" "C14"
+		(property "Reference" "C15"
 			(at 232.41 100.7109 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6957,7 +6969,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C14")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -6975,7 +6987,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "819c0632-621a-4f85-8403-5978b0dc2dd7")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR022"
 			(at 133.35 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -7036,7 +7048,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR021")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -7054,7 +7066,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "881ce9aa-7599-4e2f-9a7b-d3bd5e6200ae")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR026"
 			(at 116.84 110.49 0)
 			(hide yes)
 			(show_name no)
@@ -7115,7 +7127,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR020")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -7133,7 +7145,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "94b847ea-856b-4c0d-babd-12ed9a82c93f")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR025"
 			(at 228.6 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -7193,7 +7205,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR028")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -7211,7 +7223,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a4dd9fe3-a4b7-4399-b3cd-3cda7cac4034")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR018"
 			(at 233.68 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -7272,7 +7284,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR029")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -7290,7 +7302,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a6b5199a-37a7-4983-8552-428e3457b4e5")
-		(property "Reference" "C15"
+		(property "Reference" "C12"
 			(at 237.49 51.1809 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7354,7 +7366,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C15")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -7372,7 +7384,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a7f0c16c-4138-4e34-959c-10f09890c5e8")
-		(property "Reference" "IC3"
+		(property "Reference" "IC2"
 			(at 109.22 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7567,7 +7579,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "IC3")
+					(reference "IC2")
 					(unit 1)
 				)
 			)
@@ -7585,7 +7597,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ae04f959-7ba0-493e-b62e-a0a8c044e6b5")
-		(property "Reference" "IC4"
+		(property "Reference" "IC3"
 			(at 172.72 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7768,7 +7780,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "IC4")
+					(reference "IC3")
 					(unit 1)
 				)
 			)
@@ -7786,7 +7798,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "beb26099-9c81-479a-b81d-a9b1d949be27")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR017"
 			(at 223.52 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -7847,7 +7859,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR027")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -7865,7 +7877,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c43fea35-27fb-4f31-8e3d-051968b3839b")
-		(property "Reference" "C12"
+		(property "Reference" "C14"
 			(at 219.71 101.5999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7929,7 +7941,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C12")
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -7947,7 +7959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce193244-4b3b-4bc9-9e4a-7f389ac63d24")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR027"
 			(at 190.5 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -8008,7 +8020,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR024")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -8025,7 +8037,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cf6182b2-0381-4064-93a5-51d40d3a52ac")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR019"
 			(at 63.5 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -8085,7 +8097,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR014")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -8103,7 +8115,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e59e032f-d75e-4908-b193-71297b58805a")
-		(property "Reference" "C13"
+		(property "Reference" "C11"
 			(at 227.33 51.1809 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8167,7 +8179,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "C13")
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -8185,7 +8197,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2fcd4ef-66a4-4af5-9ba4-9f1e35f3fd76")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR013"
 			(at 184.15 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -8246,7 +8258,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR022")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -8264,7 +8276,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f6cd95aa-282c-43c0-8998-de2bee4d0143")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR016"
 			(at 213.36 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -8325,7 +8337,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR026")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -8343,7 +8355,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fa76ad1f-df05-4d31-a83b-00f37978a6eb")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR015"
 			(at 203.2 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -8404,7 +8416,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR025")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -8422,7 +8434,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fd7210ec-5c08-4f02-b5ef-66d10d2aff38")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR014"
 			(at 189.23 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -8483,7 +8495,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR023")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -8501,7 +8513,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ff0a641c-ce24-4810-ada6-ee9818b38a00")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR023"
 			(at 63.5 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -8562,7 +8574,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/ec5cc565-6ceb-4887-a28f-4e21142ebd62"
-					(reference "#PWR015")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
