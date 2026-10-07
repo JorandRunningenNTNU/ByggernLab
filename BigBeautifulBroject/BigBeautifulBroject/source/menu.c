@@ -6,6 +6,8 @@
 #include "../include/drivere/ioBoard.h"
 #include "../include/drivere/uart.h"
 
+#include "../include/wave.h"
+
 menu_item_t root = {
 	.name = "Root",
 	.parent = NULL,
@@ -28,7 +30,7 @@ static menu_item_t say_hi = {
 	.action = say_hello
 };
 
-static menu_item_t scripts = {
+menu_item_t scripts = {
 	.name = "scripts",
 	.parent = NULL,
 	.children = NULL,
@@ -40,8 +42,10 @@ void setupMenu(){
 	menu_current = &root;
 	menu_selected = 0;
 	
-	menu_insert(&say_hi, &scripts);
 	menu_insert(&scripts, &root);
+	
+	menu_insert(&say_hi, &scripts);
+	menu_insert(&wave, &scripts);
 }
 
 void render_menu() {
@@ -50,7 +54,7 @@ void render_menu() {
 	oled_print(menu_current->name);
 	uint8_t len = strlen(menu_current->name);
 
-	for (uint8_t j = len; j < 15; j++) {
+	for (uint8_t j = len; j < 16; j++) {
 		oled_print(" ");
 	}
 	for (int i = 0; i < 6; i++) {
