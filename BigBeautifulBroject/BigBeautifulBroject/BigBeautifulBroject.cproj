@@ -178,6 +178,9 @@
     <Compile Include="include\setup.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\program\cantest.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\sleep.h">
       <SubType>compile</SubType>
     </Compile>
@@ -212,6 +215,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\menu.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\program\cantest.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\menu_builder.c">
