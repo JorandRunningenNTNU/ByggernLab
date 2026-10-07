@@ -12,8 +12,15 @@
 .history/
 *.zip
 
+# BigBeautifulBroject
 BigBeautifulBroject/.vs/*
 BigBeautifulBroject/BigBeautifulBroject/Debug/*
 
 BigBeautifulBroject/BigBeautifulBroject/source/test.c
 BigBeautifulBroject/BigBeautifulBroject/include/test.h
+
+# MamdanisNewYork
+MamdanisNewYork/.vs/*
+MamdanisNewYork/MamdanisNewYork/Debug/*
+MamdanisNewYork/MamdanisNewYork/source/test.c
+MamdanisNewYork/MamdanisNewYork/include/test.h
