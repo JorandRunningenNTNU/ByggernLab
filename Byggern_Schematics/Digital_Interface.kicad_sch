@@ -1544,7 +1544,7 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U3"
+			(property "Reference" "U4"
 				(at 2.1433 22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1578,7 +1578,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/21801e.pdf"
+			(property "Datasheet" "https://ttk4155.github.io/docs/datasheets/MCP2515-CAN-Controller.pdf"
 				(at 2.54 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1853,7 +1853,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 7.62 0)
+					(at -15.24 15.24 0)
 					(length 2.54)
 					(name "SCK"
 						(effects
@@ -1871,7 +1871,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 15.24 0)
+					(at -15.24 12.7 0)
 					(length 2.54)
 					(name "SI"
 						(effects
@@ -1889,7 +1889,7 @@
 					)
 				)
 				(pin output line
-					(at -15.24 12.7 0)
+					(at -15.24 10.16 0)
 					(length 2.54)
 					(name "SO"
 						(effects
@@ -1907,7 +1907,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 10.16 0)
+					(at -15.24 7.62 0)
 					(length 2.54)
 					(name "~{CS}"
 						(effects
@@ -3236,6 +3236,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 71.12) (xy 171.45 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "109c57b9-0386-4382-8d1a-c93a893e7f1a")
+	)
+	(wire
+		(pts
 			(xy 177.8 50.8) (xy 186.69 50.8)
 		)
 		(stroke
@@ -3383,16 +3393,6 @@
 			(type default)
 		)
 		(uuid "443d1c94-3fff-4273-af40-cfb4109f6d93")
-	)
-	(wire
-		(pts
-			(xy 160.02 68.58) (xy 171.45 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47216e15-3522-4c62-a600-08eca5ca7525")
 	)
 	(wire
 		(pts
@@ -3626,16 +3626,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 71.12) (xy 171.45 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "945c3f05-b41c-4bfd-99df-171618722920")
-	)
-	(wire
-		(pts
 			(xy 201.93 81.28) (xy 207.01 81.28)
 		)
 		(stroke
@@ -3653,6 +3643,16 @@
 			(type default)
 		)
 		(uuid "95db8c74-e126-4f07-9115-19bc5fb577c7")
+	)
+	(wire
+		(pts
+			(xy 160.02 73.66) (xy 171.45 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "960daa19-4515-4179-9ef1-b7588486ac1a")
 	)
 	(wire
 		(pts
@@ -3712,7 +3712,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ae3fc151-8a53-4ae7-b175-135c8d327126")
+		(uuid "aac4d47a-db3b-4db5-9bfc-85ab8aaa9e5c")
 	)
 	(wire
 		(pts
@@ -3886,16 +3886,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 73.66) (xy 171.45 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6710356-b52f-4626-b05c-19b089f3f418")
-	)
-	(wire
-		(pts
 			(xy 265.43 67.31) (xy 265.43 69.85)
 		)
 		(stroke
@@ -3993,6 +3983,16 @@
 			(type default)
 		)
 		(uuid "f9ddf4d8-d7ae-4cb6-9308-ce2c46953ec5")
+	)
+	(wire
+		(pts
+			(xy 160.02 68.58) (xy 171.45 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc178cba-d4d1-4f2d-86bd-f218dd14d6a1")
 	)
 	(wire
 		(pts
@@ -4340,6 +4340,16 @@
 			"lvieCQAAAABJRU5ErkJggg=="
 		)
 	)
+	(label "PB5"
+		(at 171.45 68.58 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0617e97b-81fb-48d9-bbac-b96bb8e5cd36")
+	)
 	(label "CAN_RX"
 		(at 205.74 68.58 0)
 		(effects
@@ -4379,6 +4389,36 @@
 			(justify left bottom)
 		)
 		(uuid "768baf25-f5f5-41bb-ae40-af3c5c21e348")
+	)
+	(label "PB6"
+		(at 171.45 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "84983755-60c1-4938-93ec-7219ab2693e4")
+	)
+	(label "PB1"
+		(at 171.45 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8e4d8bd4-d3f1-4cda-b2e2-bc7205cd5c0c")
+	)
+	(label "PB7"
+		(at 171.45 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9936ee4d-e438-4110-b4ae-b23a065b36e8")
 	)
 	(label "V-"
 		(at 59.69 101.6 0)
@@ -4480,6 +4520,17 @@
 		)
 		(uuid "fd7f0c38-3fcf-467b-bc44-f2b02eead755")
 	)
+	(hierarchical_label "MOSI"
+		(shape input)
+		(at 160.02 68.58 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "03f78e41-c9f6-4054-b170-4c1b7968e27f")
+	)
 	(hierarchical_label "JTAG_TDO"
 		(shape input)
 		(at 69.85 57.15 180)
@@ -4491,8 +4542,8 @@
 		)
 		(uuid "062607b3-7348-4ba1-848e-994fb47b87e6")
 	)
-	(hierarchical_label "~{CS}"
-		(shape input)
+	(hierarchical_label "MISO"
+		(shape output)
 		(at 160.02 71.12 180)
 		(effects
 			(font
@@ -4500,18 +4551,18 @@
 			)
 			(justify right)
 		)
-		(uuid "1c9eb37b-1f2c-4e74-8de9-f456c733eb02")
+		(uuid "40a1d718-2e1b-4341-8357-c3e7a7409355")
 	)
-	(hierarchical_label "MOSI"
+	(hierarchical_label "~{CS}"
 		(shape input)
-		(at 160.02 66.04 180)
+		(at 160.02 73.66 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "26767c8a-9deb-43d7-8d07-8560c036f674")
+		(uuid "58cba0bb-daf1-499b-a3c2-7440e6ffacef")
 	)
 	(hierarchical_label "~{INT}"
 		(shape output)
@@ -4546,17 +4597,6 @@
 		)
 		(uuid "8b4155b3-707b-4e79-aa15-5663233baf02")
 	)
-	(hierarchical_label "MISO"
-		(shape output)
-		(at 160.02 68.58 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "912dceb4-3dae-4609-ac98-fa0bd7bc6bc0")
-	)
 	(hierarchical_label "UART_RX"
 		(shape output)
 		(at 53.34 107.95 180)
@@ -4570,14 +4610,14 @@
 	)
 	(hierarchical_label "SCK"
 		(shape input)
-		(at 160.02 73.66 180)
+		(at 160.02 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "b4a095b1-cb3d-417a-927a-5562f70ee796")
+		(uuid "af4165cf-a9f5-44b7-91e2-a7bb7b9e6d05")
 	)
 	(hierarchical_label "JTAG_TDI"
 		(shape output)
