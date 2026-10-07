@@ -7,6 +7,7 @@
 #include "../include/drivere/uart.h"
 
 #include "../include/program/wave.h"
+#include "../include/program/cantest.h"
 
 menu_item_t root = {
 	.name = "Root",
@@ -55,6 +56,7 @@ void setupMenu(){
 	
 	menu_insert(&say_hi, &scripts);
 	menu_insert(&wave, &scripts);
+	menu_insert(&can_test_1, &scripts);
 }
 
 void render_menu() {
