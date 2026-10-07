@@ -1,10 +1,10 @@
 #include <stdint.h>
 #include <avr/pgmspace.h>
 
-#include "../include/drivere/oled.h"
-#include "../include/wave.h"
-#include "../include/menu.h"
-#include "../include/drivere/ioBoard.h"
+#include "../../include/drivere/oled.h"
+#include "../../include/program/wave.h"
+#include "../../include/menu.h"
+#include "../../include/drivere/ioBoard.h"
 
 static uint8_t phase = 0;
 

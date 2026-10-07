@@ -19,6 +19,10 @@ uint8_t menu_insert(menu_item_t *new_item, menu_item_t *parent);
 
 extern menu_item_t root;
 
+extern menu_item_t scripts;
+
+extern menu_item_t test_scripts;
+
 extern menu_item_t *menu_current;
 
 extern uint8_t menu_selected;
