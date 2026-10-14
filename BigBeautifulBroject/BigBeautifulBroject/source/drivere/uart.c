@@ -1,4 +1,4 @@
-#include "../../include/drivere/uart.h"
+#include "uart.h"
 #include <avr/interrupt.h>
 #include <util/atomic.h>
 
@@ -7,21 +7,6 @@
 volatile uint8_t tx_buffer[UART_TX_BUFFER_SIZE];
 volatile uint8_t tx_head = 0;
 volatile uint8_t tx_tail = 0;
-
-
-void initilize(){
-	cli();
-	
-	// baud-rate 9600
-	UBRR0H = 0;
-	UBRR0L = 31;
-	
-	// enable reciver og transmitter
-	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
-	
-	sei();
-
-}
 
 void sendByte(unsigned char data){
 	// vente på at bufferen er klar til å skrives til
@@ -43,13 +28,22 @@ ISR(USART0_UDRE_vect)
 }
 
 void sendByteINT(unsigned char c){
-	// vente på at bufferen er klar til å skrives til
 	uint8_t next;
 
 	next = (tx_head + 1) % UART_TX_BUFFER_SIZE;
 
-	// Wait if buffer is full
-	while (next == tx_tail);
+	// Vent på plass i bufferen
+	while (next == tx_tail) {
+		if (!(SREG & (1 << SREG_I))) {
+			// Interrupts er av, så ISR-en kan ikke tømme bufferen.
+			// Gjør det manuelt.
+			if (UCSR0A & (1 << UDRE0)) {
+				UDR0 = tx_buffer[tx_tail];
+				tx_tail = (tx_tail + 1) % UART_TX_BUFFER_SIZE;
+			}
+		}
+		// Hvis interrupts er på, tømmer ISR-en bufferen av seg selv
+	}
 	
 	tx_buffer[tx_head] = c;
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
@@ -89,8 +83,17 @@ static int uart_getchar(FILE *stream){
 }
 
 
-void setupPrintfUART(){
-	initilize();
+void setupUART(){
+	// baud-rate 9600
+	UBRR0H = 0;
+	UBRR0L = 31;
+		
+	// enable reciver og transmitter
+	UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
+		
+	sei();
+	
+	//setup printf
 	FILE *uart = fdevopen(uart_putchar, uart_getchar);
 	stdout = uart;
 	stdin = uart;

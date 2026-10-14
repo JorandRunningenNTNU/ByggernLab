@@ -1,13 +1,10 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include "../include/menu.h"
-#include "../include/drivere/oled.h"
-#include "../include/drivere/ioBoard.h"
-#include "../include/drivere/uart.h"
-
-#include "../include/program/wave.h"
-#include "../include/program/cantest.h"
+#include <stdio.h>
+#include "menu.h"
+#include "oled.h"
+#include "ioBoard.h"
 
 menu_item_t root = {
 	.name = "Root",
@@ -35,7 +32,6 @@ menu_item_t test_scripts = {
 
 static void say_hello(void)
 {
-	setupPrintfUART();
 	printf("Hello world!\n");
 }
 
@@ -55,8 +51,6 @@ void setupMenu(){
 	menu_insert(&scripts, &root);
 	
 	menu_insert(&say_hi, &scripts);
-	menu_insert(&wave, &scripts);
-	menu_insert(&can_test_1, &scripts);
 }
 
 void render_menu() {

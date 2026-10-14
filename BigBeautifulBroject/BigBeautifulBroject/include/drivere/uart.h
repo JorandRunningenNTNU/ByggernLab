@@ -4,4 +4,4 @@
 #include <stdio.h>
 
 unsigned char uart_read_byte();
-void setupPrintfUART();
+void setupUART();

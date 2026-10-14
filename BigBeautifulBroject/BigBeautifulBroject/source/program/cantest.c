@@ -1,11 +1,10 @@
-#include "../../include/program/cantest.h"
-#include "../../include/drivere/uart.h"
-#include "../../include/drivere/mcp2515.h"
-#include "../../include/drivere/spi.h"
-#include "../../include/drivere/ioBoard.h"
+#include "cantest.h"
+#include "uart.h"
+#include "mcp2515.h"
+#include "spi.h"
+#include "ioBoard.h"
 
 void can_test_node_1(){
-	setupPrintfUART();
 	setupSPI();
 	setupMCP2515();
 	uint8_t data[8];

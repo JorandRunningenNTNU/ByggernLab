@@ -4,7 +4,7 @@
 #include "..\..\include\drivere\spi.h"
 #include "..\..\include/fonts.h"
 
-void setupDisplay(){
+void setupOLED(){
 	DDRB |= (1 << 2);
 	
 	uint8_t command[3];
