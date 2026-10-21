@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -40,6 +40,22 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
+    <avrtoolserialnumber>J41800079857</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x285E0A60</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_atmelice>
+      <ToolOptions>
+        <InterfaceProperties>
+          <SwdClock>2000000</SwdClock>
+        </InterfaceProperties>
+        <InterfaceName>SWD</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
+      <ToolNumber>J41800079857</ToolNumber>
+      <ToolName>Atmel-ICE</ToolName>
+    </com_atmel_avrdbg_tool_atmelice>
+    <avrtoolinterface>SWD</avrtoolinterface>
+    <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -107,6 +123,8 @@
     <ListValues>
       <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
       <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+      <Value>../include/drivere</Value>
+      <Value>../include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
@@ -124,11 +142,14 @@
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
+  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsam3x8e_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
       <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+      <Value>../include</Value>
+      <Value>../include/drivere</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
@@ -136,6 +157,8 @@
     <ListValues>
       <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
       <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+      <Value>../include</Value>
+      <Value>../include/drivere</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -149,6 +172,12 @@
     <Compile Include="Device_Startup\system_sam3xa.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\pwm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\drivere\servo.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\uart.h">
       <SubType>compile</SubType>
     </Compile>
@@ -156,6 +185,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\pwm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\servo.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\uart.c">
