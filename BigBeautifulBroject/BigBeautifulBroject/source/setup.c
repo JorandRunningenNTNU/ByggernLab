@@ -12,6 +12,7 @@
 #include "uart.h"
 #include "menu.h"
 #include "menu_builder.h"
+#include "timer.h"
 
 void setup(){
 	setupUART();
@@ -19,6 +20,7 @@ void setup(){
 	setupADC();
 	setupSPI();
 	setupOLED();
+	setupTimer();
 
 	setupMenu();
 	buildMenu();
