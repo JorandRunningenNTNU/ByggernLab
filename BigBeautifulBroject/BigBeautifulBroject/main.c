@@ -15,6 +15,7 @@
 #include "include/drivere/oled.h"
 #include "include/menu.h"
 #include "include/test.h"
+#include "include/drivere/timer.h"
 
 int main(void){
 	setupPrintfUART();	
@@ -23,6 +24,7 @@ int main(void){
 	setupSPI();
 	setupDisplay();
 	setupMenu();
+	setupTimer();
 	//setupJoystick();
 	
 	while(1){

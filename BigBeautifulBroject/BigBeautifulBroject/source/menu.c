@@ -67,9 +67,16 @@ void render_menu() {
 			else {
 				oled_print(" ");
 			}
-			oled_print(menu_current->children[i + menu_shift]->name);
 			len = strlen(menu_current->children[i + menu_shift]->name);
-
+			if (len > 15) {
+				for (uint8_t j = 0; j < 15; j++) {
+					oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+				}
+			}
+			else {
+				oled_print(menu_current->children[i + menu_shift]->name);
+			}
+			
 			for (uint8_t j = len; j < 15; j++) {
 				oled_print(" ");
 			}

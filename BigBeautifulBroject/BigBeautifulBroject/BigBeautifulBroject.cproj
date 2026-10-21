@@ -132,6 +132,9 @@
     <Compile Include="include\drivere\spi.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\timer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\uart.h">
       <SubType>compile</SubType>
     </Compile>
@@ -169,6 +172,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\timer.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\uart.c">
