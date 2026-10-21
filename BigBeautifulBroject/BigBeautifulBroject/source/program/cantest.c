@@ -4,16 +4,17 @@
 #include "spi.h"
 #include "ioBoard.h"
 
-void can_test_node_1(){
+void can_test_1(){
 	setupSPI();
 	setupMCP2515();
+	mcp2515_change_mode(1); // bytter til loopback-modus
 	uint8_t data[8];
 	uint8_t readData[10];
 	uint8_t n = 0;
 	while(1){
-		
 		ioboard_update_data();
 		if ((ioboard_data.navButton) & (1<<3)) {
+			mcp2515_change_mode(0); // bytter tilbake til normal-modus
 			break;
 		}
 		
@@ -35,10 +36,10 @@ void can_test_node_1(){
 	}
 }
 
-menu_item_t can_test_1 = {
-	.name = "can_test_node_1.lmao",
+menu_item_t can_test_loopback = {
+	.name = "can_test_loopback.lmao",
 	.parent = NULL,
 	.children = NULL,
 	.child_count = 0,
-	.action = can_test_node_1
+	.action = can_test_1,
 };

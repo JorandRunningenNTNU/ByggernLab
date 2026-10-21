@@ -11,10 +11,10 @@ extern menu_item_t test;
 extern menu_item_t wave;
 extern menu_item_t test_sram;
 extern menu_item_t lorem_ipsum;
-extern menu_item_t can_test_1;
+extern menu_item_t can_test_loopback;
 
 static menu_item_t *programs[] = {
-	&can_test_1,
+	&can_test_loopback,
 	&lorem_ipsum,
 	&test_sram,
 	&wave,
