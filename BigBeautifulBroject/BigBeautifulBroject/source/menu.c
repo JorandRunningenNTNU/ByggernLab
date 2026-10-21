@@ -43,6 +43,7 @@ static menu_item_t say_hi = {
 	.action = say_hello
 };
 
+uint8_t scroll_shift = 0;
 
 void setupMenu(){
 	menu_current = &root;
@@ -58,6 +59,11 @@ void render_menu() {
 	oled_goto_column(0);
 	oled_print(menu_current->name);
 	uint8_t len = strlen(menu_current->name);
+	
+	if (TCNT1 > 50000) {
+		scroll_shift += 1;
+		TCNT1 = 0;
+	}
 
 	for (uint8_t j = len; j < 16; j++) {
 		oled_print(" ");
@@ -74,8 +80,16 @@ void render_menu() {
 			}
 			len = strlen(menu_current->children[i + menu_shift]->name);
 			if (len > 15) {
-				for (uint8_t j = 0; j < 15; j++) {
-					oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+				uint8_t begin = scroll_shift % (len-14);
+				if (menu_selected == i + menu_shift) {
+					for (uint8_t j = begin; j < 15+begin; j++) {
+						oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+					}
+				}
+				else {
+					for (uint8_t j = 0; j < 15; j++) {
+						oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+					}
 				}
 			}
 			else {

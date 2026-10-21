@@ -4,5 +4,5 @@
 void setupTimer(void) {
 	TCNT1 = 0;
 	TCCR1A = 0;
-	TCCR1B = (1 << CS11);
+	TCCR1B = (1 << CS11) | (1<<CS10);
 }
