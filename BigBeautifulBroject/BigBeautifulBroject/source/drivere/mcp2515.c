@@ -18,20 +18,35 @@ void setupMCP2515(){
 	spi_unselect_all_slaves();
 	
 	// recive innstillinger
-	// filterene er skrudd av
-	mcp2515_write_bit((1<<6)|(1<<5), (1<<2), (1<<2)); // aktiverer rollover fra buffer 0 til 1, hvis 0 er full
+	mcp2515_write_byte(0x60, 0x64); // aktivere rollover fra buffer 0 til 1, og skur av filtere for buffer 0
+	mcp2515_write_byte(0x70, 0x60); // skru av filtere for buffer 0
 	
 	// Transmitt innstillinger
 	// skrur av extended-ID og setter de tre laveste ID-bitene til 0
-	mcp2515_write_byte(0b00110010, 0); // buffer 0
-	mcp2515_write_byte(0b01000010, 0); // buffer 1
-	mcp2515_write_byte(0b01010010, 0); // buffer 2
+	mcp2515_write_byte(0x32, 0); // buffer 0
+	mcp2515_write_byte(0x42, 0); // buffer 1
+	mcp2515_write_byte(0x52, 0); // buffer 2
 	
 	// Interrupt
-	mcp2515_write_byte(0b00101011, (1<<1)|(1<<0));  // skrur på interrupt for recive buffer 0 og 1
+	//mcp2515_write_byte(0x2d, (1<<1)|(1<<0));  // skrur på interrupt for recive buffer 0 og 1
+	mcp2515_write_byte(0x2B, 0x03);
 	
-	// Bytte til loopback opperasjonsmodus
-	mcp2515_write_bit(0x0f, (1<<7)|(1<<6)|(1<<5), (1<<6));
+	// Timing
+	// TQ = 2(BRP+1)/F_CPU = 2(19 + 1) / 16 MHz = 2,5 ms
+	// SJW = 1 TQ
+	// Sync = 1 TQ
+	// Prop = 2 TQ
+	// PS1 = 3 TQ
+	// PS2 = 2 TQ
+	/*mcp2515_write_byte(0x2a, (3<<0)); // SJW = 1 og BRP = 3
+	mcp2515_write_bit(0x29, 0x3f, (3<<3)|(2<<0)); // PS1 = 3, prop = 2
+	mcp2515_write_bit(0x28, (7<<0), (1<<0)); // PS2 = 2*/
+	mcp2515_write_byte(0x2A, (19<<0));  // SJW=1 | BRP=19,  
+	mcp2515_write_byte(0x29, (1<<7) | (2<<3) | (1<<0));  // BTLMODE=1 | PS1=3 | Prop=2
+	mcp2515_write_byte(0x28, (1<<0));  // PS2=2
+	
+	// Bytte til normal opperasjonsmodus
+	mcp2515_write_bit(0x0f, (7<<5), 0);
 }
 
 
@@ -68,7 +83,17 @@ void mcp2515_read_buffer(uint8_t buffer, uint8_t* data){
 	spi_unselect_all_slaves();
 }
 
-
+void mcp2515_change_mode(uint8_t mode){
+	switch(mode){
+	case 0:
+		mcp2515_write_bit(0x0f, (7<<5), 0); // normal
+		break;
+	
+	case 1:
+		mcp2515_write_bit(0x0f, (7<<5), (1<<6)); // loopback
+		break;
+	}
+}
 
 
 static void mcp2515_write(uint8_t adress, uint8_t* data, uint8_t nData){
@@ -155,3 +180,4 @@ static uint8_t mcp2515_read_byte(uint8_t adress){
 	spi_unselect_all_slaves();
 	return data;
 }
+
