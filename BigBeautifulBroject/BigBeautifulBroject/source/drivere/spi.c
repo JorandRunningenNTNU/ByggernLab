@@ -1,8 +1,15 @@
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdlib.h>
-#include "..\..\include\drivere\spi.h"
-#include "..\..\include\sleep.h"
-#include "..\..\include\drivere\uart.h"
+#include "spi.h"
+#include "sleep.h"
+#include "uart.h"
+
+volatile uint8_t spi_INT_busy = 0;
+volatile uint8_t *spi_tx_data;
+volatile uint8_t spi_tx_length;
+volatile uint8_t spi_tx_index;
+
 
 // PB1 Can
 // PB3 Display
@@ -17,9 +24,9 @@ void setupSPI(){
 	// klokken er lav i ideal state
 	// Sampler på leading edge
 	// SCK frekvens er f_osc/4, antar f_osc er den interne frekvensen
-	SPCR |= (1 << 4); // setter atmega til master
-	SPCR |= (1 << 6); // enable SPI
-	
+	SPSR |= (1 << SPI2X);
+	SPCR |= (1 << MSTR); // setter atmega til master
+	SPCR |= (1 << SPE); // enable SPI
 }
 
 void spi_unselect_all_slaves(){
@@ -32,6 +39,28 @@ void spi_select_slave(spi_select_t slave){
 	if (slave == CAN){PORTB &= ~(1 << 1);}
 	if (slave == Display){PORTB &= ~(1 << 3);}
 	if (slave == IO){PORTB &= ~(1 << 4);}
+}
+
+void spi_write_INT(uint8_t* data, uint8_t n){
+	while(spi_INT_busy);
+	spi_INT_busy = 1;
+	spi_tx_index = 0;
+	spi_tx_length = n;
+	spi_tx_data = data;
+	SPCR |= (1 << SPIE);
+	sei();
+	SPDR = spi_tx_data[spi_tx_index++];
+}
+
+ISR(SPI_STC_vect){
+	if(spi_tx_index < spi_tx_length){
+		SPDR = spi_tx_data[spi_tx_index++];
+	}
+	else
+	{
+		SPCR &= ~(1 << SPIE);
+		spi_INT_busy = 0;
+	}
 }
 
 void spi_write_byte(uint8_t data){

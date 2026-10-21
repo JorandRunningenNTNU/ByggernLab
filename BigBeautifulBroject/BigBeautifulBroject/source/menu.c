@@ -1,12 +1,10 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include "../include/menu.h"
-#include "../include/drivere/oled.h"
-#include "../include/drivere/ioBoard.h"
-#include "../include/drivere/uart.h"
-
-#include "../include/wave.h"
+#include <stdio.h>
+#include "menu.h"
+#include "oled.h"
+#include "ioBoard.h"
 
 menu_item_t root = {
 	.name = "Root",
@@ -16,9 +14,24 @@ menu_item_t root = {
 	.action = NULL
 };
 
+menu_item_t scripts = {
+	.name = "scripts",
+	.parent = NULL,
+	.children = NULL,
+	.child_count = 0,
+	.action = NULL
+};
+
+menu_item_t test_scripts = {
+	.name = "test_scripts",
+	.parent = NULL,
+	.children = NULL,
+	.child_count = 0,
+	.action = NULL
+};
+
 static void say_hello(void)
 {
-	setupPrintfUART();
 	printf("Hello world!\n");
 }
 
@@ -30,13 +43,6 @@ static menu_item_t say_hi = {
 	.action = say_hello
 };
 
-menu_item_t scripts = {
-	.name = "scripts",
-	.parent = NULL,
-	.children = NULL,
-	.child_count = 0,
-	.action = NULL
-};
 
 void setupMenu(){
 	menu_current = &root;
@@ -45,7 +51,6 @@ void setupMenu(){
 	menu_insert(&scripts, &root);
 	
 	menu_insert(&say_hi, &scripts);
-	menu_insert(&wave, &scripts);
 }
 
 void render_menu() {

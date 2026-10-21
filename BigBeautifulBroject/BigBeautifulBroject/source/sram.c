@@ -1,16 +1,24 @@
-#include "../include/sram.h"
-#include "../include/drivere/uart.h"
+#include <stdio.h>
+#include "sram.h"
+#include "uart.h"
 
 void setupSRAM(){
 	SFIOR |= (4 << 3); // ikke bruke JTAG-pins for adresse
 	EMCUCR |= (0 << 1); // gir SRAM 2 sykler på å lese adresse før atmega skriver/leser
 	MCUCR |= (0 << 6); // gir SRAM 2 sykler på å lese adresse før atmega skriver/leser
 	MCUCR |= (1 <<7); // aktivere eksternt minne
+	
+	extern uint8_t __noinit_end;   // provided by the AVR linker script
+	// e.g. in main():
+	if ((uint16_t)&__noinit_end > 0x2000) {
+		printf("Du bruker for mye minne din tulling\n");
+		while(1);
+	}
 }
 
 void sram_test(void)
 {
-	setupPrintfUART();
+	setupUART();
 	
 	volatile char *ext_ram = (char *) 0x1800;  // Start address for the SRAM
 	uint16_t ext_ram_size = 0x800;

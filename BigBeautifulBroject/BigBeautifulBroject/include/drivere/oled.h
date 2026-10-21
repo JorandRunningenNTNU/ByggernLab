@@ -1,7 +1,7 @@
 #pragma once
 #include <avr/io.h>
 
-void setupDisplay();
+void setupOLED();
 void oled_clear();
 void oled_home();
 void oled_goto_line(uint8_t line);

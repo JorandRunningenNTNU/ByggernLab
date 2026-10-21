@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Veldig pent yup yup")
-		(date "2026-09-23")
+		(date "2026-10-07")
 		(rev "1 Morbillion")
 		(company "Gruppe 31")
 	)
@@ -1544,7 +1544,7 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U3"
+			(property "Reference" "U4"
 				(at 2.1433 22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1578,7 +1578,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/21801e.pdf"
+			(property "Datasheet" "https://ttk4155.github.io/docs/datasheets/MCP2515-CAN-Controller.pdf"
 				(at 2.54 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1853,7 +1853,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 7.62 0)
+					(at -15.24 15.24 0)
 					(length 2.54)
 					(name "SCK"
 						(effects
@@ -1871,7 +1871,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 15.24 0)
+					(at -15.24 12.7 0)
 					(length 2.54)
 					(name "SI"
 						(effects
@@ -1889,7 +1889,7 @@
 					)
 				)
 				(pin output line
-					(at -15.24 12.7 0)
+					(at -15.24 10.16 0)
 					(length 2.54)
 					(name "SO"
 						(effects
@@ -1907,7 +1907,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 10.16 0)
+					(at -15.24 7.62 0)
 					(length 2.54)
 					(name "~{CS}"
 						(effects
@@ -3013,6 +3013,18 @@
 		)
 		(uuid "19da18fa-da04-4518-996c-a22f419d6d45")
 	)
+	(text "Serial interface peripherals"
+		(exclude_from_sim no)
+		(at 95.25 147.828 0)
+		(effects
+			(font
+				(size 5.08 5.08)
+				(thickness 1.016)
+				(bold yes)
+			)
+		)
+		(uuid "68cd58be-4bbd-453d-8a9a-2683ae188c13")
+	)
 	(text "CAN Interface"
 		(exclude_from_sim no)
 		(at 157.48 33.02 0)
@@ -3224,6 +3236,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 71.12) (xy 171.45 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "109c57b9-0386-4382-8d1a-c93a893e7f1a")
+	)
+	(wire
+		(pts
 			(xy 177.8 50.8) (xy 186.69 50.8)
 		)
 		(stroke
@@ -3371,16 +3393,6 @@
 			(type default)
 		)
 		(uuid "443d1c94-3fff-4273-af40-cfb4109f6d93")
-	)
-	(wire
-		(pts
-			(xy 160.02 68.58) (xy 171.45 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47216e15-3522-4c62-a600-08eca5ca7525")
 	)
 	(wire
 		(pts
@@ -3614,16 +3626,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 71.12) (xy 171.45 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "945c3f05-b41c-4bfd-99df-171618722920")
-	)
-	(wire
-		(pts
 			(xy 201.93 81.28) (xy 207.01 81.28)
 		)
 		(stroke
@@ -3641,6 +3643,16 @@
 			(type default)
 		)
 		(uuid "95db8c74-e126-4f07-9115-19bc5fb577c7")
+	)
+	(wire
+		(pts
+			(xy 160.02 73.66) (xy 171.45 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "960daa19-4515-4179-9ef1-b7588486ac1a")
 	)
 	(wire
 		(pts
@@ -3700,7 +3712,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ae3fc151-8a53-4ae7-b175-135c8d327126")
+		(uuid "aac4d47a-db3b-4db5-9bfc-85ab8aaa9e5c")
 	)
 	(wire
 		(pts
@@ -3874,16 +3886,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 73.66) (xy 171.45 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6710356-b52f-4626-b05c-19b089f3f418")
-	)
-	(wire
-		(pts
 			(xy 265.43 67.31) (xy 265.43 69.85)
 		)
 		(stroke
@@ -3981,6 +3983,16 @@
 			(type default)
 		)
 		(uuid "f9ddf4d8-d7ae-4cb6-9308-ce2c46953ec5")
+	)
+	(wire
+		(pts
+			(xy 160.02 68.58) (xy 171.45 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc178cba-d4d1-4f2d-86bd-f218dd14d6a1")
 	)
 	(wire
 		(pts
@@ -4328,6 +4340,16 @@
 			"lvieCQAAAABJRU5ErkJggg=="
 		)
 	)
+	(label "PB5"
+		(at 171.45 68.58 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0617e97b-81fb-48d9-bbac-b96bb8e5cd36")
+	)
 	(label "CAN_RX"
 		(at 205.74 68.58 0)
 		(effects
@@ -4367,6 +4389,36 @@
 			(justify left bottom)
 		)
 		(uuid "768baf25-f5f5-41bb-ae40-af3c5c21e348")
+	)
+	(label "PB6"
+		(at 171.45 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "84983755-60c1-4938-93ec-7219ab2693e4")
+	)
+	(label "PB1"
+		(at 171.45 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8e4d8bd4-d3f1-4cda-b2e2-bc7205cd5c0c")
+	)
+	(label "PB7"
+		(at 171.45 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9936ee4d-e438-4110-b4ae-b23a065b36e8")
 	)
 	(label "V-"
 		(at 59.69 101.6 0)
@@ -4468,6 +4520,17 @@
 		)
 		(uuid "fd7f0c38-3fcf-467b-bc44-f2b02eead755")
 	)
+	(hierarchical_label "MOSI"
+		(shape input)
+		(at 160.02 68.58 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "03f78e41-c9f6-4054-b170-4c1b7968e27f")
+	)
 	(hierarchical_label "JTAG_TDO"
 		(shape input)
 		(at 69.85 57.15 180)
@@ -4479,8 +4542,8 @@
 		)
 		(uuid "062607b3-7348-4ba1-848e-994fb47b87e6")
 	)
-	(hierarchical_label "~{CS}"
-		(shape input)
+	(hierarchical_label "MISO"
+		(shape output)
 		(at 160.02 71.12 180)
 		(effects
 			(font
@@ -4488,18 +4551,18 @@
 			)
 			(justify right)
 		)
-		(uuid "1c9eb37b-1f2c-4e74-8de9-f456c733eb02")
+		(uuid "40a1d718-2e1b-4341-8357-c3e7a7409355")
 	)
-	(hierarchical_label "MOSI"
+	(hierarchical_label "~{CS}"
 		(shape input)
-		(at 160.02 66.04 180)
+		(at 160.02 73.66 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "26767c8a-9deb-43d7-8d07-8560c036f674")
+		(uuid "58cba0bb-daf1-499b-a3c2-7440e6ffacef")
 	)
 	(hierarchical_label "~{INT}"
 		(shape output)
@@ -4534,17 +4597,6 @@
 		)
 		(uuid "8b4155b3-707b-4e79-aa15-5663233baf02")
 	)
-	(hierarchical_label "MISO"
-		(shape output)
-		(at 160.02 68.58 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "912dceb4-3dae-4609-ac98-fa0bd7bc6bc0")
-	)
 	(hierarchical_label "UART_RX"
 		(shape output)
 		(at 53.34 107.95 180)
@@ -4558,14 +4610,14 @@
 	)
 	(hierarchical_label "SCK"
 		(shape input)
-		(at 160.02 73.66 180)
+		(at 160.02 66.04 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "b4a095b1-cb3d-417a-927a-5562f70ee796")
+		(uuid "af4165cf-a9f5-44b7-91e2-a7bb7b9e6d05")
 	)
 	(hierarchical_label "JTAG_TDI"
 		(shape output)
@@ -4623,7 +4675,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0ce32f2d-4404-4d02-86ff-f8f2159a78b4")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR031"
 			(at 186.69 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -4684,7 +4736,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR038")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -4702,7 +4754,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0f01f696-2627-457f-9d12-c0d82d8b8e0c")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR030"
 			(at 101.6 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -4762,7 +4814,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR034")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -4780,7 +4832,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0f037a73-0007-4f80-ab5c-a6f0ed0329c7")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR038"
 			(at 73.66 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -4840,7 +4892,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR030")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -4858,7 +4910,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ac5751f-13de-495b-8c24-f3906d4e6208")
-		(property "Reference" "C19"
+		(property "Reference" "C16"
 			(at 181.61 54.6099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4922,7 +4974,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "C19")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -4940,7 +4992,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f0f7c1f-515b-4720-8ab2-acdb1f2a5988")
-		(property "Reference" "U3"
+		(property "Reference" "U4"
 			(at 188.8333 58.42 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5053,7 +5105,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "U3")
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -5071,7 +5123,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2445d9ce-fb4d-4071-93cc-bc447d61fd42")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR035"
 			(at 99.06 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -5132,7 +5184,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR033")
+					(reference "#PWR035")
 					(unit 1)
 				)
 			)
@@ -5341,7 +5393,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3102569e-7c84-4924-8190-f56a045882e5")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR042"
 			(at 102.87 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -5402,7 +5454,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR035")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -5420,7 +5472,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3165cba8-7b2c-4c69-9f34-6b5202cb99f8")
-		(property "Reference" "C18"
+		(property "Reference" "C19"
 			(at 147.32 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5482,7 +5534,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "C18")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -5500,7 +5552,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4298746b-e845-4fef-8934-94d0aad95c8c")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR037"
 			(at 220.98 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -5561,7 +5613,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR040")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -5683,7 +5735,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4e2e2208-9505-416d-a17f-669dc0043e0e")
-		(property "Reference" "J6"
+		(property "Reference" "J5"
 			(at 271.78 69.8499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5747,7 +5799,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "J6")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -5765,7 +5817,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "521a1c51-2ff8-498a-a9e4-fc8b73e9aced")
-		(property "Reference" "R5"
+		(property "Reference" "R4"
 			(at 252.73 69.8499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5829,7 +5881,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "R5")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -5847,7 +5899,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "667e6c02-2248-484a-a14d-637934738709")
-		(property "Reference" "C16"
+		(property "Reference" "C20"
 			(at 101.6 95.2499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5911,7 +5963,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "C16")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -5929,7 +5981,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6d77b48e-0ae0-4455-bbd3-cfe7973cdff8")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR043"
 			(at 76.2 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -5990,7 +6042,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR031")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -6008,7 +6060,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "88475cec-b86f-4de6-bdcd-7debc5f47735")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR032"
 			(at 234.95 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -6069,7 +6121,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR042")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -6087,7 +6139,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9ef1708a-b2be-4444-b25f-d2aa90a912f1")
-		(property "Reference" "C17"
+		(property "Reference" "C18"
 			(at 147.32 73.66 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6149,7 +6201,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "C17")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -6167,7 +6219,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a00ff7d5-5ac5-4999-8c94-8012f4727ab9")
-		(property "Reference" "R4"
+		(property "Reference" "R5"
 			(at 223.52 80.0099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6231,7 +6283,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "R4")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -6249,7 +6301,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aad38dae-1567-45f5-ab30-ded04bbde2e3")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR041"
 			(at 186.69 110.49 0)
 			(hide yes)
 			(show_name no)
@@ -6310,7 +6362,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR039")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -6328,7 +6380,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ad915ce4-f429-4161-8116-a965ccf4da25")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR040"
 			(at 97.79 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6389,7 +6441,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR032")
+					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -6407,7 +6459,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b7c6b918-65a0-478b-8db8-28115557cf2b")
-		(property "Reference" "U4"
+		(property "Reference" "U3"
 			(at 237.0933 58.42 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6490,7 +6542,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "U4")
+					(reference "U3")
 					(unit 1)
 				)
 			)
@@ -6508,7 +6560,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf61baed-75a3-4a22-8317-47bdd5025211")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR033"
 			(at 177.8 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -6569,7 +6621,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR037")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -6587,7 +6639,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c665fa31-48f8-42de-ad4b-fdae464dd5cc")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR036"
 			(at 234.95 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -6648,7 +6700,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR043")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -6666,7 +6718,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d74c9236-9081-471f-8160-0bd0f5f345ba")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR034"
 			(at 226.06 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -6727,7 +6779,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR041")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -6745,7 +6797,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "df3f6a6e-0c9d-47c5-9371-32c5e376dfee")
-		(property "Reference" "C20"
+		(property "Reference" "C17"
 			(at 229.87 54.6099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6809,7 +6861,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "C20")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -6827,7 +6879,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "edf8e984-8e96-48bc-840c-ef36cf8e0395")
-		(property "Reference" "J5"
+		(property "Reference" "J6"
 			(at 116.84 110.4899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6912,7 +6964,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "J5")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -7012,7 +7064,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f846fed2-eab9-41e3-9ae8-b3331f4793c4")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR039"
 			(at 140.97 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -7073,7 +7125,7 @@
 		(instances
 			(project "Byggern_Schematics"
 				(path "/26e08e78-9dbc-4948-a13f-fc9d093951ff/87d22ef8-9c9b-4de0-9f82-7ce26e0f6075"
-					(reference "#PWR036")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
