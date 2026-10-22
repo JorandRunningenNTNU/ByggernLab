@@ -40,8 +40,8 @@ void pwm_init(){
 						
 	PWM->PWM_CH_NUM[1].PWM_CMR	  =	PWM_CMR_CPRE_MCK_DIV_32;
 	PWM->PWM_CH_NUM[1].PWM_CPRD |=	PWM_CPRD_CPRD(PERIOD); //Setter til 50 Hz
-	PWM->PWM_CH_NUM[1].PWM_CDTY |= cdty_from_us(1500);
-	PWM->PWM_ENA				 |= PWM_ENA_CHID1;
+	PWM->PWM_CH_NUM[1].PWM_CDTY |=  cdty_from_us(1500);
+	PWM->PWM_ENA				|=  PWM_ENA_CHID1;
 	
 	PWM->PWM_WPCR	=	PWM_WPCR_WPKEY(0x50574D) |
 						PWM_WPCR_WPRG0 |

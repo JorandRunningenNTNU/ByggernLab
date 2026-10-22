@@ -1,0 +1,58 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "df45abf5-33a2-4d30-931a-a46c6a83132b")
+	(paper "A4")
+	(title_block
+		(title "Veldig pent yup yup")
+		(date "2026-10-21")
+		(rev "1 Morbillion")
+		(company "Gruppe 31")
+	)
+	(lib_symbols)
+	(hierarchical_label "+V_{IN}"
+		(shape passive)
+		(at 90.17 88.9 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0c51766b-5a57-4d1d-a45c-9ab77219d317")
+	)
+	(hierarchical_label "CANL"
+		(shape bidirectional)
+		(at 57.15 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "28422441-a2fb-4fc5-91f5-ec661acb0158")
+	)
+	(hierarchical_label "-V_{IN}"
+		(shape passive)
+		(at 90.17 101.6 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "462425b2-1fa5-48fe-8310-8383055530eb")
+	)
+	(hierarchical_label "CANH"
+		(shape bidirectional)
+		(at 57.15 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8073f582-9abd-461d-bcd8-02ec3c3205e5")
+	)
+)
