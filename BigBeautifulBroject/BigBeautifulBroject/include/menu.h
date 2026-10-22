@@ -29,6 +29,8 @@ extern uint8_t menu_selected;
 
 extern uint8_t menu_shift;
 
+extern uint8_t scroll_shift;
+
 void setupMenu();
 
 

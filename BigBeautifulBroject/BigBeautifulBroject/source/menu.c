@@ -1,13 +1,10 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include "../include/menu.h"
-#include "../include/drivere/oled.h"
-#include "../include/drivere/ioBoard.h"
-#include "../include/drivere/uart.h"
-
-#include "../include/program/wave.h"
-#include "../include/program/cantest.h"
+#include <stdio.h>
+#include "menu.h"
+#include "oled.h"
+#include "ioBoard.h"
 
 menu_item_t root = {
 	.name = "Root",
@@ -35,7 +32,6 @@ menu_item_t test_scripts = {
 
 static void say_hello(void)
 {
-	setupPrintfUART();
 	printf("Hello world!\n");
 }
 
@@ -47,6 +43,7 @@ static menu_item_t say_hi = {
 	.action = say_hello
 };
 
+uint8_t scroll_shift = 0;
 
 void setupMenu(){
 	menu_current = &root;
@@ -55,8 +52,6 @@ void setupMenu(){
 	menu_insert(&scripts, &root);
 	
 	menu_insert(&say_hi, &scripts);
-	menu_insert(&wave, &scripts);
-	menu_insert(&can_test_1, &scripts);
 }
 
 void render_menu() {
@@ -64,6 +59,11 @@ void render_menu() {
 	oled_goto_column(0);
 	oled_print(menu_current->name);
 	uint8_t len = strlen(menu_current->name);
+	
+	if (TCNT1 > 50000) {
+		scroll_shift += 1;
+		TCNT1 = 0;
+	}
 
 	for (uint8_t j = len; j < 16; j++) {
 		oled_print(" ");
@@ -78,9 +78,24 @@ void render_menu() {
 			else {
 				oled_print(" ");
 			}
-			oled_print(menu_current->children[i + menu_shift]->name);
 			len = strlen(menu_current->children[i + menu_shift]->name);
-
+			if (len > 15) {
+				uint8_t begin = scroll_shift % (len-14);
+				if (menu_selected == i + menu_shift) {
+					for (uint8_t j = begin; j < 15+begin; j++) {
+						oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+					}
+				}
+				else {
+					for (uint8_t j = 0; j < 15; j++) {
+						oled_print((char[]){menu_current->children[i+menu_shift]->name[j], '\0'});
+					}
+				}
+			}
+			else {
+				oled_print(menu_current->children[i + menu_shift]->name);
+			}
+			
 			for (uint8_t j = len; j < 15; j++) {
 				oled_print(" ");
 			}
