@@ -10,6 +10,7 @@
 #define PWM_H_
 
 void pwm_init();
-void pwm_set_duty_cycle_us(uint32_t us);
+void pwm_channel_init(uint32_t frequency, uint8_t channel, uint16_t start_duty);
+void pwm_set_duty_cycle(uint16_t duty, uint8_t channel);
 
 #endif /* PWM_H_ */
