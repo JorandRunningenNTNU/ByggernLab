@@ -403,11 +403,11 @@
       },
       {
         "netclass": "5V",
-        "pattern": "+5V"
+        "pattern": "*5V*"
       },
       {
         "netclass": "GND",
-        "pattern": "GND"
+        "pattern": "*GND*"
       },
       {
         "netclass": "Div_Seriel",
@@ -524,6 +524,10 @@
       {
         "netclass": "Annet_Power",
         "pattern": "*CANL"
+      },
+      {
+        "netclass": "Annet_Power",
+        "pattern": "*3V3*"
       }
     ]
   },
@@ -697,7 +701,7 @@
         "uuid": "26e08e78-9dbc-4948-a13f-fc9d093951ff"
       }
     ],
-    "used_designators": "#PWR44-141,D1-4,C1,C21-60,R1-15,J7-18,IC6-15,SW2-3,U1,U5-12,Y3-6,K1,Q1-2,L1",
+    "used_designators": "D2,#PWR1,#PWR130,#PWR136,#PWR144-146,R1,R6,V4",
     "variants": []
   },
   "sheets": [
@@ -706,23 +710,11 @@
       "Rot"
     ],
     [
-      "c9d2fe08-cf98-47e8-bcd9-422916d1ae48",
-      "Node 1"
-    ],
-    [
-      "9197f79e-9ce0-4f85-9484-2c1e7535e834",
-      "Node 2"
-    ],
-    [
-      "483ca076-3df5-4760-aaca-ebc2028e1e16",
+      "8f8d1937-97aa-4d90-b880-e04030109918",
       "Digital Interface"
     ],
     [
-      "220f0d58-6cd3-4dcf-8528-0d6706f51d4a",
-      "Ping Pong Interface"
-    ],
-    [
-      "658ffbac-7610-4d2f-b52b-8951b73f6b0b",
+      "7abc37d7-e244-4973-8a4a-907421b89dc7",
       "Ekstern minne"
     ]
   ],
