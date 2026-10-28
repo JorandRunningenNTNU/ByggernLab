@@ -9,19 +9,16 @@
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
-	WDT->WDT_MR = WDT_MR_WDDIS; // <3 <3 <3
+	WDT->WDT_MR = WDT_MR_WDDIS; // <3 <3 <3 watchdawg timer DISABEL!
 	
 	adc_setup();
 	uart_init(F_CPU, 9600);
 	servo_init();
-	can_setup();
 	encoder_init();
+	can_setup();
+	
 	
 	while(1){
-		printf("%d \r\n", (uint16_t)adc_read());
-		
-		uint32_t pos = adc_read();
-		pos /= 4;
-		servo_set_position(pos);
+		test();
 	}
 }
