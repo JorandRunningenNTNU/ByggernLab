@@ -13,12 +13,10 @@ int main(void){
 	
 	adc_setup();
 	uart_init(F_CPU, 9600);
-	servo_init();
 	encoder_init();
+	servo_init();
 	can_setup();
 	
 	
-	while(1){
-		test();
-	}
+	test();
 }
