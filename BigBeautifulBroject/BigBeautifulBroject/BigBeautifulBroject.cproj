@@ -178,6 +178,9 @@
     <Compile Include="include\menu_builder.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\program\degame.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\setup.h">
       <SubType>compile</SubType>
     </Compile>
@@ -227,6 +230,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\menu_builder.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\program\degame.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\program\lorem_ipsum.c">
