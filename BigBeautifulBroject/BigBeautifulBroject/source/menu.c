@@ -178,7 +178,7 @@ void update_menu() {
 		}
 		
 	}
-	if ((menu_selected - menu_shift > 5) & ~(menu_selected == menu_current->child_count)) {
+	if ((menu_selected - menu_shift > 5) && (menu_selected != menu_current->child_count)) {
 		menu_shift = menu_selected - 5;
 	}
 	else if (menu_selected < menu_shift) {

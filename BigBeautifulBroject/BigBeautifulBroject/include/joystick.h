@@ -3,8 +3,8 @@
 
 typedef enum {Neutral, Up, Down, Left, Right} joystick_discrete_t;
 typedef struct {
-	int8_t X;
-	int8_t Y;
+	uint8_t X;
+	uint8_t Y;
 } joystick_data_t;
 
 void setupJoystick();

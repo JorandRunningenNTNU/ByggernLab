@@ -8,17 +8,19 @@
 #include "menu.h"
 
 extern menu_item_t test;
-extern menu_item_t wave;
+// extern menu_item_t wave;
 extern menu_item_t test_sram;
 extern menu_item_t lorem_ipsum;
 extern menu_item_t can_test_loopback;
+extern menu_item_t degame;
 
 static menu_item_t *programs[] = {
 	&can_test_loopback,
 	&lorem_ipsum,
 	&test_sram,
-	&wave,
-	&test
+	// &wave,
+	&test,
+	&degame
 };
 
 #define PROGRAM_COUNT \
