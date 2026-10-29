@@ -29,8 +29,7 @@ uint8_t ceil_log2(uint32_t x) {
 }
 
 uint32_t CPRD_from_freq(uint32_t freq, uint8_t CMR){
-	CMR = CMR + 1;
-	return (uint32_t)(PWM_MCK/((uint32_t) CMR))/freq;
+	return (PWM_MCK >> CMR) / freq;
 }
 
 uint32_t CMR_from_freq(uint32_t freq){
@@ -78,8 +77,8 @@ void pwm_channel_init(uint32_t frequency, uint8_t channel, uint16_t start_duty){
 		uint32_t CPRD = CPRD_from_freq(frequency,CMR);
 	
 		PWM->PWM_CH_NUM[channel].PWM_CMR   =  CMR;
-		PWM->PWM_CH_NUM[channel].PWM_CPRD |=  PWM_CPRD_CPRD(CPRD);
-		PWM->PWM_CH_NUM[channel].PWM_CDTY |=  cdty_from_duty(start_duty,channel);
+		PWM->PWM_CH_NUM[channel].PWM_CPRD  =  PWM_CPRD_CPRD(CPRD);
+		PWM->PWM_CH_NUM[channel].PWM_CDTY  =  cdty_from_duty(start_duty,channel);
 		PWM->PWM_ENA					  |=  PWM_ENA_CHID[channel];
 }
 
