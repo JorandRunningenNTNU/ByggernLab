@@ -34,7 +34,7 @@ uint32_t CPRD_from_freq(uint32_t freq, uint8_t CMR){
 }
 
 uint32_t CMR_from_freq(uint32_t freq){
-	const uint8_t max_size = 24u;
+	const uint8_t max_size = 16u;
 	uint8_t size = ceil_log2(CPRD_from_freq(freq,0));
 	uint8_t div = (size > max_size) ? size - max_size : 0;
 	uint32_t CMR[] = {
@@ -56,8 +56,7 @@ uint32_t CMR_from_freq(uint32_t freq){
 
 uint32_t cdty_from_duty(uint16_t duty, uint8_t channel){
 	uint32_t CPRD = PWM->PWM_CH_NUM[channel].PWM_CPRD;
-	uint32_t gain = CPRD/1024;
-	uint32_t CDTY = gain-gain*duty;
+	uint32_t CDTY = CPRD-((CPRD*duty) >> 16);
 	return CDTY;
 }
 
