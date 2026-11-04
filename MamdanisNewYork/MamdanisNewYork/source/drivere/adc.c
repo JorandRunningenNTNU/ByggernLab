@@ -11,8 +11,8 @@ void adc_setup(){
 	ADC->ADC_MR = 0x031F0110;  // Konfigurer ADC, 10-bit resolution
 	ADC->ADC_CHER = (1<<6); // enabler adc channel 1
 	
-	    ADC->ADC_IER = ADC_IER_EOC6;      // EOC for channel 6 (or (1<<24) for DRDY on any channel)
-	    NVIC_EnableIRQ(ADC_IRQn);         // optional: NVIC_SetPriority(ADC_IRQn, x);
+	ADC->ADC_IER = ADC_IER_EOC6;      // EOC for channel 6 (or (1<<24) for DRDY on any channel)
+	NVIC_EnableIRQ(ADC_IRQn);         // optional: NVIC_SetPriority(ADC_IRQn, x);
 }
 
 uint32_t adc_read(){
