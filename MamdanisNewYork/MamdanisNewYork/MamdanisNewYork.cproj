@@ -181,13 +181,25 @@
     <Compile Include="include\drivere\encoder.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\motor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\pwm.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\drivere\servo.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\solenoide.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\drivere\timer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\motor_controller.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\test.h">
@@ -202,7 +214,16 @@
     <Compile Include="source\drivere\can.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\drivere\solinoide.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\timer.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\drivere\encoder.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\motor.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\pwm.c">
@@ -212,6 +233,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\motor_controller.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\test.c">

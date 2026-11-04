@@ -6,7 +6,7 @@ void adc_setup(){
 	PMC->PMC_PCER1 = (1<<5); // aktiverer klokkke for adc
 	ADC->ADC_CR = (1<<0); // restarter adc
 	ADC->ADC_MR = 0x031F0110;  // Konfigurer ADC, 10-bit resolution
-	ADC->ADC_CHER = (1<<6); // enabler adc channel 1
+	ADC->ADC_CHER = (1<<6); // enabler adc på port PA24
 }
 
 uint32_t adc_read(){
