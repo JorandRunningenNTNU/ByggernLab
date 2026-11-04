@@ -1,7 +1,7 @@
 
 #include <sam.h>
 #include <stdint.h>
-#include "../../include/drivere/encoder.h"
+#include "encoder.h"
 
 void encoder_init()
 {
