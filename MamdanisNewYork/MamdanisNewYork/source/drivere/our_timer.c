@@ -1,21 +1,11 @@
-#include "timer.h"
 #include <sam.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "our_timer.h"
+
 #define TC_MCK 84000000
-
-typedef void (*timer_callback_t)(void);
-
-typedef struct {
-	uint32_t frequency;
-	uint32_t compare_value;
-	timer_callback_t callback;
-	uint8_t divider;
-} cooler_timer_t;
-
-
 
 static cooler_timer_t timers[3];
 
@@ -64,7 +54,7 @@ void timer_channel_init(cooler_timer_t* timer_config, uint32_t channel){
 
 uint32_t timer_done(uint32_t channel){
 	if(!timers[channel].callback){
-		return (TC0->TC_CHANNEL[channel].TC_SR & TC_SR_CPCS);
+		return (TC0->TC_CHANNEL[channel].TC_SR & TC_SR_CPCS) != 0;
 	}
 	return 0;
 }

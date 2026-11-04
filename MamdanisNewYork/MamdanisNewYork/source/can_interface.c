@@ -20,7 +20,7 @@ void can_interface_handle_message(CanMsg* m){
 			uint8_t joystick_y = (uint8_t)m->byte[1];
 			uint8_t trigger = ((0x01) & (uint8_t)(m->byte[2]));
 			
-			uint16_t pos = (((uint16_t)joystick_y) << 8);
+			uint16_t pos = (((uint16_t)joystick_y) << 8 | joystick_y);
 			servo_set_position(pos);
 
 			if(trigger){
@@ -28,8 +28,9 @@ void can_interface_handle_message(CanMsg* m){
 				}else{
 				solenoide_retract();
 			}
-			
-			//missing setting motor reference 
+			int16_t reference = ((int16_t)joystick_x << 3) | (joystick_x >> 5);   // 0 til 2047
+			reference -= 1024;
+			motor_controller_change_refrence(reference);
 			break; 
 			}
 		default:

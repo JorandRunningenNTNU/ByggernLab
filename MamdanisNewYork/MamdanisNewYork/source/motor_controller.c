@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <sam.h>
 
+#include "our_timer.h"
+
 static uint16_t reference = 0;
 static int16_t position;
 static double speed = 0;
@@ -21,6 +23,13 @@ static void update_state();
 void motor_controller_init(float set_dt){
 	motor_initilize();
 	dt = set_dt;
+	uint32_t freq = (uint32_t)(1/dt);
+	cooler_timer_t timer_config = {
+		.callback = motor_controller_update_output,
+		.frequency = freq
+	};
+	
+	timer_channel_init(&timer_config,0);
 }
 
 void motor_controller_change_refrence(uint16_t new_refrence){
