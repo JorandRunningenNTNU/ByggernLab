@@ -6,17 +6,28 @@
  */ 
 #include <stdio.h>
 #include "pwm.h"
+#include "servo.h"
+ 
+#define FREQUENCY 50
+#define PULSE_STARTPOINT 988
+#define MAX_DUTY_us 2100
+#define MIN_DUTY_us 900
+#define SERVO_PWM_CHANNEL 1
+
 
 void servo_init(){
-	pwm_channel_init(50,1,10);
+	pwm_channel_init(FREQUENCY,SERVO_PWM_CHANNEL);
+	servo_set_position(512);
+	pwm_start_channel(SERVO_PWM_CHANNEL);
 }
 
-#define MAX_DUTY 2100
-#define MIN_DUTY 900
 
+
+//pos er et tall mellom 0 og 1023
 void servo_set_position(uint16_t pos){
-	uint32_t duty_cycle = (uint32_t)pos + 990;
-	duty_cycle = (duty_cycle > MAX_DUTY) ? MAX_DUTY : duty_cycle;
-	duty_cycle = (duty_cycle < MIN_DUTY) ? MIN_DUTY : duty_cycle;
-	pwm_set_duty_cycle(duty_cycle, 1);
+	uint32_t pulse_width = (uint32_t)pos + PULSE_STARTPOINT;
+	pulse_width = (pulse_width > MAX_DUTY_us) ? MAX_DUTY_us : pulse_width;
+	pulse_width = (pulse_width < MIN_DUTY_us) ? MIN_DUTY_us : pulse_width;
+	
+	pwm_set_pulse_width_us(pulse_width, 1);
 }

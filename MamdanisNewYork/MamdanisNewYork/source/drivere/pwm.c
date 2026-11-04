@@ -5,11 +5,10 @@
  *  Author: vikin
  */ 
 #include "sam.h"
-#include "sam3x8e.h"
 
 #define PWM_MCK 84000000
-#define PWM_PID 36u
-#define PERIOD 52500
+
+uint8_t pwm_channels_to_enable[8] = {0};
 
 uint8_t PWM_ENA_CHID[] = {
 	PWM_ENA_CHID0,
@@ -59,10 +58,6 @@ uint32_t cdty_from_duty(uint16_t duty, uint8_t channel){
 	return CDTY;
 }
 
-uint32_t cdty_from_us(uint32_t us){
-	return (PERIOD - (2625*us)/1000);
-}
-
 void pwm_init(){
 	PIOB->PIO_ABSR |=	  PIO_ABSR_P12;				// peripheral B = PWMH0
 	PIOB->PIO_ABSR |=	  PIO_ABSR_P13;				// peripheral B = PWMH1
@@ -72,20 +67,45 @@ void pwm_init(){
 	PMC->PMC_PCER1	|=	 PMC_PCER1_PID36;		//Aktiverer periferal klokken til PWM (PID = 36)
 }
 
-void pwm_channel_init(uint32_t frequency, uint8_t channel, uint16_t start_duty){
+void pwm_start_all(){
+	for(int i = 0; i < 8; i++){
+		if(pwm_channels_to_enable[i]){
+			PWM->PWM_ENA = PWM_ENA_CHID[i];
+		}
+	}
+}
+
+void pwm_start_channel(uint8_t channel){
+	PWM->PWM_ENA = PWM_ENA_CHID[channel];
+}
+
+void pwm_channel_init(uint32_t frequency, uint8_t channel){
+		PWM->PWM_DIS = PWM_ENA_CHID[channel];
+	
 		uint32_t CMR = CMR_from_freq(frequency);
 		uint32_t CPRD = CPRD_from_freq(frequency,CMR);
-	
+		
 		PWM->PWM_CH_NUM[channel].PWM_CMR   =  CMR;
 		PWM->PWM_CH_NUM[channel].PWM_CPRD  =  PWM_CPRD_CPRD(CPRD);
-		PWM->PWM_CH_NUM[channel].PWM_CDTY  =  cdty_from_duty(start_duty,channel);
-		PWM->PWM_ENA					  |=  PWM_ENA_CHID[channel];
+		pwm_channels_to_enable[channel]	   =  1;
+}
+
+uint32_t cdty_from_us(uint32_t us, uint8_t channel){
+	uint32_t CPRD = PWM->PWM_CH_NUM[channel].PWM_CPRD;
+	uint32_t CMR = ((PWM->PWM_CH_NUM[channel].PWM_CMR) & 0x0F);
+	return CPRD -(uint32_t)((((uint64_t)us * (uint64_t)(PWM_MCK/1000000)) >> CMR));
+}
+
+void pwm_set_pulse_width_us(uint32_t width_us, uint8_t channel){
+	uint32_t CPRD = PWM->PWM_CH_NUM[channel].PWM_CPRD;
+	uint32_t CDTY = cdty_from_us(width_us,channel);
+	CDTY = (CDTY > CPRD) ? CPRD : CDTY;
+	PWM->PWM_CH_NUM[channel].PWM_CDTYUPD = CDTY;
 }
 
 void pwm_set_duty_cycle(uint16_t duty, uint8_t channel){
 	uint32_t CPRD = PWM->PWM_CH_NUM[channel].PWM_CPRD;
-	uint32_t count = cdty_from_duty(duty,channel);
-	count = (count > CPRD) ? CPRD : count;
-	count = (count < 0) ? 0 : count;
-	PWM->PWM_CH_NUM[channel].PWM_CDTYUPD = count;
+	uint32_t CDTY = cdty_from_duty(duty,channel);
+	CDTY = (CDTY > CPRD) ? CPRD : CDTY;
+	PWM->PWM_CH_NUM[channel].PWM_CDTYUPD = CDTY;
 }
