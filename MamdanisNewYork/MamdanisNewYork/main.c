@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include "include/test.h"
 #include "servo.h"
-#include "include/drivere/can.h"
-#include "include/drivere/encoder.h"
-#include "include/drivere/adc.h"
+#include "pwm.h"
+#include "can.h"
+#include "encoder.h"
+#include "adc.h"
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
@@ -13,10 +14,10 @@ int main(void){
 	
 	adc_setup();
 	uart_init(F_CPU, 9600);
+		pwm_init();
 	encoder_init();
 	servo_init();
 	can_setup();
-	
 	
 	test();
 }
