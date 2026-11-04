@@ -1,7 +1,9 @@
 
 #include "sam.h"
-#include "../../include/drivere/can.h"
+#include "can.h"
+#include "can_interface.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 void can_setup(){
 	// Timing
@@ -16,7 +18,7 @@ void can_setup(){
 		               .propag = 1,
 					   .phase1 = 2,
 					   .phase2 = 1,
-					   .smp = 0}, 0);
+					   .smp = 0}, 1, 1);
 }
 
 void can_printmsg(CanMsg m){
@@ -35,7 +37,7 @@ void can_printmsg(CanMsg m){
 #define rxMailbox 1
 
 
-void can_init(CanInit init, uint8_t rxInterrupt){
+void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
     // Disable CAN
     CAN0->CAN_MR &= ~CAN_MR_CANEN; 
     
@@ -80,6 +82,23 @@ void can_init(CanInit init, uint8_t rxInterrupt){
         // Enable interrupt in NVIC 
         NVIC_EnableIRQ(ID_CAN0);
     }
+	
+	if(txInterrupt){
+		// Enable interrupt on receive
+		CAN0->CAN_IER |= (1 << rxMailbox);
+		// Enable interrupt in NVIC
+		NVIC_EnableIRQ(ID_CAN0);
+	}
+	
+	if(rxInterrupt){
+		// Enable interrupt on receive
+		CAN0->CAN_IER = (1u << rxMailbox);    // RX mailbox interrupt
+	}
+
+	if(rxInterrupt || txInterrupt){
+		// All interrupts
+		NVIC_EnableIRQ(CAN0_IRQn);            // one call is enough
+	}
 
     // Enable CAN
     CAN0->CAN_MR |= CAN_MR_CANEN;
@@ -103,6 +122,20 @@ void can_tx(CanMsg m){
     CAN0->CAN_MB[txMailbox].CAN_MCR = (m.length << CAN_MCR_MDLC_Pos) | CAN_MCR_MTCR;
 }
 
+#define TXQ_SIZE 8
+static CanMsg           txq[TXQ_SIZE];
+static volatile uint8_t q_head, q_tail;   // head: written by producer, tail: written by ISR
+
+bool can_tx_enqueue(CanMsg m){            // single producer only
+	uint8_t next = (q_head + 1) % TXQ_SIZE;
+	if(next == q_tail) return false;      // full
+	txq[q_head] = m;
+	q_head = next;
+	CAN0->CAN_IER = (1u << txMailbox);    // enable TX-ready interrupt
+	NVIC_SetPendingIRQ(CAN0_IRQn);        // kick-start the sending
+	return true;
+}
+
 uint8_t can_rx(CanMsg* m){
     if(!(CAN0->CAN_MB[rxMailbox].CAN_MSR & CAN_MSR_MRDY)){
         return 0;
@@ -123,28 +156,51 @@ uint8_t can_rx(CanMsg* m){
     CAN0->CAN_MB[rxMailbox].CAN_MCR |= CAN_MCR_MTCR;
     return 1;
 }
-    
-    
 
-    
-/*
+bool can_tx_try(CanMsg m){
+	if(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){
+		return false;                       // busy: caller decides what to do
+	}
+	m.length = m.length > 8 ? 8 : m.length;
+	CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDvA(m.id << 3);
+	CAN0->CAN_MB[txMailbox].CAN_MDL = m.dword[0];
+	CAN0->CAN_MB[txMailbox].CAN_MDH = m.dword[1];
+	CAN0->CAN_MB[txMailbox].CAN_MCR = (m.length << CAN_MCR_MDLC_Pos) | CAN_MCR_MTCR;
+	return true;
+}
+
+
 // Example CAN interrupt handler
 void CAN0_Handler(void){
-    char can_sr = CAN0->CAN_SR; 
-    
-    // RX interrupt
-    if(can_sr & (1 << rxMailbox)){
-        // Add your message-handling code here
-        can_printmsg(can_rx());
-    } else {
-        printf("CAN0 message arrived in non-used mailbox\n\r");
-    }
-    
-    if(can_sr & CAN_SR_MB0){
-        // Disable interrupt
-        CAN0->CAN_IDR = CAN_IER_MB0;
-    }
-    
-    NVIC_ClearPendingIRQ(ID_CAN0);
-} 
-*/
+	char can_sr = CAN0->CAN_SR;
+	
+	const uint32_t rxbit = 1u << rxMailbox;
+	const uint32_t txbit = 1u << txMailbox;
+	
+	// TX: send next queued frame if the mailbox is free
+	if(CAN0->CAN_IMR & txbit){            // only while TX interrupt is enabled
+		if(q_tail != q_head){
+			if(can_tx_try(txq[q_tail])){  // returns false if mailbox still busy
+				q_tail = (q_tail + 1) % TXQ_SIZE;
+			}
+		}
+		if(q_tail == q_head){
+			CAN0->CAN_IDR = txbit;        // stops the interrupt when the queue is empty
+		}
+	}
+	
+	// RX interrupt handler
+	if(can_sr & rxbit){
+		CanMsg msg;
+		can_rx(&msg);
+		can_interface_handle_message(&msg);
+		can_printmsg(msg);
+	}
+	
+	if(can_sr & CAN_SR_MB0){
+		// Disable interrupt
+		CAN0->CAN_IDR = CAN_IER_MB0;
+	}
+	
+	NVIC_ClearPendingIRQ(ID_CAN0);
+}
