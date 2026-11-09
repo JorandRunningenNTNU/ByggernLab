@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "..\..\include\drivere\oled.h"
 #include "..\..\include\drivere\spi.h"
 #include "..\..\include/fonts.h"
@@ -127,4 +128,12 @@ void oled_print(const char* data) {
 
 		data++;
 	}
+}
+
+
+
+void oled_print_number(uint16_t number) {
+	char buffer[17];
+	snprintf(buffer, sizeof(buffer), "%-16u", number);
+	oled_print(buffer);
 }
