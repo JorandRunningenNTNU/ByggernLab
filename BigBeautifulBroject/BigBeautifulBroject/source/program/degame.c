@@ -7,11 +7,33 @@
 #include "sram.h"
 #include "mcp2515.h"
 
+static uint8_t lives;
+
+void check_can_messages(void) {
+	uint8_t rx[10];
+
+	uint8_t flags = mcp2515_which_read_buffer_has_data();
+
+	for (uint8_t buffer = 0; buffer < 2; buffer++) {
+		if (flags & (1 << buffer)) {
+			mcp2515_read_buffer(buffer, rx);
+
+			if (rx[0] == 67 && rx[1] >= 1) {
+				if (rx[2] == 1) {
+					lives -= 1;
+				}
+			}
+		}
+	}
+}
+
 void awesome_game() {
 	setupJoystick();
 	joystick_data_t joystick;
 	
 	uint8_t can_msg[3];
+	
+	lives = 6;
 	while (1) {
 		ioboard_update_data();
 		joystick = joystick_read_data();
@@ -21,6 +43,9 @@ void awesome_game() {
 		
 		oled_goto_line(1);
 		oled_print_number(joystick.Y);
+		
+		oled_goto_line(2);
+		oled_print_number(lives);
 		
 		if (ioboard_data.rightButtons & (1<<0)) {
 			oled_goto_line(2);
