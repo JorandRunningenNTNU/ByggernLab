@@ -11,3 +11,4 @@ void oled_pos(uint8_t row,uint8_t column);
 void oled_print(const char* data);
 void oled_send_command(uint8_t* command, uint8_t n);
 void oled_send_data(uint8_t* data, uint8_t n);
+void oled_print_number(uint16_t number);

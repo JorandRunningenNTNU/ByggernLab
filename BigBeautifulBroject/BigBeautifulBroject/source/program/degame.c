@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "degame.h"
 #include "ioBoard.h"
 #include "joystick.h"
@@ -6,27 +7,47 @@
 #include "sram.h"
 #include "mcp2515.h"
 
+static uint8_t lives;
+
+void check_can_messages(void) {
+	uint8_t rx[10];
+
+	uint8_t flags = mcp2515_which_read_buffer_has_data();
+
+	for (uint8_t buffer = 0; buffer < 2; buffer++) {
+		if (flags & (1 << buffer)) {
+			mcp2515_read_buffer(buffer, rx);
+
+			if (rx[0] == 67 && rx[1] >= 1) {
+				if (rx[2] == 1) {
+					lives -= 1;
+				}
+			}
+		}
+	}
+}
+
 void awesome_game() {
 	setupJoystick();
 	joystick_data_t joystick;
-	char buffer[17];
-	uint8_t right_button_1 = (1<<0);
-	uint8_t right_button_5 = (1<<4);
-	uint8_t right_button_6 = (1<<5);
 	
 	uint8_t can_msg[3];
+	
+	lives = 6;
 	while (1) {
 		ioboard_update_data();
 		joystick = joystick_read_data();
 		oled_goto_line(0);
-		snprintf(buffer, sizeof(buffer), "%-16d", (signed int)joystick.X);
-		oled_print(buffer);
+		
+		oled_print_number(joystick.X);
 		
 		oled_goto_line(1);
-		snprintf(buffer, sizeof(buffer), "%-16d", (signed int)joystick.Y);
-		oled_print(buffer);
+		oled_print_number(joystick.Y);
 		
-		if (ioboard_data.rightButtons & right_button_1) {
+		oled_goto_line(2);
+		oled_print_number(lives);
+		
+		if (ioboard_data.rightButtons & (1<<0)) {
 			oled_goto_line(2);
 			oled_print("AAAAAAH!!       ");
 		} else {
@@ -38,12 +59,12 @@ void awesome_game() {
 		can_msg[1] = joystick.Y;
 		can_msg[2] = ioboard_data.rightButtons;
 		
-		mcp2515_send_bytes(0, 67, can_msg, 3);
+		mcp2515_send_bytes(0, 69, can_msg, 3);
 		
-		if (ioboard_data.rightButtons & right_button_5) {
+		if (ioboard_data.rightButtons & (1<<4)) {
 			break;
 		}
-		if (ioboard_data.rightButtons & right_button_6) {
+		if (ioboard_data.rightButtons & (1<<5)) {
 			setupJoystick();
 		}
 	}
