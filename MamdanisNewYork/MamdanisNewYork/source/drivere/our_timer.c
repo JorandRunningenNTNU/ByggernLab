@@ -12,8 +12,8 @@ static cooler_timer_t timers[3];
 
 void timer_channel_init(cooler_timer_t* timer_config, uint32_t channel){
 	if(timer_config->frequency){
-		// Counteren tikker oppover med en frekvens på MCK/128 = 84MHz/128 = 656 250 Hz
-		// Counteren får bit overflow og reseter med mellomrom på 6544s som er cirka 1 time og 50 min. 
+		// Counteren tikker oppover med en frekvens pï¿½ MCK/128 = 84MHz/128 = 656 250 Hz
+		// Counteren fï¿½r bit overflow og reseter med mellomrom pï¿½ 6544s som er cirka 1 time og 50 min. 
 		uint32_t frequency = timer_config->frequency;
 		PMC->PMC_PCER0 = (1<<(ID_TC0 + channel)); // Enabler perifiral klokke for counter 0 channel 0
 		TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS; // disabler klokke/counter 0 channel 0.
@@ -39,7 +39,7 @@ void timer_channel_init(cooler_timer_t* timer_config, uint32_t channel){
 		TC0->TC_CHANNEL[channel].TC_RC = RC;
 		timers[channel].compare_value = RC;
 	
-		if(timer_config->callback){ // om vi har en callback funksjon så bruker vi interrupts
+		if(timer_config->callback){ // om vi har en callback funksjon sï¿½ bruker vi interrupts
 			timers[channel].callback = timer_config->callback;
 			TC0->TC_CHANNEL[channel].TC_IER = TC_IER_CPCS;                  // interrupt on RC compare
 			NVIC_EnableIRQ((IRQn_Type)(TC0_IRQn + channel));

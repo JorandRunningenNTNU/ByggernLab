@@ -7,6 +7,7 @@
 #include "can.h"
 #include "encoder.h"
 #include "adc.h"
+#include "motor_controller.h"
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
@@ -14,10 +15,12 @@ int main(void){
 	
 	adc_setup();
 	uart_init(F_CPU, 9600);
-		pwm_init();
+	pwm_init();
 	encoder_init();
 	servo_init();
+	motor_controller_init(1000);
 	can_setup();
+	solenoide_init();
 	
 	test();
 }

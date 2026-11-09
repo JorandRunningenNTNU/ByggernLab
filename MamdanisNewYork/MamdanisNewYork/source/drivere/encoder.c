@@ -38,5 +38,5 @@ void encoder_init()
 
 int32_t encoder_get_position()
 {
-	return (int32_t)TC2->TC_CHANNEL[0].TC_CV;
+	return (volatile int32_t)TC2->TC_CHANNEL[0].TC_CV;
 }

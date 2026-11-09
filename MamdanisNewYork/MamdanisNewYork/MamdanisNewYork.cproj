@@ -235,12 +235,6 @@
     <Compile Include="source\drivere\servo.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="source\drivere\solinoide.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="source\drivere\timer.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="source\drivere\uart.c">
       <SubType>compile</SubType>
     </Compile>

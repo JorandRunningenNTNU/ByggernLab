@@ -18,7 +18,7 @@ void can_setup(){
 		               .propag = 1,
 					   .phase1 = 2,
 					   .phase2 = 1,
-					   .smp = 0}, 1, 1);
+					   .smp = 0}, 1, 0);
 }
 
 void can_printmsg(CanMsg m){
@@ -68,32 +68,24 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
 
     // Configure mailboxes
     // transmit
-    //CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDE; // ønkser ikke extended ID
+    //CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDE; // ï¿½nkser ikke extended ID
     CAN0->CAN_MB[txMailbox].CAN_MMR = CAN_MMR_MOT_MB_TX;
     
     // receive
     CAN0->CAN_MB[rxMailbox].CAN_MAM = 0; // Accept all messages
-    //CAN0->CAN_MB[rxMailbox].CAN_MID = CAN_MID_MIDE; // ønsker ikke extended ID
+    //CAN0->CAN_MB[rxMailbox].CAN_MID = CAN_MID_MIDE; // ï¿½nsker ikke extended ID
     CAN0->CAN_MB[rxMailbox].CAN_MMR = CAN_MMR_MOT_MB_RX;
     CAN0->CAN_MB[rxMailbox].CAN_MCR |= CAN_MCR_MTCR;
+    uint32_t interrupt_mask = 0;
     if(rxInterrupt){
-        // Enable interrupt on receive
-        CAN0->CAN_IER |= (1 << rxMailbox); 
-        // Enable interrupt in NVIC 
-        NVIC_EnableIRQ(ID_CAN0);
+        interrupt_mask |= (1u << rxMailbox);
     }
-	
 	if(txInterrupt){
-		// Enable interrupt on receive
-		CAN0->CAN_IER |= (1 << rxMailbox);
-		// Enable interrupt in NVIC
-		NVIC_EnableIRQ(ID_CAN0);
+		interrupt_mask |= (1u << txMailbox);
 	}
-	
-	if(rxInterrupt){
-		// Enable interrupt on receive
-		CAN0->CAN_IER = (1u << rxMailbox);    // RX mailbox interrupt
-	}
+    if(interrupt_mask){
+        CAN0->CAN_IER = interrupt_mask;
+    }
 
 	if(rxInterrupt || txInterrupt){
 		// All interrupts
@@ -108,7 +100,7 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
 void can_tx(CanMsg m){
     while(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){}
     
-    // bruker bare 8 bit ID, og det er de øverste 8 av 11 bitene
+    // bruker bare 8 bit ID, og det er de ï¿½verste 8 av 11 bitene
     CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDvA((m.id<<3)) /*| CAN_MID_MIDE*/ ;
         
     // Coerce maximum 8 byte length
@@ -141,8 +133,8 @@ uint8_t can_rx(CanMsg* m){
         return 0;
     }
 
-    // Get message ID, bruker bare 8 bit ID, og det er de øverste 8 av 11 bitene
-    m->id = ((uint8_t)((CAN0->CAN_MB[rxMailbox].CAN_MID & CAN_MID_MIDvA_Msk) >> CAN_MID_MIDvA_Pos)>>3);
+    // Get message ID, bruker bare 8 bit ID, og det er de ï¿½verste 8 av 11 bitene
+    m->id = (uint8_t)(((CAN0->CAN_MB[rxMailbox].CAN_MID & CAN_MID_MIDvA_Msk) >> CAN_MID_MIDvA_Pos)>>3);
         
     // Get data length
     m->length = (uint8_t)((CAN0->CAN_MB[rxMailbox].CAN_MSR & CAN_MSR_MDLC_Msk) >> CAN_MSR_MDLC_Pos);
@@ -172,13 +164,13 @@ bool can_tx_try(CanMsg m){
 
 // Example CAN interrupt handler
 void CAN0_Handler(void){
-	char can_sr = CAN0->CAN_SR;
+	uint32_t can_sr = CAN0->CAN_SR;
 	
 	const uint32_t rxbit = 1u << rxMailbox;
 	const uint32_t txbit = 1u << txMailbox;
 	
 	// TX: send next queued frame if the mailbox is free
-	if(CAN0->CAN_IMR & txbit){            // only while TX interrupt is enabled
+	if(CAN0->CAN_IMR & txbit){
 		if(q_tail != q_head){
 			if(can_tx_try(txq[q_tail])){  // returns false if mailbox still busy
 				q_tail = (q_tail + 1) % TXQ_SIZE;
@@ -194,13 +186,7 @@ void CAN0_Handler(void){
 		CanMsg msg;
 		can_rx(&msg);
 		can_interface_handle_message(&msg);
-		can_printmsg(msg);
 	}
-	
-	if(can_sr & CAN_SR_MB0){
-		// Disable interrupt
-		CAN0->CAN_IDR = CAN_IER_MB0;
-	}
-	
+
 	NVIC_ClearPendingIRQ(ID_CAN0);
 }
