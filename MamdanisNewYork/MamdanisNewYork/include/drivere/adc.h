@@ -8,6 +8,6 @@ typedef enum {
 	ADC_INPUT_OUT_OF_BOUNDS
 } adc_return_t;
 
-adc_return_t adc_setup(const uint32_t frequency);
+adc_return_t adc_setup(void);
 uint32_t adc_read(); // returnerer 0-1024
 adc_return_t adc_start_read(void);

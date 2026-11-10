@@ -1,5 +1,5 @@
 #include "sam.h"
-#include "include/drivere/uart.h"
+#include "uart.h"
 #include <stdio.h>
 #include "include/test.h"
 #include "servo.h"
@@ -8,6 +8,7 @@
 #include "encoder.h"
 #include "adc.h"
 #include "motor_controller.h"
+#include "solenoide.h"
 
 int main(void){
     SystemInit(); // for mikrokontrolleren

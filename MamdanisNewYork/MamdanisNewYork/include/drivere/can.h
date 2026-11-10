@@ -95,9 +95,12 @@ uint8_t can_rx(CanMsg* m);
 // Print a CAN message (using `printf`)
 void can_printmsg(CanMsg m);
 
-// Non blocking version of can_tx
-// returns false if the queue is full
+// Ikke blokkerende versjon av can_tx
+// returnerer false hvis køen er full
 bool can_tx_enqueue(CanMsg m);
+
+
+bool can_tx_try(CanMsg m);
 
 
 
