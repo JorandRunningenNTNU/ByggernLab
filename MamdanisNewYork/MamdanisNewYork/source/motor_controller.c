@@ -20,6 +20,10 @@ static int64_t speed;
 
 static int32_t freq = 1;
 static int32_t e_integral = 0;
+static int32_t encoder_offset = 0;
+
+static void update_state();
+static int32_t calibrate_encoder();
 
 int16_t int32_to_int16_saturated(int32_t value)
 {
@@ -32,13 +36,12 @@ int16_t int32_to_int16_saturated(int32_t value)
 	return (int16_t)value;
 }
 
-static void update_state();
 
 
 void motor_controller_init(uint32_t frequency){
 	motor_initilize();
 	freq = (int32_t)frequency;
-	
+	encoder_offset = calibrate_encoder();
 	timer_channel_init(freq, motor_controller_update_output,0);
 }
 
@@ -73,7 +76,19 @@ int32_t motor_controller_get_error(){
 }
 
 static void update_state(){
-	int32_t new_position = (encoder_get_position()*1024) / 5618;
+	int32_t new_position = ((encoder_get_position() - encoder_offset)*1024) / 5618;
 	speed = (8*speed + 2*((new_position - position)*freq))/10; // lavpass-filtrerer endringen i posisjon for å få fart
 	position = new_position;
+}
+
+static int32_t calibrate_encoder(){
+	timer_channel_init(1, 0, 1);
+	motor_set_output(-400);
+	int32_t n = 3;
+	while(n>=0){
+		if (timer_done(1)){
+			n -= 1;
+		}
+	}
+	return encoder_get_position();
 }
