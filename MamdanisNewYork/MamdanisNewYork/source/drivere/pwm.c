@@ -80,6 +80,10 @@ void pwm_start_channel(uint8_t channel){
 }
 
 void pwm_channel_init(uint32_t frequency, uint8_t channel){
+		if(channel > 8){
+			
+		}
+	
 		PWM->PWM_DIS = PWM_ENA_CHID[channel];
 	
 		uint32_t CMR = CMR_from_freq(frequency);

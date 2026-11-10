@@ -48,12 +48,14 @@ void awesome_game() {
 		oled_print_number(lives);
 		
 		if (ioboard_data.rightButtons & (1<<0)) {
-			oled_goto_line(2);
+			oled_goto_line(3);
 			oled_print("AAAAAAH!!       ");
 		} else {
-			oled_goto_line(2);
+			oled_goto_line(3);
 			oled_print("                ");
 		}
+		
+		check_can_messages();
 		
 		can_msg[0] = joystick.X;
 		can_msg[1] = joystick.Y;
