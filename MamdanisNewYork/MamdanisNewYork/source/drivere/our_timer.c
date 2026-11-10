@@ -58,7 +58,8 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 
 uint32_t timer_done(const uint32_t channel){
 	if(!timer_callbacks[channel]){
-		return (TC0->TC_CHANNEL[channel].TC_SR & TC_SR_CPCS) != 0;
+		volatile uint32_t flag = (TC0->TC_CHANNEL[channel].TC_SR & TC_SR_CPCS);
+		return (flag != 0);
 	}
 	return 0;
 }
