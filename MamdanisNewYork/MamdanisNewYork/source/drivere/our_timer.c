@@ -45,12 +45,15 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 		timer_callbacks[channel] = callback;
 		TC0->TC_CHANNEL[channel].TC_IER = TC_IER_CPCS;                  // interrupt på RC compare
 		NVIC_EnableIRQ((IRQn_Type)(TC0_IRQn + channel));				// enable interrupten i NVIC
+		NVIC_SetPriority((IRQn_Type)(TC0_IRQn + channel), 1);
 	}else{
 		TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF; // disabler alle interrupts for den kanalen ellers
 	}
 	
 	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKEN; // enabler klokke/counter 0 for kanalen 
 	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_SWTRG; // resetter og starter klokken på den kanalen
+	
+	return TIM_ALL_GOOD;
 }
 
 uint32_t timer_done(const uint32_t channel){
@@ -63,7 +66,7 @@ uint32_t timer_done(const uint32_t channel){
 static void timer_handle(const uint32_t channel){
 	uint32_t sr = TC0->TC_CHANNEL[channel].TC_SR;  // lesing av status registeret resetter alle flaggene
 	if((sr & TC_SR_CPCS) && timer_callbacks[channel]){
-		timer_callbacks[channel](void);	
+		timer_callbacks[channel]();	
 	}
 }
 

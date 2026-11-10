@@ -76,6 +76,8 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
     //CAN0->CAN_MB[rxMailbox].CAN_MID = CAN_MID_MIDE; // ønsker ikke extended ID
     CAN0->CAN_MB[rxMailbox].CAN_MMR = CAN_MMR_MOT_MB_RX;
     CAN0->CAN_MB[rxMailbox].CAN_MCR |= CAN_MCR_MTCR;
+	
+	
     uint32_t interrupt_mask = 0;
     if(rxInterrupt){
         interrupt_mask |= (1u << rxMailbox);
@@ -90,6 +92,7 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
 	if(rxInterrupt || txInterrupt){
 		// All interrupts
 		NVIC_EnableIRQ(CAN0_IRQn);            // one call is enough
+		NVIC_SetPriority(CAN0_IRQn, 3);
 	}
 
     // Enable CAN
@@ -151,9 +154,9 @@ uint8_t can_rx(CanMsg* m){
 
 bool can_tx_try(CanMsg m){
 	if(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){
-		return false;                       // busy: caller decides what to do
+		return false;                       // optatt, hånderinge blir gjort av funksjonskalleren
 	}
-	m.length = m.length > 8 ? 8 : m.length; // 8 is max so if the message is longer then too bad
+	m.length = m.length > 8 ? 8 : m.length; // 8 er max så hvis du trenger mer en det så womp womp
 	CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDvA(m.id << 3);
 	CAN0->CAN_MB[txMailbox].CAN_MDL = m.dword[0];
 	CAN0->CAN_MB[txMailbox].CAN_MDH = m.dword[1];
