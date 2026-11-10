@@ -7,62 +7,63 @@
 
 #define TC_MCK 84000000
 
-static cooler_timer_t timers[3];
+static timer_callback_t timer_callbacks[3];
 
 
-void timer_channel_init(cooler_timer_t* timer_config, uint32_t channel){
-	if(timer_config->frequency){
-		// Counteren tikker oppover med en frekvens p� MCK/128 = 84MHz/128 = 656 250 Hz
-		// Counteren f�r bit overflow og reseter med mellomrom p� 6544s som er cirka 1 time og 50 min. 
-		uint32_t frequency = timer_config->frequency;
-		PMC->PMC_PCER0 = (1<<(ID_TC0 + channel)); // Enabler perifiral klokke for counter 0 channel 0
-		TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS; // disabler klokke/counter 0 channel 0.
-	
-		// Pick the smallest divider where the period fits in the 32-bit counter
-		static const uint32_t div[4]  = {2, 8, 32, 128};
-		static const uint32_t clks[4] = {
-			TC_CMR_TCCLKS_TIMER_CLOCK1,                // MCK/2
-			TC_CMR_TCCLKS_TIMER_CLOCK2,                // MCK/8
-			TC_CMR_TCCLKS_TIMER_CLOCK3,                // MCK/32
-			TC_CMR_TCCLKS_TIMER_CLOCK4,                // MCK/128
-		};
-		uint8_t i = 0;
-		while((i < 3) && ((uint64_t)TC_MCK / div[i] / frequency) > UINT32_MAX){
-			i++;
-		}
-	
-	
-		TC0->TC_CHANNEL[channel].TC_CMR = TC_CMR_WAVSEL_UP_RC | TC_CMR_WAVE | clks[i];// velger divider og waveform-mode
-	
-		timers[channel].divider = (2*i + 1);
-		uint32_t RC = (TC_MCK >> (2*i + 1)) / frequency;
-		TC0->TC_CHANNEL[channel].TC_RC = RC;
-		timers[channel].compare_value = RC;
-	
-		if(timer_config->callback){ // om vi har en callback funksjon s� bruker vi interrupts
-			timers[channel].callback = timer_config->callback;
-			TC0->TC_CHANNEL[channel].TC_IER = TC_IER_CPCS;                  // interrupt on RC compare
-			NVIC_EnableIRQ((IRQn_Type)(TC0_IRQn + channel));
-		}else{
-				TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF;
-		}
-	
-		TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKEN; // enabler klokke/counter 0 channel 0. 
-		TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_SWTRG; // resetter og starter klokken
+tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t callback, const uint32_t channel){
+	if((channel > 3) || (frequency > TC_MCK/2)){
+		return TIM_INPUT_OUT_OF_BOUNDS;
 	}
+	
+	if(TC0->TC_CHANNEL[channel].TC_CMR){
+		return TIM_BUSY_ERROR;
+	}
+	
+	PMC->PMC_PCER0 = (1<<(ID_TC0 + channel)); // Enabler perifiral klokke for timer counter 0 for riktig kanal
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS; // disabler klokke/counter 0 channel 0.
+	
+	// Velg den raskeste klokken hvor compare verdien fortsatt passer in i uint32_t
+	static const uint8_t div_lookup[4]  = {2, 8, 32, 128};
+	static const uint32_t clks_lookup[4] = {
+		TC_CMR_TCCLKS_TIMER_CLOCK1,                // MCK/2
+		TC_CMR_TCCLKS_TIMER_CLOCK2,                // MCK/8
+		TC_CMR_TCCLKS_TIMER_CLOCK3,                // MCK/32
+		TC_CMR_TCCLKS_TIMER_CLOCK4,                // MCK/128
+	};
+	uint8_t i = 0;
+	while((i < 3) && ((TC_MCK / (uint64_t)div_lookup[i] / (uint64_t)frequency) > UINT32_MAX)) i++;
+	
+	
+	TC0->TC_CHANNEL[channel].TC_CMR = TC_CMR_WAVSEL_UP_RC | TC_CMR_WAVE | clks_lookup[i];// velger divider og waveform-mode
+		
+	uint8_t divider_exponent = (2*i + 1);
+	
+	uint32_t RC = (TC_MCK >> divider_exponent) / frequency;
+	TC0->TC_CHANNEL[channel].TC_RC = RC;
+	
+	if(callback){ // om vi har en callback funksjon så bruker vi interrupts
+		timer_callbacks[channel] = callback;
+		TC0->TC_CHANNEL[channel].TC_IER = TC_IER_CPCS;                  // interrupt på RC compare
+		NVIC_EnableIRQ((IRQn_Type)(TC0_IRQn + channel));				// enable interrupten i NVIC
+	}else{
+		TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF; // disabler alle interrupts for den kanalen ellers
+	}
+	
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKEN; // enabler klokke/counter 0 for kanalen 
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_SWTRG; // resetter og starter klokken på den kanalen
 }
 
-uint32_t timer_done(uint32_t channel){
-	if(!timers[channel].callback){
+uint32_t timer_done(const uint32_t channel){
+	if(!timer_callbacks[channel]){
 		return (TC0->TC_CHANNEL[channel].TC_SR & TC_SR_CPCS) != 0;
 	}
 	return 0;
 }
 
-static void timer_handle(uint32_t channel){
-	uint32_t sr = TC0->TC_CHANNEL[channel].TC_SR;  // reading SR clears the flag
-	if((sr & TC_SR_CPCS) && timers[channel].callback){
-		timers[channel].callback();	
+static void timer_handle(const uint32_t channel){
+	uint32_t sr = TC0->TC_CHANNEL[channel].TC_SR;  // lesing av status registeret resetter alle flaggene
+	if((sr & TC_SR_CPCS) && timer_callbacks[channel]){
+		timer_callbacks[channel](void);	
 	}
 }
 

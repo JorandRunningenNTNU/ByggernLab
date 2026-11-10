@@ -50,7 +50,7 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
     // Select CAN0 RX and TX in PIOA
     PIOA->PIO_ABSR &= ~(PIO_PA1A_CANRX0 | PIO_PA0A_CANTX0);
     
-    // Disable the Parallel IO (PIO) of the Rx and Tx pins so that the peripheral controller can use them
+    // Give the CAN peripheral control of the CANRX and CANTX pins
     PIOA->PIO_PDR = PIO_PA1A_CANRX0 | PIO_PA0A_CANTX0;
     
     // Enable pull up on CANH and CANL pin
@@ -58,7 +58,7 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
     
     // Enable Clock for CAN0 in PMC
     // DIV = 1 (can clk = MCK/2), CMD = 1 (write), PID = 2B (CAN0)
-    PMC->PMC_PCR = PMC_PCR_EN | (1 << PMC_PCR_DIV_Pos) | PMC_PCR_CMD | (ID_CAN0 << PMC_PCR_PID_Pos); 
+    PMC->PMC_PCR = PMC_PCR_EN | PMC_PCR_DIV_PERIPH_DIV2_MCK | PMC_PCR_CMD | PMC_PCR_PID(ID_CAN0); 
     PMC->PMC_PCER1 |= 1 << (ID_CAN0 - 32);
     
     //Set baudrate, Phase1, phase2 and propagation delay for can bus. Must match on all nodes!
@@ -68,12 +68,12 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
 
     // Configure mailboxes
     // transmit
-    //CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDE; // �nkser ikke extended ID
+    //CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDE; // ønkser ikke extended ID
     CAN0->CAN_MB[txMailbox].CAN_MMR = CAN_MMR_MOT_MB_TX;
     
     // receive
     CAN0->CAN_MB[rxMailbox].CAN_MAM = 0; // Accept all messages
-    //CAN0->CAN_MB[rxMailbox].CAN_MID = CAN_MID_MIDE; // �nsker ikke extended ID
+    //CAN0->CAN_MB[rxMailbox].CAN_MID = CAN_MID_MIDE; // ønsker ikke extended ID
     CAN0->CAN_MB[rxMailbox].CAN_MMR = CAN_MMR_MOT_MB_RX;
     CAN0->CAN_MB[rxMailbox].CAN_MCR |= CAN_MCR_MTCR;
     uint32_t interrupt_mask = 0;
@@ -100,7 +100,7 @@ void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt){
 void can_tx(CanMsg m){
     while(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){}
     
-    // bruker bare 8 bit ID, og det er de �verste 8 av 11 bitene
+    // bruker bare 8 bit ID, og det er de øverste 8 av 11 bitene
     CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDvA((m.id<<3)) /*| CAN_MID_MIDE*/ ;
         
     // Coerce maximum 8 byte length
@@ -133,7 +133,7 @@ uint8_t can_rx(CanMsg* m){
         return 0;
     }
 
-    // Get message ID, bruker bare 8 bit ID, og det er de �verste 8 av 11 bitene
+    // Get message ID, bruker bare 8 bit ID, og det er de øverste 8 av 11 bitene
     m->id = (uint8_t)(((CAN0->CAN_MB[rxMailbox].CAN_MID & CAN_MID_MIDvA_Msk) >> CAN_MID_MIDvA_Pos)>>3);
         
     // Get data length
@@ -153,7 +153,7 @@ bool can_tx_try(CanMsg m){
 	if(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){
 		return false;                       // busy: caller decides what to do
 	}
-	m.length = m.length > 8 ? 8 : m.length;
+	m.length = m.length > 8 ? 8 : m.length; // 8 is max so if the message is longer then too bad
 	CAN0->CAN_MB[txMailbox].CAN_MID = CAN_MID_MIDvA(m.id << 3);
 	CAN0->CAN_MB[txMailbox].CAN_MDL = m.dword[0];
 	CAN0->CAN_MB[txMailbox].CAN_MDH = m.dword[1];

@@ -39,12 +39,7 @@ void motor_controller_init(uint32_t frequency){
 	motor_initilize();
 	freq = (int32_t)frequency;
 	
-	cooler_timer_t timer_config = {
-		.callback = motor_controller_update_output,
-		.frequency = freq
-	};
-	
-	timer_channel_init(&timer_config,0);
+	timer_channel_init(freq, motor_controller_update_output,0);
 }
 
 void motor_controller_change_refrence(uint16_t new_refrence){
@@ -60,7 +55,7 @@ void motor_controller_update_output(){
 		e_integral = MAX_THRUST*freq/Ti;
 	}else if(integral_ledd < MIN_THRUST){
 		e_integral = MIN_THRUST*freq/Ti;
-	}	
+	}
 	int32_t thrust = K*(e + (Ti*e_integral)/freq - speed/Td);
 	
 	if (thrust < MIN_THRUST){
@@ -79,6 +74,6 @@ int32_t motor_controller_get_error(){
 
 static void update_state(){
 	int32_t new_position = (encoder_get_position()*1024) / 5618;
-	speed = (8*speed + 2*((new_position - position)*freq))/10; // lavpass-filtrerer endringen i posisjon for � f� fart
+	speed = (8*speed + 2*((new_position - position)*freq))/10; // lavpass-filtrerer endringen i posisjon for å få fart
 	position = new_position;
 }
