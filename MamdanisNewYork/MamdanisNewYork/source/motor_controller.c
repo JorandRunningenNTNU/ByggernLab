@@ -3,7 +3,10 @@
 #include "encoder.h"
 #include "pwm.h"
 #include <stdlib.h>
+#include <stdbool.h>
 #include <sam.h>
+
+// 100% menneskeskrevet
 
 #include "our_timer.h"
 
@@ -90,5 +93,24 @@ static int32_t calibrate_encoder(){
 			n -= 1;
 		}
 	}
+	timer_channel_deinit(1);
 	return encoder_get_position();
+}
+
+volatile int16_t offset = 0;
+volatile bool increase = false;
+#define THRESHOLD 10
+void motor_controller_jiggle(void){
+	if(increase){
+		offset += 1;
+		reference += offset;
+	}else{
+		offset -= 1;
+		reference += offset;
+	}
+	if(offset > THRESHOLD){
+		increase = false;
+	}else if(offset < -THRESHOLD){
+		increase = true;
+	}
 }

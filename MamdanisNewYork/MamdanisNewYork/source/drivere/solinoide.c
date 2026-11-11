@@ -1,6 +1,8 @@
 #include <sam.h>
 #include "solenoide.h"
 
+// 100% menneskeskrevet
+
 void solenoide_init(){
 	PIOA->PIO_PER = (1<<16);
 	PIOA->PIO_OER = (1<<16);

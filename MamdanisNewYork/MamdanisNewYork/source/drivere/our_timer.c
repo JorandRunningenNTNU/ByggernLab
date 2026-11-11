@@ -8,10 +8,8 @@
 #define TC_MCK 84000000
 
 static timer_callback_t timer_callbacks[3];
-//0 brukes til motorkontroller
-//1 brukes til motorkontroller start sekvens
-//2 brukes til motor lyd driver
 
+// This is like 98% human made 
 
 tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t callback, const uint32_t channel){
 	if((channel > 3) || (frequency > TC_MCK/2)){
@@ -34,7 +32,7 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 		TC_CMR_TCCLKS_TIMER_CLOCK4,                // MCK/128
 	};
 	uint8_t i = 0;
-	while((i < 3) && ((TC_MCK / (uint64_t)div_lookup[i] / (uint64_t)frequency) > UINT32_MAX)) i++;
+	while((i < 3) && ((TC_MCK / (uint64_t)div_lookup[i] / (uint64_t)frequency) > UINT32_MAX)) i++; // claude kom med denne
 	
 	
 	TC0->TC_CHANNEL[channel].TC_CMR = TC_CMR_WAVSEL_UP_RC | TC_CMR_WAVE | clks_lookup[i];// velger divider og waveform-mode
@@ -72,6 +70,29 @@ void timer_channel_deinit(const uint32_t channel){
 	timer_channel_stop(channel);
 	TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF; // disabler alle interrupts for denne
 	TC0->TC_CHANNEL[channel].TC_CMR = 0;// setter ting til null
+}
+
+void timer_wait_ms(uint32_t ms){
+	timer_channel_deinit(1);
+	if(ms > 1000){
+		timer_channel_init(1,0,1);
+		for(int i = 0; i < ms/1000; i++){
+			while(!timer_done(1));
+		}
+		timer_channel_deinit(1);
+	}
+	timer_channel_init(1,0,1);
+}
+
+void timer_wait_10_ms(uint32_t ms){
+	timer_channel_deinit(1);
+	if(ms > 1000){
+		timer_channel_init(1,0,1);
+		for(int i = 0; i < ms/1000; i++){
+			while(!timer_done(1));
+		}
+	}
+	timer_channel_init(1,0,1);
 }
 	
 

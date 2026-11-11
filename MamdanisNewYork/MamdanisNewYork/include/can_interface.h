@@ -13,7 +13,9 @@
 void can_interface_handle_message(CanMsg* m);
 
 #define CAN_INPUTS_ID 69
+#define CAN_SOUND_ID 68
 #define CAN_DEATH_ID 67
-
+#define CAN_HEART_CRACK_ID 66
+#define CAN_HEART_LOSS_ID 64
 
 #endif /* CAN_INTERFACE_H_ */

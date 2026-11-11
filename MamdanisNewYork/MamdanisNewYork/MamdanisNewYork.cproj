@@ -205,7 +205,13 @@
     <Compile Include="include\drivere\uart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\heart_sounds.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\motor_controller.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\notes.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\test.h">
@@ -245,6 +251,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\can_interface.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\heart_sounds.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\motor_controller.c">
