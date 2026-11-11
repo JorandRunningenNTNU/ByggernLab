@@ -7,8 +7,8 @@
 
 #define ADC_MR_LOWRES (1u << 4)
 
-#define DEATH_THRESHOLD  (850u << 2)  // 3400
-#define ALIVE_THRESHOLD  (900u << 2)  // 3600
+#define DEATH_THRESHOLD  3300
+#define ALIVE_THRESHOLD  3850
 
 #define ADC_CHANNEL 6
 
@@ -48,23 +48,45 @@ uint32_t adc_read_newest_result(void){
 	return (uint32_t)data;	
 }
 
+static volatile uint32_t detections_under = 0;
+static volatile uint32_t detections_over = 0;
+static volatile bool message_sent = false;
+static volatile bool was_over = true;
+#define DETECTION_THRESHOLD 100000
 
 void ADC_Handler(void){
 	uint32_t ISR = ADC->ADC_ISR;
 	if (ISR & ADC_ISR_COMPE){
-		if((ADC->ADC_EMR & ADC_EMR_CMPMODE_Msk) == ADC_EMR_CMPMODE_LOW){
+		uint32_t adc_value = ADC->ADC_LCDR;
+		if((adc_value < DEATH_THRESHOLD)){
+			detections_over = 0;
+			if((detections_under > DETECTION_THRESHOLD) && was_over){
+				was_over = false;
 				CanMsg m = {
 					.id = CAN_DEATH_ID,
 					.length = 1,
 					.byte = {1}
 				};
-				if(can_tx_try(m)){
-					ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
-					ADC->ADC_EMR |= ADC_EMR_CMPMODE_HIGH;
+				if(!message_sent){
+					if(can_tx_try(m)){
+						message_sent = true;
+						ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
+						ADC->ADC_EMR |= ADC_EMR_CMPMODE_HIGH;
+					}
 				}
-		}else{
-			ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
-			ADC->ADC_EMR |= ADC_EMR_CMPMODE_LOW;
+			}else{
+				detections_under++;
+			}
+		}else if((adc_value > ALIVE_THRESHOLD)){
+			detections_under = 0;
+			if((detections_over > DETECTION_THRESHOLD) && !was_over){
+				was_over = true;
+				message_sent = false;
+				ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
+				ADC->ADC_EMR |= ADC_EMR_CMPMODE_LOW;
+			}else{
+				detections_over++;
+			}
 		}
 	}
 }
