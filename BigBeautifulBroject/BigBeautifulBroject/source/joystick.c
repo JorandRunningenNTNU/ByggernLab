@@ -64,7 +64,6 @@ joystick_discrete_t joystick_read_discrete(){
 void setupJoystick(){
 	setupUART();
 	uint8_t p_data[4];
-	printf("Hold joysticken i midten\n");
 	oled_clear();
 	oled_goto_line(0);
 	oled_print("Hold joysticken ");
@@ -78,7 +77,6 @@ void setupJoystick(){
 	Xneu = p_data[0];
 	Yneu = p_data[1];
 	
-	printf("Beveg joysticken rundt i sirkler\n");
 	oled_goto_line(0);
 	oled_print("Beveg joysticken");
 	oled_goto_line(1);
@@ -96,7 +94,6 @@ void setupJoystick(){
 		n--;
 		sleep_ms(1);
 	}
-	printf("Ferdig kalibrert\n");
 	oled_goto_line(0);
 	oled_print("Ferdig kalibrert");
 	oled_clear_line(1);
