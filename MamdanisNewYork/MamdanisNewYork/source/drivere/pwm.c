@@ -94,6 +94,12 @@ void pwm_channel_init(uint32_t frequency, uint8_t channel){
 		pwm_channels_to_enable[channel]	   =  1;
 }
 
+void pwm_channel_change_freq(uint32_t frequency, uint8_t channel){
+	uint32_t CMR = CMR_from_freq(frequency);
+	uint32_t CPRD = CPRD_from_freq(frequency,CMR);
+	PWM->PWM_CH_NUM[channel].PWM_CPRDUPD  =  PWM_CPRD_CPRD(CPRD);
+}
+
 uint32_t cdty_from_us(uint32_t us, uint8_t channel){
 	uint32_t CPRD = PWM->PWM_CH_NUM[channel].PWM_CPRD;
 	uint32_t CMR = ((PWM->PWM_CH_NUM[channel].PWM_CMR) & 0x0F);
