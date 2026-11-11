@@ -21,7 +21,9 @@ void check_can_messages(void) {
 			if (rx[0] == 67 && rx[1] >= 1) {
 				if (rx[2] == 1) {
 					ioboard_write_led(lives, 0);
-					lives -= 1;
+					if (lives != 0) {
+						lives -= 1;
+					}
 				}
 			}
 		}
@@ -66,6 +68,8 @@ void awesome_game() {
 		can_msg[2] = ioboard_data.rightButtons;
 		
 		mcp2515_send_bytes(0, 69, can_msg, 3);
+		
+		check_can_messages();
 		
 		if (ioboard_data.rightButtons & (1<<4)) {
 			
