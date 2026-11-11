@@ -4,6 +4,7 @@
 #include "our_timer.h"
 #include "can.h"
 #include "can_interface.h"
+#include "da_beep.h"
 
 #define ADC_MR_LOWRES (1u << 4)
 
@@ -69,6 +70,7 @@ void ADC_Handler(void){
 				};
 				if(!message_sent){
 					if(can_tx_try(m)){
+						da_beep(1000, 3);
 						message_sent = true;
 						ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
 						ADC->ADC_EMR |= ADC_EMR_CMPMODE_HIGH;
