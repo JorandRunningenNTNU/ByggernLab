@@ -5,6 +5,8 @@
  *  Author: vikin
  */ 
 
+// 100% menneskeskrevet
+
 #include <stdio.h>
 #include "can.h"
 #include "solenoide.h"

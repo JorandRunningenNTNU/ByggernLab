@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 void can_setup(){
+	//Fikk hjelp ifra chat med timing
 	// Timing
 	// TQ = 2(BRP+1)/F_CPU = 2(20 + 1) / 84 MHz = 500 ns
 	// SJW = 1 TQ

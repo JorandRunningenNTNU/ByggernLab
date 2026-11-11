@@ -13,6 +13,8 @@
 #include "heart_sounds.h"
 #include "our_timer.h"
 
+// 100% menneskeskrevet
+
 extern bool play_da_heart_sound;
 
 int main(void){
@@ -32,7 +34,11 @@ int main(void){
 	while(1){
 		if(play_da_heart_sound){
 			timer_channel_deinit(2);
+			timer_channel_init(10,motor_controller_jiggle,1);
+			uint16_t count = 50000;
+			while(count--);
 			da_heart_loss_sequence();
+			timer_channel_deinit(1);
 			play_da_heart_sound = false;
 		}
 	}

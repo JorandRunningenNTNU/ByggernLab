@@ -9,7 +9,7 @@
 
 static timer_callback_t timer_callbacks[3];
 
-// This is 100% human done 
+// This is like 98% human made 
 
 tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t callback, const uint32_t channel){
 	if((channel > 3) || (frequency > TC_MCK/2)){
@@ -32,7 +32,7 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 		TC_CMR_TCCLKS_TIMER_CLOCK4,                // MCK/128
 	};
 	uint8_t i = 0;
-	while((i < 3) && ((TC_MCK / (uint64_t)div_lookup[i] / (uint64_t)frequency) > UINT32_MAX)) i++;
+	while((i < 3) && ((TC_MCK / (uint64_t)div_lookup[i] / (uint64_t)frequency) > UINT32_MAX)) i++; // claude kom med denne
 	
 	
 	TC0->TC_CHANNEL[channel].TC_CMR = TC_CMR_WAVSEL_UP_RC | TC_CMR_WAVE | clks_lookup[i];// velger divider og waveform-mode

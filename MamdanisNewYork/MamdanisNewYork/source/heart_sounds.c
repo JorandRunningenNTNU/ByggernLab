@@ -5,10 +5,13 @@
  *  Author: claude.ai
  */ 
 
+// 95% claude ultra max "make no mistakes"
+
 // heart_sounds.c
 #include <stdint.h>
 #include <stddef.h>
 #include "da_beep.h"
+#include "notes.h"
 
 typedef struct {
 	uint16_t freq;    // Hz, 0 = rest
@@ -73,17 +76,36 @@ void da_play_song(const da_note_t *song, size_t count)
 {
 	da_play_notes(song, count);
 }
-
+//denne er en claude origianl
 static const da_note_t placeholder_song[] = {
 	{330, 400}, {294, 400}, {262, 400}, {247, 600},
 	{0, 200},
 	{262, 400}, {247, 400}, {220, 800},
 };
+// Undertale game over arrangert av eirik
+// Undertale game over - one octave higher
+static const da_note_t undertale_song[] = {
+    {NOTE_FS6, 300},
+    {NOTE_F6, 300},
+    {NOTE_DS6, 300},
+    {NOTE_CS6, 300},
+    {NOTE_DS6, 300},
+    {NOTE_AS5, 300},
+    {NOTE_C6, 600},
+    {NOTE_GS5, 300},
+    {NOTE_DS5, 300},
+    {NOTE_DS6, 300},
+    {NOTE_F6,  300},
+    {NOTE_FS6, 600},
+	{NOTE_GS6, 600},
+    {NOTE_CS7, 600},
+    {NOTE_AS6, 600}
+};
 
 void da_game_over_music(void)
 {
-	da_play_song(placeholder_song,
-	sizeof placeholder_song / sizeof placeholder_song[0]);
+	da_play_song(undertale_song,
+	sizeof undertale_song / sizeof undertale_song[0]);
 }
 
 // Whole sequence

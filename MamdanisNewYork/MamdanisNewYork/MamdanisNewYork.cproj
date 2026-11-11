@@ -211,6 +211,9 @@
     <Compile Include="include\motor_controller.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\notes.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\test.h">
       <SubType>compile</SubType>
     </Compile>

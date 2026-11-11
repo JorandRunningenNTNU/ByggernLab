@@ -4,6 +4,8 @@
  * Created: 21.10.2026 11:33:26
  *  Author: vikin
  */ 
+
+// 100% menneskeskrevet
 #include <stdio.h>
 #include "pwm.h"
 #include "servo.h"

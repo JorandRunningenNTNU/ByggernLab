@@ -1,5 +1,5 @@
-// Chat helped a lot here
-
+// Chat hjalp en del her
+// Men all koden er skrevet av mennesker
 
 #include <sam.h>
 #include <stdint.h>

@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include <sam.h>
 
+// 100% menneskeskrevet
+
 #include "our_timer.h"
 
 static int32_t reference = 0;

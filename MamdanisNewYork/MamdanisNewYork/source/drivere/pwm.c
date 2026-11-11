@@ -6,6 +6,9 @@
  */ 
 #include "sam.h"
 
+
+// 100% menneskeskrevet
+
 #define PWM_MCK 84000000
 
 uint8_t pwm_channels_to_enable[8] = {0};
@@ -97,6 +100,7 @@ void pwm_channel_init(uint32_t frequency, uint8_t channel){
 void pwm_channel_change_freq(uint32_t frequency, uint8_t channel){
 	uint32_t CMR = CMR_from_freq(frequency);
 	uint32_t CPRD = CPRD_from_freq(frequency,CMR);
+	PWM->PWM_CH_NUM[channel].PWM_CMR   =  CMR;
 	PWM->PWM_CH_NUM[channel].PWM_CPRDUPD  =  PWM_CPRD_CPRD(CPRD);
 }
 
