@@ -9,6 +9,7 @@
 #include "adc.h"
 #include "motor_controller.h"
 #include "solenoide.h"
+#include "da_beep.h"
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
