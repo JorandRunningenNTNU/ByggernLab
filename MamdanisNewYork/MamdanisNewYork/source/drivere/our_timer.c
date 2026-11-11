@@ -8,6 +8,9 @@
 #define TC_MCK 84000000
 
 static timer_callback_t timer_callbacks[3];
+//0 brukes til motorkontroller
+//1 brukes til motorkontroller start sekvens
+//2 brukes til motor lyd driver
 
 
 tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t callback, const uint32_t channel){
@@ -20,7 +23,7 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 	}
 	
 	PMC->PMC_PCER0 = (1<<(ID_TC0 + channel)); // Enabler perifiral klokke for timer counter 0 for riktig kanal
-	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS; // disabler klokke/counter 0 channel 0.
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS; // disabler klokke/counter 0.
 	
 	// Velg den raskeste klokken hvor compare verdien fortsatt passer in i uint32_t
 	static const uint8_t div_lookup[4]  = {2, 8, 32, 128};
@@ -55,6 +58,22 @@ tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t
 	
 	return TIM_ALL_GOOD;
 }
+
+void timer_channel_stop(const uint32_t channel){
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKDIS;// disabler klokka
+}
+
+void timer_channel_start(const uint32_t channel){
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_CLKEN; // enabler klokke/counter 0 for kanalen
+	TC0->TC_CHANNEL[channel].TC_CCR = TC_CCR_SWTRG; // resetter og starter klokken på den kanalen
+}
+
+void timer_channel_deinit(const uint32_t channel){
+	timer_channel_stop(channel);
+	TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF; // disabler alle interrupts for denne
+	TC0->TC_CHANNEL[channel].TC_CMR = 0;// setter ting til null
+}
+	
 
 uint32_t timer_done(const uint32_t channel){
 	if(!timer_callbacks[channel]){

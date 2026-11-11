@@ -9,19 +9,23 @@
 #include "adc.h"
 #include "motor_controller.h"
 #include "solenoide.h"
+#include "da_beep.h"
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
 	WDT->WDT_MR = WDT_MR_WDDIS; // <3 <3 <3 watchdawg timer DISABEL!
 	
-	adc_setup();
 	uart_init(F_CPU, 9600);
 	pwm_init();
 	encoder_init();
 	servo_init();
+	solenoide_init();
 	motor_controller_init(1000);
 	can_setup();
-	solenoide_init();
+	adc_setup();
 	
-	test();
+	printf("Klar for de game \r\n");
+	while(1){
+		continue;
+	}
 }
