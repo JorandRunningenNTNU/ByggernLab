@@ -137,3 +137,26 @@ void oled_print_number(uint16_t number) {
 	snprintf(buffer, sizeof(buffer), "%-16u", number);
 	oled_print(buffer);
 }
+
+void oled_draw_8x8(uint8_t x, uint8_t y, const uint8_t* texture) {
+	if (x > 120 || y > 56) return;
+
+	uint8_t page = y / 8;
+	uint8_t shift = y % 8;
+
+	uint8_t upper[8];
+	uint8_t lower[8];
+
+	for (uint8_t i = 0; i < 8; i++) {
+		upper[i] = texture[i] << shift;
+		lower[i] = texture[i] >> (8 - shift);
+	}
+
+	oled_pos(page, x);
+	oled_send_data(upper, 8);
+
+	if (shift != 0) {
+		oled_pos(page + 1, x);
+		oled_send_data(lower, 8);
+	}
+}
