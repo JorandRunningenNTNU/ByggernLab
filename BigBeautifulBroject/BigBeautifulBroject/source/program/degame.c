@@ -67,6 +67,8 @@ void awesome_game() {
 		
 		mcp2515_send_bytes(0, 69, can_msg, 3);
 		
+		check_can_messages();
+		
 		if (ioboard_data.rightButtons & (1<<4)) {
 			
 			for (uint8_t i = 1; i <= 6; i++ ) {
