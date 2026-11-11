@@ -21,7 +21,9 @@ void check_can_messages(void) {
 			if (rx[0] == 67 && rx[1] >= 1) {
 				if (rx[2] == 1) {
 					ioboard_write_led(lives, 0);
-					lives -= 1;
+					if (lives != 0) {
+						lives -= 1;
+					}
 				}
 			}
 		}
