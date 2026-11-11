@@ -172,6 +172,9 @@
     <Compile Include="Device_Startup\system_sam3xa.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\can_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\adc.h">
       <SubType>compile</SubType>
     </Compile>
@@ -193,7 +196,7 @@
     <Compile Include="include\drivere\solenoide.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\drivere\timer.h">
+    <Compile Include="include\drivere\our_timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\drivere\uart.h">
@@ -217,7 +220,7 @@
     <Compile Include="source\drivere\solinoide.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="source\drivere\timer.c">
+    <Compile Include="source\drivere\our_timer.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\encoder.c">
@@ -233,6 +236,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\can_interface.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\motor_controller.c">

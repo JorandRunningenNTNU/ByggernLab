@@ -61,6 +61,8 @@ void awesome_game() {
 			oled_print("                ");
 		}
 		
+		check_can_messages();
+		
 		can_msg[0] = joystick.X;
 		can_msg[1] = joystick.Y;
 		can_msg[2] = ioboard_data.rightButtons;

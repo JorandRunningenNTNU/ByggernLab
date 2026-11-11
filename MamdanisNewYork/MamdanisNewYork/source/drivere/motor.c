@@ -26,7 +26,9 @@ void motor_set_output(int16_t output){ // tar inn tall mellom -1023 og 1023
 	// sette motorhastighet
 	if (output<0){
 		output*=-1;
-	} 
+	} else{
+		output *= 1;
+	}
 	uint16_t abs_output = (uint16_t)output;
 
 	pwm_set_duty_cycle((abs_output<<6), 0); // bitskifter 6 ganger for å tilpasse seg pwm sitt 0-65535 format

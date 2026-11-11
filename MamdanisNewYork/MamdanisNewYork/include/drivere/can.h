@@ -2,6 +2,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 
 void can_setup();
 
@@ -28,7 +29,7 @@ __attribute__((packed)) struct CanInit {
 // (See can.c for an example interrupt handler)
 // Example:
 //    can_init((CanInit){.brp = F_CPU/2000000-1, .phase1 = 5, .phase2 = 1, .propag = 6}, 0);
-void can_init(CanInit init, uint8_t rxInterrupt);
+void can_init(CanInit init, uint8_t rxInterrupt, uint8_t txInterrupt);
 
 
 // Strict-aliasing-safe reinterpret-cast
@@ -93,6 +94,13 @@ uint8_t can_rx(CanMsg* m);
 
 // Print a CAN message (using `printf`)
 void can_printmsg(CanMsg m);
+
+// Ikke blokkerende versjon av can_tx
+// returnerer false hvis køen er full
+bool can_tx_enqueue(CanMsg m);
+
+
+bool can_tx_try(CanMsg m);
 
 
 
