@@ -21,6 +21,7 @@ void setup(){
 	setupSPI();
 	setupOLED();
 	setupTimer();
+	setupMCP2515();
 
 	setupMenu();
 	buildMenu();

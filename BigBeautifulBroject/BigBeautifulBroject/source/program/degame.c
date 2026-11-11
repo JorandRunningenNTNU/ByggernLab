@@ -20,6 +20,7 @@ void check_can_messages(void) {
 
 			if (rx[0] == 67 && rx[1] >= 1) {
 				if (rx[2] == 1) {
+					ioboard_write_led(lives, 0);
 					lives -= 1;
 				}
 			}
@@ -34,6 +35,11 @@ void awesome_game() {
 	uint8_t can_msg[3];
 	
 	lives = 6;
+	
+	for (uint8_t i = 1; i <= 6; i++ ) {
+		ioboard_write_led(i, 1);
+	}
+	
 	while (1) {
 		ioboard_update_data();
 		joystick = joystick_read_data();
@@ -48,10 +54,10 @@ void awesome_game() {
 		oled_print_number(lives);
 		
 		if (ioboard_data.rightButtons & (1<<0)) {
-			oled_goto_line(2);
+			oled_goto_line(3);
 			oled_print("AAAAAAH!!       ");
 		} else {
-			oled_goto_line(2);
+			oled_goto_line(3);
 			oled_print("                ");
 		}
 		
@@ -62,10 +68,19 @@ void awesome_game() {
 		mcp2515_send_bytes(0, 69, can_msg, 3);
 		
 		if (ioboard_data.rightButtons & (1<<4)) {
+			
+			for (uint8_t i = 1; i <= 6; i++ ) {
+				ioboard_write_led(i, 0);
+			}
 			break;
+			
 		}
 		if (ioboard_data.rightButtons & (1<<5)) {
 			setupJoystick();
+		}
+		
+		if (lives == 0) {
+			break;
 		}
 	}
 }
