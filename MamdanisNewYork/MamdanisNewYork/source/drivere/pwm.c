@@ -81,7 +81,7 @@ void pwm_start_channel(uint8_t channel){
 
 void pwm_channel_init(uint32_t frequency, uint8_t channel){
 		if(channel > 8){
-			
+			//todo
 		}
 	
 		PWM->PWM_DIS = PWM_ENA_CHID[channel];

@@ -17,3 +17,9 @@ uint32_t timer_done(const uint32_t channel); // returnerer 1 hvis counteren til 
 tim_return_t timer_channel_init(const uint32_t frequency, // frekvensen er i Hz
 								const timer_callback_t callback, // Fungerer som en vanlig poll timer når denne ikke er satt
 								const uint32_t channel); //  channel kan være 0, 1 eller 2, så man kan totalt bruke 3 countere
+								
+void timer_channel_deinit(const uint32_t channel);
+
+void timer_channel_start(const uint32_t channel);
+
+void timer_channel_stop(const uint32_t channel);
