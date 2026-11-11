@@ -65,7 +65,6 @@ void death_animation() {
 		}
 		oled_send_data(symbol, 8);
 	}
-	uint8_t bits[8] = {5,6,7,8,9,10,11,12};
 	timer_flag = 0;
 	for (uint8_t i = 0; i < 8; i++) {
 		symbol[i] = pgm_read_byte(&heart_frames[3][i]);

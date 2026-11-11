@@ -31,16 +31,13 @@ void setupMCP2515(){
 	//mcp2515_write_byte(0x2d, (1<<1)|(1<<0));  // skrur på interrupt for recive buffer 0 og 1
 	mcp2515_write_byte(0x2B, 0x03);
 	
-	// Timing
+	// Timing, disse tre linjene med kode er med hjelp fra chatGPT
 	// TQ = 2(BRP+1)/F_CPU = 2(19 + 1) / 16 MHz = 2,5 ms
 	// SJW = 1 TQ
 	// Sync = 1 TQ
 	// Prop = 2 TQ
 	// PS1 = 3 TQ
 	// PS2 = 2 TQ
-	/*mcp2515_write_byte(0x2a, (3<<0)); // SJW = 1 og BRP = 3
-	mcp2515_write_bit(0x29, 0x3f, (3<<3)|(2<<0)); // PS1 = 3, prop = 2
-	mcp2515_write_bit(0x28, (7<<0), (1<<0)); // PS2 = 2*/
 	mcp2515_write_byte(0x2A, (19<<0));  // SJW=1 | BRP=19,  
 	mcp2515_write_byte(0x29, (1<<7) | (2<<3) | (1<<0));  // BTLMODE=1 | PS1=3 | Prop=2
 	mcp2515_write_byte(0x28, (1<<0));  // PS2=2

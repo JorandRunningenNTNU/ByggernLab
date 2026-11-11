@@ -93,7 +93,7 @@ void setupUART(){
 		
 	sei();
 	
-	//setup printf
+	//setup printf, disse linjene er fra chatGPT
 	FILE *uart = fdevopen(uart_putchar, uart_getchar);
 	stdout = uart;
 	stdin = uart;
