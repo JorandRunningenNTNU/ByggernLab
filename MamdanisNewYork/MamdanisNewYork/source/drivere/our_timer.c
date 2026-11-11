@@ -8,10 +8,8 @@
 #define TC_MCK 84000000
 
 static timer_callback_t timer_callbacks[3];
-//0 brukes til motorkontroller
-//1 brukes til motorkontroller start sekvens
-//2 brukes til motor lyd driver
 
+// This is 100% human done 
 
 tim_return_t timer_channel_init(const uint32_t frequency, const timer_callback_t callback, const uint32_t channel){
 	if((channel > 3) || (frequency > TC_MCK/2)){
@@ -72,6 +70,29 @@ void timer_channel_deinit(const uint32_t channel){
 	timer_channel_stop(channel);
 	TC0->TC_CHANNEL[channel].TC_IDR = 0xFFFFFFFF; // disabler alle interrupts for denne
 	TC0->TC_CHANNEL[channel].TC_CMR = 0;// setter ting til null
+}
+
+void timer_wait_ms(uint32_t ms){
+	timer_channel_deinit(1);
+	if(ms > 1000){
+		timer_channel_init(1,0,1);
+		for(int i = 0; i < ms/1000; i++){
+			while(!timer_done(1));
+		}
+		timer_channel_deinit(1);
+	}
+	timer_channel_init(1,0,1);
+}
+
+void timer_wait_10_ms(uint32_t ms){
+	timer_channel_deinit(1);
+	if(ms > 1000){
+		timer_channel_init(1,0,1);
+		for(int i = 0; i < ms/1000; i++){
+			while(!timer_done(1));
+		}
+	}
+	timer_channel_init(1,0,1);
 }
 	
 

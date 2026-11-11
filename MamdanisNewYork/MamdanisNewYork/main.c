@@ -10,6 +10,10 @@
 #include "motor_controller.h"
 #include "solenoide.h"
 #include "da_beep.h"
+#include "heart_sounds.h"
+#include "our_timer.h"
+
+extern bool play_da_heart_sound;
 
 int main(void){
     SystemInit(); // for mikrokontrolleren
@@ -26,6 +30,10 @@ int main(void){
 	
 	printf("Klar for de game \r\n");
 	while(1){
-		continue;
+		if(play_da_heart_sound){
+			timer_channel_deinit(2);
+			da_heart_loss_sequence();
+			play_da_heart_sound = false;
+		}
 	}
 }

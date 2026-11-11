@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <sam.h>
 
+// 100% menneskeskrevet
+
 void motor_initilize(){
 	PIOC->PIO_PER = (1<<23);
 	PIOC->PIO_OER = (1<<23);

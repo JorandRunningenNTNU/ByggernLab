@@ -117,9 +117,12 @@ void can_tx(CanMsg m){
     CAN0->CAN_MB[txMailbox].CAN_MCR = (m.length << CAN_MCR_MDLC_Pos) | CAN_MCR_MTCR;
 }
 
+
+//Claude kode begynner
 #define TXQ_SIZE 8
 static CanMsg           txq[TXQ_SIZE];
 static volatile uint8_t q_head, q_tail;   // head: written by producer, tail: written by ISR
+
 
 bool can_tx_enqueue(CanMsg m){            // single producer only
 	uint8_t next = (q_head + 1) % TXQ_SIZE;
@@ -130,6 +133,7 @@ bool can_tx_enqueue(CanMsg m){            // single producer only
 	NVIC_SetPendingIRQ(CAN0_IRQn);        // kick-start the sending
 	return true;
 }
+//Claude kode slutter
 
 uint8_t can_rx(CanMsg* m){
     if(!(CAN0->CAN_MB[rxMailbox].CAN_MSR & CAN_MSR_MRDY)){
@@ -152,6 +156,8 @@ uint8_t can_rx(CanMsg* m){
     return 1;
 }
 
+//Denne har claude skrevet
+// Kommentarene er egne
 bool can_tx_try(CanMsg m){
 	if(!(CAN0->CAN_MB[txMailbox].CAN_MSR & CAN_MSR_MRDY)){
 		return false;                       // optatt, hånderinge blir gjort av funksjonskalleren
@@ -172,6 +178,7 @@ void CAN0_Handler(void){
 	const uint32_t rxbit = 1u << rxMailbox;
 	const uint32_t txbit = 1u << txMailbox;
 	
+	//Claude kode begynner
 	// TX: send next queued frame if the mailbox is free
 	if(CAN0->CAN_IMR & txbit){
 		if(q_tail != q_head){
@@ -183,6 +190,7 @@ void CAN0_Handler(void){
 			CAN0->CAN_IDR = txbit;        // stops the interrupt when the queue is empty
 		}
 	}
+	//Claude kode slutter
 	
 	// RX interrupt handler
 	if(can_sr & rxbit){

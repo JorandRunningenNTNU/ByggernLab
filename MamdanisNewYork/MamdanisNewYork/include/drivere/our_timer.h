@@ -1,6 +1,10 @@
 #pragma once
 #include <stdint.h>
 
+//0 brukes til motorkontroller
+//1 brukes til motorkontroller start sekvens but is available after the start sequence
+//2 brukes til motor lyd driver
+
 typedef void (*timer_callback_t)(void); // vi bruker callbacks fordi det er meget kult synes jeg
 
 typedef enum {

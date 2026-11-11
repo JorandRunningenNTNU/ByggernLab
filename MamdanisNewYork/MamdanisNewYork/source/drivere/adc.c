@@ -13,6 +13,8 @@
 
 #define ADC_CHANNEL 6
 
+// 100% menneskeskrevet
+
 adc_return_t adc_setup(void){
 	PMC->PMC_PCER1 = PMC_PCER1_PID37;	// aktiverer klokkke for adc
 	ADC->ADC_CR = ADC_CR_SWRST;			// restarter adc
@@ -45,7 +47,6 @@ adc_return_t adc_setup(void){
 
 uint32_t adc_read_newest_result(void){
 	uint16_t data = (uint16_t)ADC->ADC_LCDR;
-	//data &= ~(0x3f<<10); // setter alle bit unntatt de 10 nederste til 0.
 	return (uint32_t)data;	
 }
 
@@ -55,6 +56,8 @@ static volatile bool message_sent = false;
 static volatile bool was_over = true;
 #define DETECTION_THRESHOLD 100000
 
+// Vi trengte mye anti prell og hysterese fordi adc'en går i freerun og da tror jeg at den sampler på >100kHz
+// Interrupten kjører kun når hadware compare utløser da
 void ADC_Handler(void){
 	uint32_t ISR = ADC->ADC_ISR;
 	if (ISR & ADC_ISR_COMPE){
@@ -70,7 +73,6 @@ void ADC_Handler(void){
 				};
 				if(!message_sent){
 					if(can_tx_try(m)){
-						da_beep(1000, 3);
 						message_sent = true;
 						ADC->ADC_EMR &= ~ADC_EMR_CMPMODE_Msk;
 						ADC->ADC_EMR |= ADC_EMR_CMPMODE_HIGH;
