@@ -24,5 +24,8 @@ int main(void){
 	can_setup();
 	adc_setup();
 	
-	test();
+	printf("Klar for de game \r\n");
+	while(1){
+		continue;
+	}
 }
