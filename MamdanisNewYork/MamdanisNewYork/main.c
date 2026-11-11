@@ -34,11 +34,12 @@ int main(void){
 	while(1){
 		if(play_da_heart_sound){
 			timer_channel_deinit(2);
-			timer_channel_init(10,motor_controller_jiggle,1);
+			timer_channel_init(10,motor_controller_jiggle,2);
 			uint16_t count = 50000;
 			while(count--);
-			da_heart_loss_sequence();
 			timer_channel_deinit(1);
+			da_heart_loss_sequence();
+			timer_channel_deinit(2);
 			play_da_heart_sound = false;
 		}
 	}
