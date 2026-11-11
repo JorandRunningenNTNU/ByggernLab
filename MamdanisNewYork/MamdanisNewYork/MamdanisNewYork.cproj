@@ -181,6 +181,9 @@
     <Compile Include="include\drivere\can.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\drivere\da_beep.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\drivere\encoder.h">
       <SubType>compile</SubType>
     </Compile>
@@ -215,6 +218,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\can.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\drivere\da_beep.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\drivere\solinoide.c">
