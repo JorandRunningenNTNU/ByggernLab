@@ -9,4 +9,4 @@ typedef enum {
 } adc_return_t;
 
 adc_return_t adc_setup(void);
-uint32_t adc_read_newest_result(); // returnerer 0-1024
+uint32_t adc_read_newest_result(); // returnerer 12 bit tall

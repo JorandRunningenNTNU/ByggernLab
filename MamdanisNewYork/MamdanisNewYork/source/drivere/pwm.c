@@ -62,10 +62,10 @@ uint32_t cdty_from_duty(uint16_t duty, uint8_t channel){
 }
 
 void pwm_init(){
-	PIOB->PIO_ABSR |=	  PIO_ABSR_P12;				// peripheral B = PWMH0
-	PIOB->PIO_ABSR |=	  PIO_ABSR_P13;				// peripheral B = PWMH1
-	PIOB->PIO_PDR  |=	  PIO_PDR_P12;				// hand the pin to the peripheral
-	PIOB->PIO_PDR  |=	  PIO_PDR_P13;				// hand the pin to the peripheral
+	PIOB->PIO_ABSR |=	  PIO_ABSR_P12;				// periferaln B = PWMH0
+	PIOB->PIO_ABSR |=	  PIO_ABSR_P13;				// periferaln B = PWMH1
+	PIOB->PIO_PDR  |=	  PIO_PDR_P12;				// gi pinnen til periferalen
+	PIOB->PIO_PDR  |=	  PIO_PDR_P13;				// gi pinnen til periferalen
 	
 	PMC->PMC_PCER1	|=	 PMC_PCER1_PID36;		//Aktiverer periferal klokken til PWM (PID = 36)
 }

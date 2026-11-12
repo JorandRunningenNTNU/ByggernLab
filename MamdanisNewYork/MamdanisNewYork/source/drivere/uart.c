@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "../../include/drivere/uart.h"
 
-
+// Utlevert
 
 typedef struct RingBuf RingBuf;
 struct RingBuf {
