@@ -6,6 +6,7 @@
  */ 
 
 // 95% claude ultra max "make no mistakes"
+// Musikken har vi gjort da
 
 // heart_sounds.c
 #include <stdint.h>
@@ -82,8 +83,7 @@ static const da_note_t placeholder_song[] = {
 	{0, 200},
 	{262, 400}, {247, 400}, {220, 800},
 };
-// Undertale game over arrangert av eirik
-// Undertale game over - one octave higher
+// Undertale game over arrangert av eirik (en oktav høyere)
 static const da_note_t undertale_song[] = {
     {NOTE_FS6, 300},
     {NOTE_F6, 300},

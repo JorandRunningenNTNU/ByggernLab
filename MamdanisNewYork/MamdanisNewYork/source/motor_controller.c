@@ -57,13 +57,18 @@ void motor_controller_update_output(){
 	int32_t e = reference - position; // e er mellom -1024 og 1024
 	e_integral += e;
 	int32_t integral_ledd = (Ti*e_integral)/freq;
+	
+	//Anti windup
 	if(integral_ledd > MAX_THRUST){
 		e_integral = MAX_THRUST*freq/Ti;
 	}else if(integral_ledd < MIN_THRUST){
 		e_integral = MIN_THRUST*freq/Ti;
 	}
+	
+	
 	int32_t thrust = K*(e + (Ti*e_integral)/freq - speed/Td);
 	
+	//Metning håndtering
 	if (thrust < MIN_THRUST){
 		thrust = MIN_THRUST;
 	}

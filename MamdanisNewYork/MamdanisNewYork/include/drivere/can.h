@@ -99,7 +99,8 @@ void can_printmsg(CanMsg m);
 // returnerer false hvis køen er full
 bool can_tx_enqueue(CanMsg m);
 
-
+// Ikke blokkerende versjon av can_tx
+// returnerer false hvis can er opptatt
 bool can_tx_try(CanMsg m);
 
 

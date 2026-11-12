@@ -11,6 +11,6 @@
 
 void servo_init();
 
-void servo_set_position(uint16_t pos);
+void servo_set_position(uint16_t pos); //Bruker fulle 16 bit tall range
 
 #endif /* SERVO_H_ */
